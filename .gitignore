@@ -1,0 +1,12 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+build/
+pubspec.lock
+*.iml
+.idea/
+.vscode/
+# macOS
+.DS_Store
+# Aseprite çalışma dosyaları (export edilen PNG'ler depoya girer, kaynak .aseprite girmez)
+*.aseprite~

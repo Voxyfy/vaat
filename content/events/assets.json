@@ -1,0 +1,290 @@
+[
+  {
+    "id": "asset_club_pressure",
+    "title": "Taraftar baskısı",
+    "text": "Kulüp kötü gidiyor. Taraftar transfer istiyor, tribünde senin adın geçiyor.",
+    "weight": 1.1,
+    "conditions": {
+      "minWeek": 8
+    },
+    "options": [
+      {
+        "label": "Transfer yap, şehri mutlu et",
+        "effects": {
+          "cash": -600000,
+          "suspicion": -10,
+          "channelMult": 1.3,
+          "channelMultWeeks": 10
+        }
+      },
+      {
+        "label": "Bütçe yok de",
+        "effects": {
+          "suspicion": 8
+        }
+      }
+    ]
+  },
+  {
+    "id": "asset_media_attack",
+    "title": "Rakip gazete saldırıyor",
+    "text": "Başka bir yayın, senin kanalının haberlerini 'sipariş' diye yazdı.",
+    "weight": 1.0,
+    "conditions": {
+      "minWeek": 14,
+      "minSuspicion": 25
+    },
+    "options": [
+      {
+        "label": "Karşı kampanya başlat",
+        "effects": {
+          "cash": -180000,
+          "suspicion": -6
+        }
+      },
+      {
+        "label": "Dava aç",
+        "effects": {
+          "cash": -90000,
+          "suspicion": 3
+        }
+      },
+      {
+        "label": "Cevap verme",
+        "effects": {
+          "suspicion": 7
+        }
+      }
+    ]
+  },
+  {
+    "id": "asset_construction_tender",
+    "title": "İhale teklifi",
+    "text": "İnşaat firman için bir kamu ihalesi ayarlanabilirmiş. Karşılığı var tabii.",
+    "weight": 0.9,
+    "conditions": {
+      "minWeek": 16
+    },
+    "options": [
+      {
+        "label": "Anlaş",
+        "effects": {
+          "cash": -350000,
+          "suspicion": -8
+        }
+      },
+      {
+        "label": "Temiz kal",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "asset_exchange_masak",
+    "title": "Nakit hareketleri incelemesi",
+    "text": "Döviz bürosunun nakit hareketleri için bilgi istenmiş. Rakamlar yüksek görünüyor.",
+    "weight": 1.2,
+    "conditions": {
+      "minWeek": 12,
+      "minSuspicion": 20
+    },
+    "options": [
+      {
+        "label": "Kayıtları düzelt",
+        "effects": {
+          "cash": -140000,
+          "suspicion": -10
+        }
+      },
+      {
+        "label": "İşlemleri bir süre durdur",
+        "effects": {
+          "suspicion": -5,
+          "channelMult": 0.85,
+          "channelMultWeeks": 8
+        }
+      },
+      {
+        "label": "Devam et",
+        "effects": {
+          "suspicion": 14
+        }
+      }
+    ]
+  },
+  {
+    "id": "asset_foundation_donor",
+    "title": "Bağışçı hesap soruyor",
+    "text": "Vakfın büyük bağışçılarından biri, paranın nereye gittiğini görmek istiyor.",
+    "weight": 1.0,
+    "conditions": {
+      "minWeek": 10
+    },
+    "options": [
+      {
+        "label": "Gösterişli bir yardım kampanyası",
+        "effects": {
+          "cash": -200000,
+          "suspicion": -12,
+          "channelMult": 1.2,
+          "channelMultWeeks": 8
+        }
+      },
+      {
+        "label": "Rakamları düzenle",
+        "effects": {
+          "cash": -50000,
+          "suspicion": -4
+        }
+      },
+      {
+        "label": "Geçiştir",
+        "effects": {
+          "suspicion": 8
+        }
+      }
+    ]
+  },
+  {
+    "id": "asset_partner_demands",
+    "title": "Ortak pay artışı istiyor",
+    "text": "Ortağın, işlerin büyüdüğünü görüp payını artırmak istiyor.",
+    "weight": 1.1,
+    "conditions": {
+      "minWeek": 14,
+      "minInvestors": 80
+    },
+    "options": [
+      {
+        "label": "Payını artır",
+        "effects": {
+          "skimDelta": -0.05
+        }
+      },
+      {
+        "label": "Nakit ver, pay değişmesin",
+        "effects": {
+          "cash": -300000
+        }
+      },
+      {
+        "label": "Reddet",
+        "effects": {
+          "suspicion": 10,
+          "panic": 0.15
+        }
+      }
+    ]
+  },
+  {
+    "id": "asset_partner_nervous",
+    "title": "Ortak tedirgin",
+    "text": "Ortağın ortalığın kızıştığını söylüyor. Çıkış yolunu soruyor.",
+    "weight": 1.2,
+    "conditions": {
+      "minWeek": 18,
+      "minSuspicion": 50
+    },
+    "options": [
+      {
+        "label": "Payını öde, yollarınızı ayır",
+        "effects": {
+          "cash": -500000,
+          "suspicion": -8
+        }
+      },
+      {
+        "label": "Sakinleştir, birlikte devam",
+        "effects": {
+          "suspicion": 5
+        }
+      },
+      {
+        "label": "Tehdit et",
+        "effects": {
+          "suspicion": 14,
+          "panic": 0.2
+        }
+      }
+    ]
+  },
+  {
+    "id": "asset_lawyer_warning",
+    "title": "Avukatın uyarısı",
+    "text": "Avukatın, dosyanın savcılıkta hareketlendiğini duymuş. Hazırlık zamanı diyor.",
+    "weight": 1.3,
+    "conditions": {
+      "minWeek": 20,
+      "minSuspicion": 55
+    },
+    "options": [
+      {
+        "label": "Belgeleri temizle",
+        "effects": {
+          "cash": -250000,
+          "suspicion": -15
+        }
+      },
+      {
+        "label": "Kaçış hazırlığına odaklan",
+        "effects": {
+          "cash": -150000,
+          "suspicion": -4
+        }
+      },
+      {
+        "label": "Devam",
+        "effects": {
+          "suspicion": 6
+        }
+      }
+    ]
+  },
+  {
+    "id": "asset_fixer_offer",
+    "title": "Aracıdan teklif",
+    "text": "Aracın, sınırın bu hafta gevşek olduğunu söylüyor. Fırsat penceresi dar.",
+    "weight": 0.9,
+    "conditions": {
+      "minWeek": 24,
+      "minSuspicion": 60
+    },
+    "options": [
+      {
+        "label": "Hazırlığı tamamla",
+        "effects": {
+          "cash": -400000
+        }
+      },
+      {
+        "label": "Henüz erken",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "asset_banker_letter",
+    "title": "Bakiye mektubu",
+    "text": "Şube müdürü, kurumsal yatırımcılar için hesabın dolu göründüğü bir mektup imzalayabilir.",
+    "weight": 1.0,
+    "conditions": {
+      "minWeek": 12,
+      "maxCoverage": 0.6
+    },
+    "options": [
+      {
+        "label": "İmzalat",
+        "effects": {
+          "cash": -160000,
+          "channelMult": 1.7,
+          "channelMultWeeks": 12,
+          "suspicion": 8
+        }
+      },
+      {
+        "label": "Gerek yok",
+        "effects": {}
+      }
+    ]
+  }
+]

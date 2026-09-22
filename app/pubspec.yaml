@@ -1,0 +1,59 @@
+name: vaat
+description: "Vaat: Dolandırıcı Kariyeri. Hicivli, tur bazlı dolandırıcı kariyeri simülasyonu."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.11.4
+
+dependencies:
+  flame: ^1.38.2
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^3.3.2
+  path_provider: ^2.1.6
+  shared_preferences: ^2.5.5
+  vaat_sim:
+    path: ../packages/sim
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/content/balance.json
+    - assets/content/schemes.json
+    - assets/content/businesses.json
+    - assets/content/contacts.json
+    - assets/content/escape_plan.json
+    - assets/content/events/
+    - assets/sprites/
+
+  # Pixel fontlar, hepsi SIL OFL. Seçim gerekçesi ve Türkçe glif kontrolü
+  # tasarım dokümanının "Sanat yönü" bölümünde. ₺ yalnız VT323'te var,
+  # bu yüzden para metinleri "TL" yazar.
+  fonts:
+    - family: PixelifySans
+      fonts:
+        - asset: assets/fonts/PixelifySans.ttf
+    - family: Jersey20
+      fonts:
+        - asset: assets/fonts/Jersey20-Regular.ttf
+    - family: Jacquard12
+      fonts:
+        - asset: assets/fonts/Jacquard12-Regular.ttf
+
+# Uygulama simgesi. Kaynak görsel tools/make_icon.py ile üretiliyor;
+# bu bölümü değiştirdikten sonra:
+#   dart run flutter_launcher_icons
+flutter_launcher_icons:
+  image_path: "assets/icon/icon.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  adaptive_icon_background: "#0F1512"
+  adaptive_icon_foreground: "assets/icon/icon_foreground.png"

@@ -1,0 +1,75 @@
+{
+  "_comment": "Denge parametreleri. Kodda sabit yok, tasarım değişikliği derleme gerektirmez. Tüm oranlar HAFTALIK.",
+  "realReturnWeekly": 0.0,
+  "baseWithdrawWeekly": 0.005,
+  "referenceRateWeekly": 0.01,
+  "inflow": {
+    "socialProofFloor": 5,
+    "rateAppealExponent": 0.7,
+    "rateAppealMin": 0.2,
+    "rateAppealMax": 4.0,
+    "credibilityFalloff": 3.0
+  },
+  "panic": {
+    "missedPaymentStep": 0.5,
+    "bankRunMultiplier": 5.0,
+    "decayPerWeek": 0.01,
+    "marketingRelief": 0.05
+  },
+  "suspicion": {
+    "rateExcessPerUnit": 15.0,
+    "missedPayment": 15.0,
+    "bankRun": 25.0,
+    "marketingPerThousand": 0.02,
+    "decayPerWeek": 0.3,
+    "raidThreshold": 100.0,
+    "_rateExcessNote": "Aşırı vaat şüphesi görünürlükle çarpılır: log10(1+yatırımcı)/4. Küçük şema fark edilmez, büyük şema edilir."
+  },
+  "segments": {
+    "retiree": {
+      "name": "Emekli ve dar gelirli",
+      "market": 20000,
+      "ticket": 4000,
+      "channelBase": 0.07,
+      "withdrawMult": 0.8,
+      "panicMult": 1.6,
+      "maxCredibleRateWeekly": 0.05
+    },
+    "tradesman": {
+      "name": "Esnaf",
+      "market": 6000,
+      "ticket": 15000,
+      "channelBase": 0.05,
+      "withdrawMult": 1.0,
+      "panicMult": 1.0,
+      "maxCredibleRateWeekly": 0.03
+    },
+    "cryptoYouth": {
+      "name": "Kripto genci",
+      "market": 40000,
+      "ticket": 1500,
+      "channelBase": 0.12,
+      "withdrawMult": 1.6,
+      "panicMult": 2.2,
+      "maxCredibleRateWeekly": 0.12
+    },
+    "diaspora": {
+      "name": "Gurbetçi",
+      "market": 8000,
+      "ticket": 12000,
+      "channelBase": 0.04,
+      "withdrawMult": 0.4,
+      "panicMult": 0.6,
+      "maxCredibleRateWeekly": 0.02
+    },
+    "institutional": {
+      "name": "Kurumsal fon",
+      "market": 40,
+      "ticket": 2000000,
+      "channelBase": 0.02,
+      "withdrawMult": 0.5,
+      "panicMult": 3.0,
+      "maxCredibleRateWeekly": 0.006
+    }
+  }
+}

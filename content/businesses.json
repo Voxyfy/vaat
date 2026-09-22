@@ -1,0 +1,79 @@
+[
+  {
+    "id": "football",
+    "name": "Futbol Kulübü",
+    "pitch": "Şehir seni bağrına basar. Kimse sevdiği takımın sahibinden şüphelenmek istemez.",
+    "price": 4000000,
+    "weeklyIncome": -35000,
+    "launderPerWeek": 120000,
+    "suspicionRelief": 0.35,
+    "channelBonus": 1.15,
+    "unlocks": []
+  },
+  {
+    "id": "media",
+    "name": "Yerel Gazete ve TV",
+    "pitch": "Kendi haberini kendin yazarsın. Muhabirler artık senin muhabirlerin.",
+    "price": 3000000,
+    "weeklyIncome": -20000,
+    "launderPerWeek": 60000,
+    "suspicionRelief": 0.55,
+    "channelBonus": 1.25,
+    "unlocks": []
+  },
+  {
+    "id": "construction",
+    "name": "İnşaat Firması",
+    "pitch": "Beton her şeyi yutar. Hem para aklarsın hem tesis vaadin inandırıcı olur.",
+    "price": 2500000,
+    "weeklyIncome": 40000,
+    "launderPerWeek": 260000,
+    "suspicionRelief": 0.1,
+    "channelBonus": 1.0,
+    "unlocks": ["productionCover"]
+  },
+  {
+    "id": "exchange",
+    "name": "Döviz Bürosu",
+    "pitch": "Nakit girer, nakit çıkar, kimse sormaz. Aklamanın en hızlı yolu.",
+    "price": 1200000,
+    "weeklyIncome": 15000,
+    "launderPerWeek": 420000,
+    "suspicionRelief": -0.15,
+    "channelBonus": 1.0,
+    "unlocks": ["cryptoExchange"]
+  },
+  {
+    "id": "restaurants",
+    "name": "Restoran Zinciri",
+    "pitch": "Sıkıcı ama güvenli. Ciro şişer, kimse peçete saymaz.",
+    "price": 900000,
+    "weeklyIncome": 25000,
+    "launderPerWeek": 180000,
+    "suspicionRelief": 0.05,
+    "channelBonus": 1.0,
+    "unlocks": []
+  },
+  {
+    "id": "foundation",
+    "name": "Vakıf",
+    "pitch": "Hayırsever olursun. Cemaat kapıları açılır, kimse hayır işine bakmaz.",
+    "price": 700000,
+    "weeklyIncome": -10000,
+    "launderPerWeek": 90000,
+    "suspicionRelief": 0.4,
+    "channelBonus": 1.1,
+    "unlocks": ["profitShareHolding"]
+  },
+  {
+    "id": "brokerage",
+    "name": "Aracı Kurum Lisansı",
+    "pitch": "Artık masanın arkasındasın. Emirler senden geçiyor.",
+    "price": 3500000,
+    "weeklyIncome": 30000,
+    "launderPerWeek": 140000,
+    "suspicionRelief": -0.1,
+    "channelBonus": 1.0,
+    "unlocks": ["stockManipulation"]
+  }
+]

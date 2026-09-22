@@ -1,0 +1,71 @@
+[
+  {
+    "id": "stock_tip_from_broker",
+    "title": "Aracı kurumdan tüyo",
+    "text": "Tanıdık bir müdür, küçük bir kâğıda büyük bir alım geleceğini fısıldıyor. Bilgi henüz kimsede yok.",
+    "weight": 1.2,
+    "conditions": { "schemes": ["stockManipulation"], "minWeek": 4 },
+    "options": [
+      { "label": "Önden pozisyon al", "effects": { "cash": -150000, "suspicion": 9 } },
+      { "label": "Bilgiyi müşterilere sat", "effects": { "cash": 250000, "suspicion": 14 } },
+      { "label": "Duymamış ol", "effects": {} }
+    ]
+  },
+  {
+    "id": "stock_surveillance_letter",
+    "title": "Gözetim yazısı geldi",
+    "text": "Borsa gözetim birimi bir kâğıttaki işlem kalıplarını sormuş. İptal oranın fazla yüksekmiş.",
+    "weight": 1.4,
+    "conditions": { "schemes": ["stockManipulation"], "minWeek": 10, "minSuspicion": 20 },
+    "options": [
+      { "label": "Avukatla teknik cevap yaz", "effects": { "cash": -180000, "suspicion": -12 } },
+      { "label": "Bir süre temiz işlem yap", "effects": { "suspicion": -6, "channelMult": 0.7, "channelMultWeeks": 8 } },
+      { "label": "Cevap verme", "effects": { "suspicion": 15 } }
+    ]
+  },
+  {
+    "id": "stock_forum_army",
+    "title": "Forum ordusu",
+    "text": "Bir sosyal medya ekibi, seçtiğin kâğıdı gün boyu övecek hesaplar öneriyor.",
+    "weight": 1.1,
+    "conditions": { "schemes": ["stockManipulation"], "minWeek": 3 },
+    "options": [
+      { "label": "Tut, bağır bağırabildiğin kadar", "effects": { "cash": -90000, "suspicion": 8 } },
+      { "label": "Küçük ve sessiz bir ekip", "effects": { "cash": -30000, "suspicion": 3 } },
+      { "label": "Gerek yok", "effects": {} }
+    ]
+  },
+  {
+    "id": "stock_client_complaint",
+    "title": "Müşteri şikâyeti",
+    "text": "Portföyünü yönettiğin bir müşteri, işlemlerinin kendi zararına olduğunu fark etmiş.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["stockManipulation"], "minWeek": 12 },
+    "options": [
+      { "label": "Zararını cebinden kapat", "effects": { "cash": -220000, "suspicion": -8, "panic": -0.15 } },
+      { "label": "Piyasa koşulları de", "effects": { "suspicion": 10, "panic": 0.25 } }
+    ]
+  },
+  {
+    "id": "stock_cornering_offer",
+    "title": "Kâğıdı sıkıştırma teklifi",
+    "text": "Bir grup, küçük bir kâğıdın dolaşımının çoğunu toplayıp açıkçıları sıkıştırmayı öneriyor.",
+    "weight": 0.8,
+    "conditions": { "schemes": ["stockManipulation"], "minWeek": 20 },
+    "options": [
+      { "label": "Ortak ol", "effects": { "cash": -600000, "suspicion": 22 } },
+      { "label": "Uzak dur", "effects": {} }
+    ]
+  },
+  {
+    "id": "stock_crash_margin_call",
+    "title": "Teminat tamamlama çağrısı",
+    "text": "Piyasa çöktü, kaldıraçlı pozisyonlar için teminat isteniyor. Bugün ödemen lazım.",
+    "weight": 1.5,
+    "conditions": { "schemes": ["stockManipulation"], "regimes": ["crash"], "minWeek": 8 },
+    "options": [
+      { "label": "Teminatı yatır", "effects": { "cash": -400000 } },
+      { "label": "Pozisyonları kapattır", "effects": { "cash": -120000, "panic": 0.3, "suspicion": 5 } }
+    ]
+  }
+]

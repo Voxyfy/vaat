@@ -1,0 +1,30 @@
+[
+  {
+    "id": "passport",
+    "name": "İkinci Pasaport",
+    "pitch": "Başka bir isim, başka bir ülke. Havalimanında fark yaratan tek şey.",
+    "price": 600000,
+    "weight": 0.3
+  },
+  {
+    "id": "offshore",
+    "name": "Yurt Dışı Hesap",
+    "pitch": "Para senden önce gitsin. Yanında nakit taşımak kaçışın en zayıf halkası.",
+    "price": 900000,
+    "weight": 0.35
+  },
+  {
+    "id": "country",
+    "name": "İade Anlaşması Olmayan Ülke",
+    "pitch": "Gideceğin yeri önceden ayarla. Sonra seçmek lüks olur.",
+    "price": 750000,
+    "weight": 0.25
+  },
+  {
+    "id": "story",
+    "name": "Hazır Hikâye",
+    "pitch": "Neden gittiğini anlatan makul bir gerekçe. Aranma kararı gecikir.",
+    "price": 350000,
+    "weight": 0.1
+  }
+]

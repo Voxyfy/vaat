@@ -1,0 +1,56 @@
+[
+  {
+    "id": "lawyer",
+    "name": "Ağır Ceza Avukatı",
+    "pitch": "Kapı çalındığında ilk arayacağın numara.",
+    "price": 500000,
+    "suspicionRelief": 0.3,
+    "escapeBonus": 0.1,
+    "favorCost": 120000
+  },
+  {
+    "id": "lobbyist",
+    "name": "Lobici",
+    "pitch": "Doğru kapıyı bilir, doğru zamanda çalar.",
+    "price": 900000,
+    "suspicionRelief": 0.5,
+    "escapeBonus": 0.05,
+    "favorCost": 200000
+  },
+  {
+    "id": "journalist",
+    "name": "Dost Gazeteci",
+    "pitch": "Haber çıkmadan önce sana haber verir.",
+    "price": 400000,
+    "suspicionRelief": 0.35,
+    "escapeBonus": 0.0,
+    "favorCost": 80000
+  },
+  {
+    "id": "celebrity",
+    "name": "Tanıdık Yüz",
+    "pitch": "Reklamda o varsa kimse belgeyi okumaz.",
+    "price": 1500000,
+    "suspicionRelief": -0.1,
+    "escapeBonus": 0.0,
+    "favorCost": 250000
+  },
+  {
+    "id": "banker",
+    "name": "Şube Müdürü",
+    "pitch": "Bakiye mektubunu o imzalar, hesap hareketini o görmez.",
+    "price": 1100000,
+    "suspicionRelief": 0.25,
+    "escapeBonus": 0.2,
+    "favorCost": 180000
+  },
+  {
+    "id": "fixer",
+    "name": "Aracı",
+    "pitch": "Pasaport, bilet, sınır. Soru sormaz.",
+    "price": 800000,
+    "suspicionRelief": 0.0,
+    "escapeBonus": 0.35,
+    "favorCost": 150000
+  }
+]

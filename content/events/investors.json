@@ -1,0 +1,94 @@
+[
+  {
+    "id": "inv_retiree_savings",
+    "title": "Emekli tüm birikimini getirdi",
+    "text": "Yaşlı bir adam, ömrünün birikimini masaya koydu. Torununun düğünü için saklıyormuş.",
+    "weight": 1.2,
+    "conditions": { "minWeek": 6 },
+    "options": [
+      { "label": "Al", "effects": { "cash": 180000, "suspicion": 2 } },
+      { "label": "Yarısını al, gerisini sakla dedirt", "effects": { "cash": 90000, "suspicion": -3 } },
+      { "label": "Geri çevir", "effects": { "suspicion": -6, "channelMult": 0.9, "channelMultWeeks": 4 } }
+    ]
+  },
+  {
+    "id": "inv_referral_chain",
+    "title": "Tavsiye zinciri",
+    "text": "Bir yatırımcı, mahallesinden on kişiyi birden getirmek istiyor.",
+    "weight": 1.2,
+    "conditions": { "minWeek": 5 },
+    "options": [
+      { "label": "Komisyon ver, hepsini al", "effects": { "cash": -40000, "channelMult": 1.6, "channelMultWeeks": 8 } },
+      { "label": "Komisyonsuz al", "effects": { "channelMult": 1.2, "channelMultWeeks": 6 } }
+    ]
+  },
+  {
+    "id": "inv_doubter_meeting",
+    "title": "Sorgulayan yatırımcı",
+    "text": "Bir yatırımcı toplantıda yöntemi sordu. Odadaki herkes cevabı bekliyor.",
+    "weight": 1.3,
+    "conditions": { "minWeek": 9 },
+    "options": [
+      { "label": "Anlaşılmaz jargonla boğ", "effects": { "suspicion": 4, "panic": -0.1 } },
+      { "label": "Parasını iade et, kapı dışarı", "effects": { "cash": -120000, "panic": -0.2, "suspicion": 6 } },
+      { "label": "Açık açık anlat", "effects": { "suspicion": 12, "panic": 0.2 } }
+    ]
+  },
+  {
+    "id": "inv_early_payout_show",
+    "title": "Erken ödeme gösterisi",
+    "text": "İlk yatırımcılara tam ödeme yapmak, mahallede konuşulacak bir hikâye olur.",
+    "weight": 1.1,
+    "conditions": { "minWeek": 4, "maxWeek": 40 },
+    "options": [
+      { "label": "Fazlasıyla öde", "effects": { "cash": -150000, "channelMult": 1.7, "channelMultWeeks": 14, "panic": -0.2 } },
+      { "label": "Normal öde", "effects": {} }
+    ]
+  },
+  {
+    "id": "inv_institutional_due_diligence",
+    "title": "Kurumsal fon inceleme istiyor",
+    "text": "Büyük bir fon yatırım yapmadan önce defterleri görmek istiyor.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 14, "minInvestors": 50 },
+    "options": [
+      { "label": "Hazır defterleri göster", "effects": { "cash": -100000, "channelMult": 1.9, "channelMultWeeks": 16, "suspicion": 10 } },
+      { "label": "Gizlilik gerekçesiyle reddet", "effects": { "suspicion": 4 } }
+    ]
+  },
+  {
+    "id": "inv_diaspora_delegation",
+    "title": "Gurbetçi heyeti geldi",
+    "text": "Avrupa'dan bir grup, memlekete yatırım yapmak için özel olarak gelmiş.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 8 },
+    "options": [
+      { "label": "Ağırla, tesis gezdir", "effects": { "cash": -120000, "channelMult": 1.8, "channelMultWeeks": 12 } },
+      { "label": "Ofiste kısa bir toplantı", "effects": { "channelMult": 1.2, "channelMultWeeks": 6 } }
+    ]
+  },
+  {
+    "id": "inv_group_withdrawal",
+    "title": "Toplu çekim talebi",
+    "text": "Aynı mahalleden bir grup, sözleşmiş gibi aynı hafta paralarını istiyor.",
+    "weight": 1.2,
+    "conditions": { "minWeek": 16, "minPanic": 1.3 },
+    "options": [
+      { "label": "Hepsini öde", "effects": { "panic": -0.35, "suspicion": -5 } },
+      { "label": "Sırayla öde, oyala", "effects": { "panic": 0.25, "suspicion": 6 } },
+      { "label": "Kilit süresini hatırlat", "effects": { "withdrawMult": 0.5, "withdrawMultWeeks": 6, "suspicion": 10, "panic": 0.15 } }
+    ]
+  },
+  {
+    "id": "inv_influencer_deal",
+    "title": "Fenomen teklifi",
+    "text": "Takipçisi kalabalık biri, ücret karşılığı senden bahsetmeyi teklif ediyor.",
+    "weight": 1.1,
+    "conditions": { "minWeek": 6, "maxSuspicion": 60 },
+    "options": [
+      { "label": "Anlaş", "effects": { "cash": -180000, "channelMult": 2.0, "channelMultWeeks": 10, "suspicion": 6 } },
+      { "label": "Pazarlık et", "effects": { "cash": -90000, "channelMult": 1.4, "channelMultWeeks": 8, "suspicion": 3 } },
+      { "label": "Reddet", "effects": {} }
+    ]
+  }
+]

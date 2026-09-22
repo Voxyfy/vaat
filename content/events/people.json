@@ -1,0 +1,83 @@
+[
+  {
+    "id": "people_accountant_raise",
+    "title": "Muhasebeci zam istiyor",
+    "text": "Defterleri tutan kişi, yaptığı işin karşılığını bildiğini ima ederek zam istiyor.",
+    "weight": 1.1,
+    "conditions": { "minWeek": 14 },
+    "options": [
+      { "label": "İstediğini ver", "effects": { "fixedCostDelta": 6000, "suspicion": -6 } },
+      { "label": "Ortak et", "effects": { "skimDelta": -0.03, "suspicion": -12 } },
+      { "label": "Reddet", "effects": { "suspicion": 14 } }
+    ]
+  },
+  {
+    "id": "people_relative_wants_in",
+    "title": "Akraba işe girmek istiyor",
+    "text": "Bir akraban şirkette çalışmak istiyor. Sadık olur ama her şeyi görür.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 8 },
+    "options": [
+      { "label": "İşe al", "effects": { "fixedCostDelta": 3000, "suspicion": -5 } },
+      { "label": "Uzak tut", "effects": { "suspicion": 3 } }
+    ]
+  },
+  {
+    "id": "people_lawyer_retainer",
+    "title": "Avukat sözleşmesi",
+    "text": "Bir hukuk bürosu aylık sabit ücretle sürekli hizmet öneriyor. İşler karışınca hazır olurlar.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 10 },
+    "options": [
+      { "label": "Sözleşme imzala", "effects": { "fixedCostDelta": 9000, "suspicion": -10 } },
+      { "label": "Gerektiğinde ararım", "effects": {} }
+    ]
+  },
+  {
+    "id": "people_politician_donation",
+    "title": "Bağış talebi",
+    "text": "Bir siyasetçinin ekibi kampanya için destek istiyor. Karşılığında kapıların açılacağını söylüyorlar.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 16, "minInvestors": 150 },
+    "options": [
+      { "label": "Cömert davran", "effects": { "cash": -400000, "suspicion": -18 } },
+      { "label": "Sembolik bir miktar", "effects": { "cash": -80000, "suspicion": -5 } },
+      { "label": "Reddet", "effects": { "suspicion": 4 } }
+    ]
+  },
+  {
+    "id": "people_ex_employee_talks",
+    "title": "Eski çalışan konuşuyor",
+    "text": "İşten ayrılan biri, tanıdıklarına şirket hakkında tuhaf şeyler anlatıyormuş.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 20, "minSuspicion": 25 },
+    "options": [
+      { "label": "Sus payı öde", "effects": { "cash": -150000, "suspicion": -8 } },
+      { "label": "İtibarsızlaştır", "effects": { "cash": -60000, "suspicion": 4 } },
+      { "label": "Görmezden gel", "effects": { "suspicion": 12 } }
+    ]
+  },
+  {
+    "id": "people_auditor_dinner",
+    "title": "Denetçiyle akşam yemeği",
+    "text": "Denetçi seni yemeğe çağırıyor. Konuşulacak birkaç kalem varmış.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 18 },
+    "options": [
+      { "label": "Anlaş", "effects": { "cash": -200000, "suspicion": -14 } },
+      { "label": "Sadece yemek ye", "effects": { "suspicion": 6 } }
+    ]
+  },
+  {
+    "id": "people_nephew_wallet",
+    "title": "Yeğen ve kasa anahtarı",
+    "text": "Kaçış hazırlığını bilen tek kişi yeğenin. Parayı taşıma işini o istiyor.",
+    "weight": 0.8,
+    "conditions": { "minWeek": 24, "minSuspicion": 40 },
+    "options": [
+      { "label": "Ona güven", "effects": { "suspicion": -4 } },
+      { "label": "Parayı böl, riski dağıt", "effects": { "cash": -50000, "suspicion": -8 } },
+      { "label": "Kimseye söyleme", "effects": { "suspicion": 6 } }
+    ]
+  }
+]

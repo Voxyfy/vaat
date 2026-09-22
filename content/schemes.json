@@ -1,0 +1,220 @@
+[
+  {
+    "id": "classicPonzi",
+    "name": "Klasik Ponzi",
+    "pitch": "Yüksek getiri vaat et, eskinin getirisini yeninin parasıyla öde. Kılıf yok, sadece güven var.",
+    "cover": "Yatırım fonu",
+    "seedSegment": "retiree",
+    "segments": [
+      "retiree",
+      "tradesman",
+      "institutional"
+    ],
+    "startCash": 200000,
+    "startRateWeekly": 0.012,
+    "maxRateWeekly": 0.08,
+    "fixedCostWeekly": 2500,
+    "withdrawMult": 1.0,
+    "suspicionMult": 1.0,
+    "channelMult": 1.0,
+    "salePremium": 0.05,
+    "exitDifficulty": 1.0,
+    "requires": [],
+    "tags": [
+      "ponzi"
+    ],
+    "marketSensitivity": 1.0
+  },
+  {
+    "id": "fakeAdvisorGroup",
+    "name": "Yatırım Grubu",
+    "pitch": "Tek yönlü bir gruba topla, sahte kazanç ekranı bas, küçük kârı ödet, büyük parayı kilitle.",
+    "cover": "Borsa danışmanlığı",
+    "seedSegment": "cryptoYouth",
+    "segments": [
+      "cryptoYouth",
+      "retiree"
+    ],
+    "startCash": 40000,
+    "startRateWeekly": 0.03,
+    "maxRateWeekly": 0.15,
+    "fixedCostWeekly": 900,
+    "withdrawMult": 1.3,
+    "suspicionMult": 1.3,
+    "channelMult": 1.5,
+    "salePremium": 0.0,
+    "exitDifficulty": 0.5,
+    "requires": [],
+    "tags": [
+      "social"
+    ],
+    "marketSensitivity": 1.2
+  },
+  {
+    "id": "cryptoExchange",
+    "name": "Kripto Borsası",
+    "pitch": "Hacim göster, hediye coin dağıt, çekim kotasını daralt. Çıkışta beş günlük bakım duyurusu yeter.",
+    "cover": "Dijital varlık borsası",
+    "seedSegment": "cryptoYouth",
+    "segments": [
+      "cryptoYouth",
+      "tradesman",
+      "institutional"
+    ],
+    "startCash": 500000,
+    "startRateWeekly": 0.02,
+    "maxRateWeekly": 0.2,
+    "fixedCostWeekly": 12000,
+    "withdrawMult": 1.5,
+    "suspicionMult": 1.2,
+    "channelMult": 2.2,
+    "salePremium": 0.08,
+    "exitDifficulty": 0.4,
+    "requires": [],
+    "tags": [
+      "crypto"
+    ],
+    "marketSensitivity": 1.8
+  },
+  {
+    "id": "pyramidChain",
+    "name": "Saadet Zinciri",
+    "pitch": "Otel salonunda toplantı, sahnede araba. Herkes kendi altını getirir, sen tepede durursun.",
+    "cover": "Üyelik sistemi",
+    "seedSegment": "tradesman",
+    "segments": [
+      "tradesman",
+      "retiree",
+      "cryptoYouth"
+    ],
+    "startCash": 150000,
+    "startRateWeekly": 0.025,
+    "maxRateWeekly": 0.12,
+    "fixedCostWeekly": 6000,
+    "withdrawMult": 0.8,
+    "suspicionMult": 1.1,
+    "channelMult": 1.8,
+    "salePremium": 0.0,
+    "exitDifficulty": 1.4,
+    "requires": [],
+    "tags": [
+      "mlm"
+    ],
+    "marketSensitivity": 0.9
+  },
+  {
+    "id": "productionCover",
+    "name": "Üretim Kılıfı",
+    "pitch": "Bir tesis vaat et, tabelayı dik, kurdeleyi kes. Televizyona çıktığın gün para sel olur.",
+    "cover": "Çiftlik ve fabrika yatırımı",
+    "seedSegment": "tradesman",
+    "segments": [
+      "tradesman",
+      "retiree",
+      "diaspora"
+    ],
+    "startCash": 800000,
+    "startRateWeekly": 0.01,
+    "maxRateWeekly": 0.06,
+    "fixedCostWeekly": 20000,
+    "withdrawMult": 0.7,
+    "suspicionMult": 0.7,
+    "channelMult": 1.3,
+    "salePremium": 0.15,
+    "exitDifficulty": 1.6,
+    "requires": [],
+    "tags": [
+      "production"
+    ],
+    "marketSensitivity": 0.7
+  },
+  {
+    "id": "profitShareHolding",
+    "name": "Faizsiz Holding",
+    "pitch": "Faiz değil kâr payı. Cemaat parayı elden verir, kimse utancından şikâyet etmez.",
+    "cover": "Katılım esaslı ortaklık",
+    "seedSegment": "diaspora",
+    "segments": [
+      "diaspora",
+      "tradesman",
+      "retiree"
+    ],
+    "startCash": 300000,
+    "startRateWeekly": 0.006,
+    "maxRateWeekly": 0.03,
+    "fixedCostWeekly": 8000,
+    "withdrawMult": 0.4,
+    "suspicionMult": 0.5,
+    "channelMult": 0.9,
+    "salePremium": 0.2,
+    "exitDifficulty": 0.8,
+    "requires": [],
+    "tags": [
+      "affinity"
+    ],
+    "marketSensitivity": 0.4
+  },
+  {
+    "id": "stockManipulation",
+    "name": "Aracı Kurum",
+    "pitch": "Para toplamak yok. Kendi kasanla küçük kâğıtları oynatıp tepede satıyorsun.",
+    "cover": "Yatırım danışmanlığı ve portföy yönetimi",
+    "seedSegment": "institutional",
+    "segments": [
+      "institutional",
+      "tradesman"
+    ],
+    "startCash": 2000000,
+    "startRateWeekly": 0.004,
+    "maxRateWeekly": 0.02,
+    "fixedCostWeekly": 18000,
+    "withdrawMult": 0.6,
+    "suspicionMult": 1.1,
+    "channelMult": 0.5,
+    "salePremium": 0.1,
+    "exitDifficulty": 0.9,
+    "marketSensitivity": 2.0,
+    "requires": [],
+    "tags": [
+      "stocks"
+    ],
+    "stocks": [
+      {
+        "id": "ANDL",
+        "name": "Anadolu Demir",
+        "price": 12.4,
+        "float": 90000
+      },
+      {
+        "id": "EGTK",
+        "name": "Ege Tekstil",
+        "price": 4.8,
+        "float": 140000
+      },
+      {
+        "id": "KRLM",
+        "name": "Karlıova Madencilik",
+        "price": 2.1,
+        "float": 260000
+      },
+      {
+        "id": "BSFR",
+        "name": "Bosfor Turizm",
+        "price": 31.5,
+        "float": 45000
+      },
+      {
+        "id": "TKNS",
+        "name": "Teknosis Yazılım",
+        "price": 58.0,
+        "float": 26000
+      },
+      {
+        "id": "YLDZ",
+        "name": "Yıldız Gıda",
+        "price": 8.9,
+        "float": 110000
+      }
+    ]
+  }
+]

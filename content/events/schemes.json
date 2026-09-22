@@ -1,0 +1,169 @@
+[
+  {
+    "id": "crypto_maintenance_pressure",
+    "title": "Çekim kuyruğu büyüyor",
+    "text": "Kullanıcılar çekim taleplerinin yavaşladığını yazıyor. Forumda 'bu borsa da mı' başlığı açıldı.",
+    "weight": 1.3,
+    "conditions": { "schemes": ["cryptoExchange"], "minWeek": 10 },
+    "options": [
+      { "label": "Günlük çekim kotası koy", "effects": { "withdrawMult": 0.45, "withdrawMultWeeks": 8, "suspicion": 12 } },
+      { "label": "Sunucu bakımı duyur", "effects": { "withdrawMult": 0.2, "withdrawMultWeeks": 2, "suspicion": 20, "panic": 0.4 } },
+      { "label": "Hepsini öde", "effects": { "panic": -0.3, "suspicion": -5 } }
+    ]
+  },
+  {
+    "id": "crypto_gift_coin",
+    "title": "Hediye coin kampanyası",
+    "text": "Pazarlamacı yeni üyeye bedava token dağıtmayı öneriyor. Kayıtlar patlar diyor.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["cryptoExchange"], "minWeek": 3, "maxSuspicion": 60 },
+    "options": [
+      { "label": "Dağıt", "effects": { "cash": -120000, "channelMult": 2.0, "channelMultWeeks": 8 } },
+      { "label": "Bunun yerine araba çekilişi", "effects": { "cash": -300000, "channelMult": 2.6, "channelMultWeeks": 10, "suspicion": 5 } },
+      { "label": "Gerek yok", "effects": {} }
+    ]
+  },
+  {
+    "id": "production_ribbon",
+    "title": "Tesis açılışı",
+    "text": "Arsada tabela dikildi. Kurdele kesilirse görüntüler her yere yayılır. Tesisin kendisi henüz yok.",
+    "weight": 1.4,
+    "conditions": { "schemes": ["productionCover"], "minWeek": 4 },
+    "options": [
+      { "label": "Yerel siyasetçiyle kurdele kes", "effects": { "cash": -150000, "channelMult": 2.2, "channelMultWeeks": 12, "suspicion": -8 } },
+      { "label": "Sade bir tören yap", "effects": { "cash": -40000, "channelMult": 1.4, "channelMultWeeks": 8 } },
+      { "label": "Açılışı ertele", "effects": { "suspicion": 5 } }
+    ]
+  },
+  {
+    "id": "production_journalist_visit",
+    "title": "Muhabir tesise gidiyor",
+    "text": "Bir gazeteci arsaya gideceğini söylüyor. Orada tabeladan başka bir şey yok.",
+    "weight": 1.2,
+    "conditions": { "schemes": ["productionCover"], "minWeek": 14, "minSuspicion": 15 },
+    "options": [
+      { "label": "Acil inşaat başlat, işçi getir", "effects": { "cash": -400000, "suspicion": -12 } },
+      { "label": "'Aşama aşama ilerliyoruz' açıklaması", "effects": { "suspicion": 8, "panic": 0.15 } },
+      { "label": "Gazeteciyi ağırla, ikna et", "effects": { "cash": -120000, "suspicion": -4 } }
+    ]
+  },
+  {
+    "id": "production_tv_ad",
+    "title": "Televizyon reklamı",
+    "text": "Ajans ulusal kanalda kuşak öneriyor. Bir tanıdık yüz de bulmuşlar.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["productionCover", "pyramidChain"], "minWeek": 8, "maxSuspicion": 55 },
+    "options": [
+      { "label": "Ünlü yüzle anlaş", "effects": { "cash": -500000, "channelMult": 2.8, "channelMultWeeks": 14, "suspicion": 6 } },
+      { "label": "Ünlüsüz, ucuz kuşak", "effects": { "cash": -150000, "channelMult": 1.6, "channelMultWeeks": 10, "suspicion": 2 } },
+      { "label": "Reklamsız devam", "effects": {} }
+    ]
+  },
+  {
+    "id": "pyramid_hotel_meeting",
+    "title": "Otel salonunda toplantı",
+    "text": "Üst kollar büyük bir tanıtım toplantısı istiyor. Sahnede araba dağıtılacakmış.",
+    "weight": 1.3,
+    "conditions": { "schemes": ["pyramidChain"], "minWeek": 5 },
+    "options": [
+      { "label": "Büyük salon, sahnede araba", "effects": { "cash": -350000, "channelMult": 2.5, "channelMultWeeks": 10, "suspicion": 8 } },
+      { "label": "Mütevazı toplantı", "effects": { "cash": -60000, "channelMult": 1.4, "channelMultWeeks": 8 } },
+      { "label": "Toplantı yok", "effects": { "channelMult": 0.8, "channelMultWeeks": 4 } }
+    ]
+  },
+  {
+    "id": "pyramid_downline_revolt",
+    "title": "Alt kollar ödeme alamıyor",
+    "text": "Ağacın altındaki üyeler primlerini alamadıklarını yazıyor. Üst kollar seni arıyor.",
+    "weight": 1.2,
+    "conditions": { "schemes": ["pyramidChain"], "minWeek": 16, "maxCoverage": 0.6 },
+    "options": [
+      { "label": "Üst kollara öde, altı beklet", "effects": { "cash": -200000, "suspicion": 6, "panic": 0.2 } },
+      { "label": "Prim yapısını değiştir", "effects": { "withdrawMult": 0.7, "withdrawMultWeeks": 10, "suspicion": 10 } },
+      { "label": "Herkesi beklet", "effects": { "panic": 0.5, "suspicion": 12 } }
+    ]
+  },
+  {
+    "id": "holding_diaspora_tour",
+    "title": "Gurbetçi turu",
+    "text": "Avrupa'daki dernek salonlarında toplantı ayarlanabilir. Para elden, döviz olarak geliyor.",
+    "weight": 1.3,
+    "conditions": { "schemes": ["profitShareHolding"], "minWeek": 3 },
+    "options": [
+      { "label": "Üç şehirlik tur yap", "effects": { "cash": -180000, "channelMult": 2.2, "channelMultWeeks": 14, "suspicion": -4 } },
+      { "label": "Tek şehir, küçük tut", "effects": { "cash": -50000, "channelMult": 1.4, "channelMultWeeks": 10 } },
+      { "label": "Turu iptal et", "effects": {} }
+    ]
+  },
+  {
+    "id": "holding_certificate_question",
+    "title": "Ortaklık belgesi soruluyor",
+    "text": "Bir yatırımcının damadı hukukçuymuş. Belgenin hukuki karşılığını soruyor.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["profitShareHolding"], "minWeek": 12 },
+    "options": [
+      { "label": "Yeni, süslü belge bastır", "effects": { "cash": -60000, "suspicion": -5 } },
+      { "label": "Cemaatin büyüğünü araya koy", "effects": { "suspicion": -10, "panic": -0.1 } },
+      { "label": "Soruyu geçiştir", "effects": { "suspicion": 7 } }
+    ]
+  },
+  {
+    "id": "advisor_platform_ban",
+    "title": "Reklamlar kaldırıldı",
+    "text": "Platform yatırım reklamlarını kaldırdı, hesap askıda. Yeni üye akışı kesildi.",
+    "weight": 1.4,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 6 },
+    "options": [
+      { "label": "Yeni hesaplarla devam", "effects": { "cash": -40000, "channelMult": 0.8, "channelMultWeeks": 4, "suspicion": 6 } },
+      { "label": "Fenomenlerden yayın satın al", "effects": { "cash": -120000, "channelMult": 1.6, "channelMultWeeks": 8, "suspicion": 4 } },
+      { "label": "Bir süre sessiz kal", "effects": { "channelMult": 0.4, "channelMultWeeks": 6, "suspicion": -6 } }
+    ]
+  },
+  {
+    "id": "advisor_fake_screenshot",
+    "title": "Grup kazanç ekranı",
+    "text": "Gruba bugünün 'toplam kazancı' olarak bir ekran görüntüsü basılacak. Rakam ne kadar büyük olsun?",
+    "weight": 1.2,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 2 },
+    "options": [
+      { "label": "Akıl almaz bir rakam", "effects": { "channelMult": 1.9, "channelMultWeeks": 6, "suspicion": 10 } },
+      { "label": "İnandırıcı bir rakam", "effects": { "channelMult": 1.3, "channelMultWeeks": 8, "suspicion": 3 } },
+      { "label": "Ekran basma", "effects": {} }
+    ]
+  },
+  {
+    "id": "advisor_withdrawal_tax",
+    "title": "Çekim için 'vergi'",
+    "text": "Büyük hesaplardan biri parasını çekmek istiyor. Ekip 'önce vergi yatırsın' demeyi öneriyor.",
+    "weight": 1.1,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 8, "maxCoverage": 0.7 },
+    "options": [
+      { "label": "Vergi bahanesi kullan", "effects": { "withdrawMult": 0.3, "withdrawMultWeeks": 5, "suspicion": 16 } },
+      { "label": "Öde ve sesini kes", "effects": { "panic": -0.2, "suspicion": -4 } }
+    ]
+  },
+  {
+    "id": "classic_auditor_choice",
+    "title": "Denetçi seçimi",
+    "text": "Kurumsal yatırımcılar bağımsız denetim istiyor. İki teklif var: tanıdık küçük bir büro ve tanınmış bir firma.",
+    "weight": 1.1,
+    "conditions": { "schemes": ["classicPonzi"], "minWeek": 10 },
+    "options": [
+      { "label": "Tanıdık küçük büro", "effects": { "cash": -30000, "channelMult": 1.2, "channelMultWeeks": 12, "suspicion": 8 } },
+      { "label": "Tanınmış firma", "effects": { "cash": -250000, "channelMult": 1.8, "channelMultWeeks": 16, "suspicion": -10 } },
+      { "label": "Denetim yok", "effects": { "channelMult": 0.7, "channelMultWeeks": 8 } }
+    ]
+  },
+  {
+    "id": "classic_too_smooth",
+    "title": "Getiri eğrisi fazla düzgün",
+    "text": "Bir blogger, aylık getirilerinin hiç zarar göstermemesini 'matematiksel olarak imkânsız' diye yazmış.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["classicPonzi"], "minWeek": 18, "minInvestors": 100 },
+    "options": [
+      { "label": "Ekstrelere zararlı aylar ekle", "effects": { "suspicion": -12, "channelMult": 0.85, "channelMultWeeks": 8 } },
+      { "label": "Botlarla yazıyı boğ", "effects": { "cash": -70000, "suspicion": 4 } },
+      { "label": "Blogger'ı işe al", "effects": { "cash": -200000, "suspicion": -8 } }
+    ]
+  }
+]

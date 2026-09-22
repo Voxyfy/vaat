@@ -1,0 +1,70 @@
+[
+  {
+    "id": "journalist_math",
+    "title": "Gazeteci matematiği",
+    "text": "Bir ekonomi muhabiri vaat ettiğin getirinin fiziksel olarak imkânsız olduğunu hesaplamış. Yazı yarın çıkıyor.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 8, "minSuspicion": 20 },
+    "options": [
+      { "label": "Sustur (avukat mektubu)", "effects": { "cash": -50000, "suspicion": 5 } },
+      { "label": "Satın al (danışmanlık sözleşmesi)", "effects": { "cash": -150000, "suspicion": -10, "panic": -0.05 } },
+      { "label": "Görmezden gel", "effects": { "suspicion": 12, "panic": 0.25 } }
+    ]
+  },
+  {
+    "id": "queue_at_office",
+    "title": "Kuyruk",
+    "text": "Ofisin önünde çekim kuyruğu oluştu. Gazeteciler de gelmiş.",
+    "weight": 1.5,
+    "conditions": { "minPanic": 1.4 },
+    "options": [
+      { "label": "İkram dağıt, ilk gelenlere tam öde", "effects": { "cash": -20000, "panic": -0.3, "suspicion": -3 } },
+      { "label": "Kapıyı kapat, 'sistem bakımı'", "effects": { "panic": 0.5, "suspicion": 10 } }
+    ]
+  },
+  {
+    "id": "insider_whistleblower",
+    "title": "İçeriden ihbarcı",
+    "text": "Muhasebecin savcılıkla görüşmeyi düşünüyor. Henüz gitmedi.",
+    "weight": 0.8,
+    "conditions": { "minWeek": 16, "minSuspicion": 30 },
+    "options": [
+      { "label": "Maaşını ikiye katla", "effects": { "fixedCostDelta": 4000, "suspicion": -5 } },
+      { "label": "Ortak yap", "effects": { "skimDelta": -0.03, "suspicion": -12 } },
+      { "label": "İşten çıkar", "effects": { "suspicion": 20 } }
+    ]
+  },
+  {
+    "id": "rate_war",
+    "title": "Faiz savaşı",
+    "text": "Rakip bir şema şehre girdi, senin iki katını vaat ediyor. Yatırımcılar soruyor.",
+    "weight": 0.7,
+    "conditions": { "minWeek": 20 },
+    "options": [
+      { "label": "Karşılık ver: vaadi yükselt", "effects": { "promisedRateDelta": 0.005 } },
+      { "label": "Verme: 'biz güvenliyiz' kampanyası", "effects": { "cash": -30000, "channelMult": 0.7, "channelMultWeeks": 6 } }
+    ]
+  },
+  {
+    "id": "macro_crisis",
+    "title": "Kriz turu",
+    "text": "Piyasalar çöktü. Herkes aynı anda nakit istiyor, kimse yeni para koymuyor.",
+    "weight": 0.4,
+    "conditions": { "minWeek": 30 },
+    "options": [
+      { "label": "Rezervden öde, sakin kal", "effects": { "panic": 0.8, "channelMult": 0.5, "channelMultWeeks": 8 } },
+      { "label": "Kilit süresi ilan et", "effects": { "panic": 0.4, "suspicion": 8, "channelMult": 0.6, "channelMultWeeks": 8, "withdrawMult": 0.4, "withdrawMultWeeks": 8 } }
+    ]
+  },
+  {
+    "id": "celebrity_endorsement_offer",
+    "title": "Ünlü reklam yüzü",
+    "text": "Bir dizi oyuncusu reklam yüzü olmayı teklif ediyor. Menajeri bedeli söyledi.",
+    "weight": 0.6,
+    "conditions": { "minWeek": 6, "maxSuspicion": 60 },
+    "options": [
+      { "label": "Anlaş", "effects": { "cash": -200000, "channelMult": 1.8, "channelMultWeeks": 12, "suspicion": 4 } },
+      { "label": "Teşekkür et, geç", "effects": {} }
+    ]
+  }
+]

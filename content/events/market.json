@@ -1,0 +1,59 @@
+[
+  {
+    "id": "market_crash_arrives",
+    "title": "Piyasa çakıldı",
+    "text": "Ekranlar kırmızı. Telefonlar susmuyor, herkes parasını soruyor. Bu haftayı atlatman lazım.",
+    "weight": 1.6,
+    "conditions": { "regimes": ["crash"], "minWeek": 6 },
+    "options": [
+      { "label": "Rezervden öde, sakin dur", "effects": { "panic": 0.3, "suspicion": -2 } },
+      { "label": "Kilit süresi ilan et", "effects": { "panic": 0.15, "suspicion": 10, "withdrawMult": 0.4, "withdrawMultWeeks": 6 } },
+      { "label": "Ortalık yatışsın, sus", "effects": { "panic": 0.6, "suspicion": 6 } }
+    ]
+  },
+  {
+    "id": "market_bull_window",
+    "title": "Herkes yatırımcı oldu",
+    "text": "Piyasa coşmuş. Tanımadığın insanlar arayıp 'bana da yer var mı' diye soruyor.",
+    "weight": 1.2,
+    "conditions": { "regimes": ["bull"], "minWeek": 4 },
+    "options": [
+      { "label": "Kapıları sonuna kadar aç", "effects": { "channelMult": 1.8, "channelMultWeeks": 6, "suspicion": 4 } },
+      { "label": "Kontenjan koy, kıtlık yarat", "effects": { "channelMult": 1.3, "channelMultWeeks": 10, "withdrawMult": 0.8, "withdrawMultWeeks": 10 } }
+    ]
+  },
+  {
+    "id": "market_bear_whispers",
+    "title": "Tedirgin fısıltılar",
+    "text": "Piyasa düşüyor. Yatırımcıların birkaçı 'acaba paramı çeksem mi' diye soruyor.",
+    "weight": 1.0,
+    "conditions": { "regimes": ["bear"], "minWeek": 8 },
+    "options": [
+      { "label": "Ekstra getiri sözü ver", "effects": { "promisedRateDelta": 0.004, "panic": -0.1 } },
+      { "label": "Bire bir ara, güven ver", "effects": { "cash": -40000, "panic": -0.25 } },
+      { "label": "Görmezden gel", "effects": { "panic": 0.2 } }
+    ]
+  },
+  {
+    "id": "rival_scheme_collapsed",
+    "title": "Rakip battı",
+    "text": "Senin gibi çalışan bir yapı çöktü, gazeteler dolu. Yatırımcılar 'siz de öyle misiniz' diye soruyor.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 12, "regimes": ["bear", "crash"] },
+    "options": [
+      { "label": "Farkımızı anlat kampanyası", "effects": { "cash": -80000, "suspicion": -6, "panic": -0.2 } },
+      { "label": "Sessiz kal", "effects": { "suspicion": 8, "panic": 0.3 } }
+    ]
+  },
+  {
+    "id": "index_all_time_high",
+    "title": "Endeks rekor kırdı",
+    "text": "Ekonomi haberlerinde kutlama havası. Bugün kimse kimseye soru sormuyor.",
+    "weight": 0.8,
+    "conditions": { "regimes": ["bull"], "minWeek": 20, "minInvestors": 200 },
+    "options": [
+      { "label": "Fırsatı vaat yükselterek kullan", "effects": { "promisedRateDelta": 0.006, "channelMult": 1.5, "channelMultWeeks": 8 } },
+      { "label": "Sessizce rezerv topla", "effects": { "skimDelta": -0.04 } }
+    ]
+  }
+]

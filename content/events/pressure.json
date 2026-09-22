@@ -1,0 +1,72 @@
+[
+  {
+    "id": "pressure_first_missed_payment",
+    "title": "İlk gecikme konuşuluyor",
+    "text": "Bir ödemenin geciktiği duyuldu. Henüz küçük bir grup konuşuyor ama hızla yayılıyor.",
+    "weight": 1.5,
+    "conditions": { "minWeek": 10, "maxCoverage": 0.35 },
+    "options": [
+      { "label": "Gecikeni hemen öde, fazlasıyla", "effects": { "cash": -250000, "panic": -0.4, "suspicion": -6 } },
+      { "label": "Teknik bir aksaklık de", "effects": { "panic": 0.2, "suspicion": 6 } }
+    ]
+  },
+  {
+    "id": "pressure_regulator_visit",
+    "title": "Düzenleyici ziyareti",
+    "text": "Kurumdan iki uzman geldi. Belgeleri ve yöntemi soruyorlar.",
+    "weight": 1.3,
+    "conditions": { "minWeek": 16, "minSuspicion": 35 },
+    "options": [
+      { "label": "Karmaşık teknik anlat, konuyu kaydır", "effects": { "suspicion": -8 } },
+      { "label": "Kendi hazırladığın kayıtları ver", "effects": { "suspicion": -14, "cash": -60000 } },
+      { "label": "İtibarınla üstlerine git", "effects": { "suspicion": 10 } }
+    ]
+  },
+  {
+    "id": "pressure_bank_questions",
+    "title": "Banka hesap hareketlerini sordu",
+    "text": "Çalıştığın banka olağandışı hareketler için açıklama istiyor.",
+    "weight": 1.1,
+    "conditions": { "minWeek": 14, "minSuspicion": 20 },
+    "options": [
+      { "label": "Şube müdürüyle anlaş", "effects": { "cash": -180000, "suspicion": -10 } },
+      { "label": "Hesapları böl, başka bankalara yay", "effects": { "cash": -70000, "suspicion": -4 } },
+      { "label": "Açıklama gönderme", "effects": { "suspicion": 12 } }
+    ]
+  },
+  {
+    "id": "pressure_big_investor_exit",
+    "title": "Büyük yatırımcı çıkmak istiyor",
+    "text": "Tek başına havuzun önemli bir kısmını tutan yatırımcı parasını istiyor.",
+    "weight": 1.2,
+    "conditions": { "minWeek": 18, "minInvestors": 60 },
+    "options": [
+      { "label": "Tamamını öde", "effects": { "cash": -500000, "suspicion": -6, "panic": -0.2 } },
+      { "label": "Daha yüksek getiriyle kal ikna et", "effects": { "promisedRateDelta": 0.005 } },
+      { "label": "Oyala", "effects": { "panic": 0.35, "suspicion": 8 } }
+    ]
+  },
+  {
+    "id": "pressure_lock_period_offer",
+    "title": "Kilit süresi önerisi",
+    "text": "Danışman, yeni girişlere kilit süresi koymayı öneriyor. Çekimler azalır ama kimse bunu sevmez.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 12 },
+    "options": [
+      { "label": "Altı aylık kilit koy", "effects": { "withdrawMult": 0.45, "withdrawMultWeeks": 24, "channelMult": 0.75, "channelMultWeeks": 24, "suspicion": 6 } },
+      { "label": "Yeniden yatırana bonus ver", "effects": { "withdrawMult": 0.7, "withdrawMultWeeks": 16, "promisedRateDelta": 0.002 } },
+      { "label": "Değişiklik yok", "effects": {} }
+    ]
+  },
+  {
+    "id": "pressure_escape_prep",
+    "title": "Pasaport ve bilet",
+    "text": "Bir aracı, hazırlık yapmanın tam zamanı olduğunu söylüyor. Şimdi ucuz, sonra pahalı.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 20, "minSuspicion": 45 },
+    "options": [
+      { "label": "Hazırlığı yap", "effects": { "cash": -300000, "suspicion": 3 } },
+      { "label": "Daha erken", "effects": {} }
+    ]
+  }
+]

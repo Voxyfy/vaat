@@ -1,0 +1,69 @@
+[
+  {
+    "id": "end_prosecutor_file",
+    "title": "Savcılık dosya açtı",
+    "text": "Bir savcı hakkında inceleme başlatmış. Henüz gizli ama duyuldu.",
+    "weight": 1.4,
+    "conditions": { "minSuspicion": 65, "minWeek": 18 },
+    "options": [
+      { "label": "Avukat ordusu tut", "effects": { "cash": -600000, "suspicion": -18 } },
+      { "label": "Siyasi bağlantıyı devreye sok", "effects": { "cash": -400000, "suspicion": -14 } },
+      { "label": "Hazırlığı hızlandır", "effects": { "cash": -200000, "suspicion": -3 } }
+    ]
+  },
+  {
+    "id": "end_asset_freeze",
+    "title": "Hesaplara bloke",
+    "text": "Bazı hesaplara tedbir konmuş. Para hareket etmiyor.",
+    "weight": 1.3,
+    "conditions": { "minSuspicion": 75, "minWeek": 20 },
+    "options": [
+      { "label": "Nakde geç, ne kalırsa", "effects": { "cash": -300000, "suspicion": 5 } },
+      { "label": "İtiraz et, bekle", "effects": { "withdrawMult": 0.5, "withdrawMultWeeks": 4, "panic": 0.4 } }
+    ]
+  },
+  {
+    "id": "end_queue_at_door",
+    "title": "Kapıda kuyruk",
+    "text": "Ofisin önü doldu. Gazeteciler de geldi, kameralar açık.",
+    "weight": 1.6,
+    "conditions": { "minPanic": 1.8 },
+    "options": [
+      { "label": "Çık, konuş, ikram dağıt", "effects": { "cash": -180000, "panic": -0.5, "suspicion": -4 } },
+      { "label": "Arka kapıdan çık", "effects": { "panic": 0.5, "suspicion": 12 } }
+    ]
+  },
+  {
+    "id": "end_insider_deal",
+    "title": "İtirafçı teklifi",
+    "text": "Bir aracı, önce konuşanın az ceza aldığını hatırlatıyor.",
+    "weight": 1.0,
+    "conditions": { "minSuspicion": 80, "minWeek": 24 },
+    "options": [
+      { "label": "Düşünmüyorum bile", "effects": { "suspicion": 2 } },
+      { "label": "Ortağı ver", "effects": { "suspicion": -20, "skimDelta": -0.05 } }
+    ]
+  },
+  {
+    "id": "end_last_big_round",
+    "title": "Son büyük tur",
+    "text": "Bir yatırımcı grubu çok büyük bir para getirmek istiyor. Bu, ya nefes ya sonun başlangıcı.",
+    "weight": 1.1,
+    "conditions": { "minWeek": 22, "maxCoverage": 0.3 },
+    "options": [
+      { "label": "Al, delik kapansın", "effects": { "cash": 1200000, "suspicion": 8, "panic": -0.2 } },
+      { "label": "Alma, büyüme durur", "effects": { "suspicion": -6, "channelMult": 0.7, "channelMultWeeks": 10 } }
+    ]
+  },
+  {
+    "id": "end_family_question",
+    "title": "Evde soru",
+    "text": "Ailenden biri, işlerin gerçekten böyle yürüyüp yürümediğini sordu.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 26, "minSuspicion": 55 },
+    "options": [
+      { "label": "Her şeyi anlat", "effects": { "suspicion": 4, "panic": -0.1 } },
+      { "label": "Yalan söyle", "effects": { "suspicion": 2 } }
+    ]
+  }
+]
