@@ -1,0 +1,194 @@
+[
+  {
+    "id": "career_restaurant_inspection",
+    "title": "Mutfakta denetim",
+    "text": "Restoran zincirinin bir şubesine gıda denetimi gelmiş. Denetçi mutfaktan çok kasa defterine bakıyor.",
+    "weight": 1.0,
+    "conditions": { "owns": ["restaurants"], "minWeek": 6 },
+    "options": [
+      { "label": "Şubeyi 'tadilat' için kapat", "effects": { "cash": -20000, "suspicion": -4 } },
+      { "label": "Denetçiye masa ayır", "effects": { "cash": -8000, "suspicion": 3 } },
+      { "label": "Olduğu gibi göster", "effects": { "suspicion": 7 } }
+    ]
+  },
+  {
+    "id": "career_restaurant_full_tables",
+    "title": "Hiç müşterisi olmayan rekor",
+    "text": "Restoranların bu ay yüz bin kişiye yemek vermiş görünüyor. Garsonlar o kadar kişiyi hatırlamıyor.",
+    "weight": 0.9,
+    "conditions": { "owns": ["restaurants"], "minWeek": 14, "minSuspicion": 20 },
+    "options": [
+      { "label": "Rakamları yarıya indir", "effects": { "skimDelta": -0.02, "suspicion": -6 } },
+      { "label": "Garsonlara ikramiye ver", "effects": { "cash": -15000, "fixedCostDelta": 500, "suspicion": -2 } },
+      { "label": "Defterleri böyle bırak", "effects": { "suspicion": 9 } }
+    ]
+  },
+  {
+    "id": "career_brokerage_license_audit",
+    "title": "Lisans denetimi",
+    "text": "Aracı kurum lisansın için yıllık denetim zamanı. Müşteri hesaplarıyla şirket hesabı aynı klasörde duruyor.",
+    "weight": 1.0,
+    "conditions": { "owns": ["brokerage"], "minWeek": 10 },
+    "options": [
+      { "label": "Hesapları ayırmak için ekip tut", "effects": { "cash": -35000, "fixedCostDelta": 1500, "suspicion": -8 } },
+      { "label": "Denetçiye 'yeni sistem' sun", "effects": { "cash": -10000, "suspicion": 3 } },
+      { "label": "Klasörü olduğu gibi ver", "effects": { "suspicion": 10 } }
+    ]
+  },
+  {
+    "id": "career_brokerage_client_money",
+    "title": "Müşteri parası bekliyor",
+    "text": "Aracı kurumdaki müşteri hesaplarında işlem görmeyen bir yığın para duruyor. Muhasebeci 'kimse bakmıyor' dedi.",
+    "weight": 0.8,
+    "conditions": { "owns": ["brokerage"], "minWeek": 16, "maxCoverage": 0.5 },
+    "options": [
+      { "label": "Kısa süreliğine kasaya aktar", "effects": { "cash": 80000, "suspicion": 12 } },
+      { "label": "Teminat gösterip borç al", "effects": { "cash": 40000, "fixedCostDelta": 1500, "suspicion": 5 } },
+      { "label": "Dokunma", "effects": {} }
+    ]
+  },
+  {
+    "id": "career_journalist_friend_story",
+    "title": "Dost gazeteciden haber",
+    "text": "Dost gazetecin 'yılın en güvenilir yatırım markası' haberini hazırlamış. Ödülü de kendisi uydurmuş.",
+    "weight": 1.0,
+    "conditions": { "owns": ["journalist"], "minWeek": 5 },
+    "options": [
+      { "label": "Manşete koysun", "effects": { "cash": -12000, "channelMult": 1.4, "channelMultWeeks": 6, "suspicion": 4 } },
+      { "label": "İç sayfada kalsın", "effects": { "cash": -5000, "channelMult": 1.15, "channelMultWeeks": 5 } },
+      { "label": "Bu ay gerek yok", "effects": {} }
+    ]
+  },
+  {
+    "id": "career_journalist_friend_warns",
+    "title": "Dost gazeteci uyarıyor",
+    "text": "Dost gazetecin, başka bir gazetenin senin için dosya hazırladığını söylüyor. Kaynağını söylemiyor, fiyatını söylüyor.",
+    "weight": 1.1,
+    "conditions": { "owns": ["journalist"], "minWeek": 14, "minSuspicion": 30 },
+    "options": [
+      { "label": "Dosyanın kopyasını satın al", "effects": { "cash": -40000, "suspicion": -8 } },
+      { "label": "Önden kendi haberini yaptır", "effects": { "cash": -15000, "suspicion": -3, "panic": 0.05 } },
+      { "label": "Teşekkür et, bekle", "effects": { "suspicion": 8, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "career_celebrity_friend_selfie",
+    "title": "Tanıdık yüzle fotoğraf",
+    "text": "Tanıdık yüzün, ofisinde çekilmiş bir fotoğrafı paylaşmayı teklif ediyor. Açıklamayı sen yazacaksın.",
+    "weight": 1.0,
+    "conditions": { "owns": ["celebrity"], "minWeek": 4, "maxSuspicion": 60 },
+    "options": [
+      { "label": "'Paramı ona emanet ettim' yazsın", "effects": { "channelMult": 1.6, "channelMultWeeks": 6, "suspicion": 6 } },
+      { "label": "Sadece 'dostum' yazsın", "effects": { "channelMult": 1.2, "channelMultWeeks": 5, "suspicion": 1 } },
+      { "label": "Paylaşmasın", "effects": {} }
+    ]
+  },
+  {
+    "id": "career_celebrity_friend_distance",
+    "title": "Tanıdık yüz mesafe koyuyor",
+    "text": "Tanıdık yüzün menajeri, ortak fotoğrafların silinmesini istiyor. Menajer haberleri senden önce okumuş.",
+    "weight": 1.1,
+    "conditions": { "owns": ["celebrity"], "minSuspicion": 50 },
+    "options": [
+      { "label": "Sessizce sil", "effects": { "channelMult": 0.8, "channelMultWeeks": 4, "suspicion": -3 } },
+      { "label": "Silme, 'dostluk bozulmaz' de", "effects": { "suspicion": 6, "panic": 0.1 } },
+      { "label": "Cevap verme", "effects": { "suspicion": 4, "panic": 0.05 } }
+    ]
+  },
+  {
+    "id": "career_lobbyist_regulation",
+    "title": "Yönetmelik taslağı",
+    "text": "Lobicin, yatırım şirketlerini sıkılaştıracak bir yönetmeliğin taslağını getirdi. Bir maddesi tam senin için yazılmış gibi.",
+    "weight": 1.0,
+    "conditions": { "owns": ["lobbyist"], "minWeek": 12 },
+    "options": [
+      { "label": "Maddeyi 'yumuşat'", "effects": { "cash": -60000, "suspicion": -10 } },
+      { "label": "Yürürlük tarihini ertelet", "effects": { "cash": -25000, "suspicion": -4 } },
+      { "label": "Taslak taslak kalır", "effects": { "suspicion": 6 } }
+    ]
+  },
+  {
+    "id": "career_lobbyist_invoice",
+    "title": "Lobicinin faturası",
+    "text": "Lobicin geçen ayki 'danışmanlık' için fatura kesti. Faturada danışmanlığın konusu yazmıyor, tutarı çok net.",
+    "weight": 0.9,
+    "conditions": { "owns": ["lobbyist"], "minWeek": 18 },
+    "options": [
+      { "label": "Öde, ilişkiyi sıcak tut", "effects": { "cash": -40000, "suspicion": -4 } },
+      { "label": "Yarısını öde, gerisini sonra", "effects": { "cash": -20000, "suspicion": 3 } },
+      { "label": "Faturayı unut", "effects": { "suspicion": 7 } }
+    ]
+  },
+  {
+    "id": "career_club_transfer",
+    "title": "Yıldız transfer",
+    "text": "Kulübün için bir yıldız oyuncu ayarlanabilir. Taraftar sevinir, bonservis parası nereden bulundu diye soran olmaz. Olur aslında.",
+    "weight": 0.9,
+    "conditions": { "owns": ["football"], "minWeek": 10 },
+    "options": [
+      { "label": "Transferi yap, stadda imza töreni", "effects": { "cash": -120000, "channelMult": 1.5, "channelMultWeeks": 10, "suspicion": 6 } },
+      { "label": "Kiralık bir oyuncu al", "effects": { "cash": -30000, "channelMult": 1.15, "channelMultWeeks": 6 } },
+      { "label": "Altyapıya güven", "effects": { "suspicion": 2 } }
+    ]
+  },
+  {
+    "id": "career_media_own_headline",
+    "title": "Kendi manşetin",
+    "text": "Gazetenin yazı işleri müdürü, yarının manşetini sana soruyor. Konu senin şirketin.",
+    "weight": 1.0,
+    "conditions": { "owns": ["media"], "minWeek": 8 },
+    "options": [
+      { "label": "'Yatırımcılar kazanmaya doymuyor'", "effects": { "channelMult": 1.4, "channelMultWeeks": 5, "suspicion": 5 } },
+      { "label": "Rakiplere saldır", "effects": { "suspicion": 3, "panic": -0.1 } },
+      { "label": "Manşet onların işi", "effects": { "suspicion": 1 } }
+    ]
+  },
+  {
+    "id": "career_foundation_scholarship",
+    "title": "Burs töreni",
+    "text": "Vakfın burs töreni için salon hazır. Öğrenciler gerçek, bursların kaynağı daha az gerçek.",
+    "weight": 1.0,
+    "conditions": { "owns": ["foundation"], "minWeek": 6 },
+    "options": [
+      { "label": "Kameralar önünde çek dağıt", "effects": { "cash": -25000, "channelMult": 1.3, "channelMultWeeks": 6, "suspicion": -5 } },
+      { "label": "Sessizce öde, basın olmasın", "effects": { "cash": -15000, "suspicion": -3 } },
+      { "label": "Töreni ertele", "effects": { "suspicion": 4 } }
+    ]
+  },
+  {
+    "id": "career_exchange_suitcase",
+    "title": "Valizli müşteri",
+    "text": "Döviz bürosuna valizle biri geldi. Kimlik göstermek istemiyor, komisyonun iki katını vermek istiyor.",
+    "weight": 0.9,
+    "conditions": { "owns": ["exchange"], "minWeek": 8 },
+    "options": [
+      { "label": "Bozdur, kayda geçirme", "effects": { "cash": 30000, "suspicion": 8 } },
+      { "label": "Kaydını parça parça gir", "effects": { "cash": 12000, "suspicion": 3 } },
+      { "label": "Kapıyı göster", "effects": {} }
+    ]
+  },
+  {
+    "id": "career_partner_side_deal",
+    "title": "Ortağın yan işi",
+    "text": "Ortağının, senin yatırımcı listenle kendi küçük fonunu kurduğu ortaya çıktı. Vaadi seninkinden biraz yüksek.",
+    "weight": 1.0,
+    "conditions": { "partner": true, "minWeek": 12 },
+    "options": [
+      { "label": "Listeyi geri iste, payını kes", "effects": { "skimDelta": 0.02, "suspicion": 6, "panic": 0.05 } },
+      { "label": "Onun fonunu da senin çatına al", "effects": { "channelMult": 1.3, "channelMultWeeks": 6, "suspicion": 8 } },
+      { "label": "Görmezden gel", "effects": { "channelMult": 0.8, "channelMultWeeks": 6 } }
+    ]
+  },
+  {
+    "id": "career_lawyer_advance",
+    "title": "Avukat avans istiyor",
+    "text": "Avukatın, olası bir dava için avans istiyor. 'Dava yok ama olunca geç kalmayalım' diyor.",
+    "weight": 0.9,
+    "conditions": { "owns": ["lawyer"], "minWeek": 14, "minSuspicion": 35 },
+    "options": [
+      { "label": "Avansı ver", "effects": { "cash": -50000, "suspicion": -6 } },
+      { "label": "Sadece telefonu açık tutsun", "effects": { "fixedCostDelta": 800, "suspicion": -2 } },
+      { "label": "Dava olunca konuşuruz", "effects": { "suspicion": 4 } }
+    ]
+  }
+]

@@ -4,7 +4,7 @@
     "title": "Taraftar baskısı",
     "text": "Kulüp kötü gidiyor. Taraftar transfer istiyor, tribünde senin adın geçiyor.",
     "weight": 1.1,
-    "conditions": {
+    "conditions": { "owns": ["football"],
       "minWeek": 8
     },
     "options": [
@@ -30,7 +30,7 @@
     "title": "Rakip gazete saldırıyor",
     "text": "Başka bir yayın, senin kanalının haberlerini 'sipariş' diye yazdı.",
     "weight": 1.0,
-    "conditions": {
+    "conditions": { "owns": ["media"],
       "minWeek": 14,
       "minSuspicion": 25
     },
@@ -62,7 +62,7 @@
     "title": "İhale teklifi",
     "text": "İnşaat firman için bir kamu ihalesi ayarlanabilirmiş. Karşılığı var tabii.",
     "weight": 0.9,
-    "conditions": {
+    "conditions": { "owns": ["construction"],
       "minWeek": 16
     },
     "options": [
@@ -84,7 +84,7 @@
     "title": "Nakit hareketleri incelemesi",
     "text": "Döviz bürosunun nakit hareketleri için bilgi istenmiş. Rakamlar yüksek görünüyor.",
     "weight": 1.2,
-    "conditions": {
+    "conditions": { "owns": ["exchange"],
       "minWeek": 12,
       "minSuspicion": 20
     },
@@ -117,7 +117,7 @@
     "title": "Bağışçı hesap soruyor",
     "text": "Vakfın büyük bağışçılarından biri, paranın nereye gittiğini görmek istiyor.",
     "weight": 1.0,
-    "conditions": {
+    "conditions": { "owns": ["foundation"],
       "minWeek": 10
     },
     "options": [
@@ -150,7 +150,7 @@
     "title": "Ortak pay artışı istiyor",
     "text": "Ortağın, işlerin büyüdüğünü görüp payını artırmak istiyor.",
     "weight": 1.1,
-    "conditions": {
+    "conditions": { "partner": true,
       "minWeek": 14,
       "minInvestors": 80
     },
@@ -181,7 +181,7 @@
     "title": "Ortak tedirgin",
     "text": "Ortağın ortalığın kızıştığını söylüyor. Çıkış yolunu soruyor.",
     "weight": 1.2,
-    "conditions": {
+    "conditions": { "partner": true,
       "minWeek": 18,
       "minSuspicion": 50
     },
@@ -213,7 +213,7 @@
     "title": "Avukatın uyarısı",
     "text": "Avukatın, dosyanın savcılıkta hareketlendiğini duymuş. Hazırlık zamanı diyor.",
     "weight": 1.3,
-    "conditions": {
+    "conditions": { "owns": ["lawyer"],
       "minWeek": 20,
       "minSuspicion": 55
     },
@@ -245,7 +245,7 @@
     "title": "Aracıdan teklif",
     "text": "Aracın, sınırın bu hafta gevşek olduğunu söylüyor. Fırsat penceresi dar.",
     "weight": 0.9,
-    "conditions": {
+    "conditions": { "owns": ["fixer"],
       "minWeek": 24,
       "minSuspicion": 60
     },
@@ -267,7 +267,7 @@
     "title": "Bakiye mektubu",
     "text": "Şube müdürü, kurumsal yatırımcılar için hesabın dolu göründüğü bir mektup imzalayabilir.",
     "weight": 1.0,
-    "conditions": {
+    "conditions": { "owns": ["banker"],
       "minWeek": 12,
       "maxCoverage": 0.6
     },
@@ -285,6 +285,78 @@
         "label": "Gerek yok",
         "effects": {}
       }
+    ]
+  },
+  {
+    "id": "asset_villa_photo",
+    "title": "Villa fotoğrafı",
+    "text": "Yeni villanın havuz fotoğrafı bir yatırımcının eline geçti. 'Bizim paramız mı?' diye soruyor.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 16 },
+    "options": [
+      { "label": "Kiralık olduğunu söyle, sözleşme bas", "effects": { "cash": -5000, "suspicion": 3, "panic": -0.1 } },
+      { "label": "Yatırımcı toplantısını villada yap", "effects": { "channelMult": 1.3, "channelMultWeeks": 5, "suspicion": 8 } },
+      { "label": "Açıklama yapma", "effects": { "suspicion": 11, "panic": 0.15 } }
+    ]
+  },
+  {
+    "id": "asset_luxury_car",
+    "title": "Yeni araba",
+    "text": "Bayi, en üst modeli 'ilk sen' diye ayırmış. Otoparkta herkes görecek.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 10, "maxSuspicion": 60 },
+    "options": [
+      { "label": "Al, başarı görünür olmalı", "effects": { "cash": -40000, "channelMult": 1.25, "channelMultWeeks": 6, "suspicion": 6 } },
+      { "label": "Şirket adına kirala", "effects": { "fixedCostDelta": 1500, "channelMult": 1.1, "channelMultWeeks": 6, "suspicion": 3 } },
+      { "label": "Eski arabayla devam", "effects": {} }
+    ]
+  },
+  {
+    "id": "asset_yacht_offer",
+    "title": "Yat teklifi",
+    "text": "Bir broker, sezon sonu indirimiyle bir yat öneriyor. 'Kaçış için de ideal' diye göz kırptı.",
+    "weight": 0.6,
+    "conditions": { "minWeek": 24, "minInvestors": 100 },
+    "options": [
+      { "label": "Al, marinada toplantı yap", "effects": { "cash": -150000, "channelMult": 1.3, "channelMultWeeks": 8, "suspicion": 10 } },
+      { "label": "Paylı kirala", "effects": { "cash": -30000, "suspicion": 4, "panic": -0.05 } },
+      { "label": "Denizi sevmem", "effects": {} }
+    ]
+  },
+  {
+    "id": "asset_gold_vault",
+    "title": "Altın kasası",
+    "text": "Kuyumcu tanıdığın, kayıt dışı külçe altın ayarlayabileceğini söylüyor.",
+    "weight": 0.8,
+    "conditions": { "minWeek": 14 },
+    "options": [
+      { "label": "Kasadan bir kısmını altına çevir", "effects": { "cash": -35000, "skimDelta": 0.02, "suspicion": 5 } },
+      { "label": "Az bir miktar dene", "effects": { "cash": -10000, "skimDelta": 0.01, "suspicion": 2 } },
+      { "label": "Nakitte kal", "effects": {} }
+    ]
+  },
+  {
+    "id": "asset_watch_noticed",
+    "title": "Saat fark edildi",
+    "text": "Bir yatırımcı kolundaki saatin fiyatını internetten aratmış, sonucu gruba atmış.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 8 },
+    "options": [
+      { "label": "'Hediye' de, fotoğraf paylaş", "effects": { "suspicion": 4, "panic": -0.05 } },
+      { "label": "Saati açık artırmaya bağışla", "effects": { "cash": 8000, "suspicion": -3, "channelMult": 1.1, "channelMultWeeks": 3 } },
+      { "label": "Kolunu masanın altına indir", "effects": { "suspicion": 5, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "asset_art_purchase",
+    "title": "Tablo alımı",
+    "text": "Bir galerici, değeri 'sonradan belirlenecek' bir tablo öneriyor. Fatura istediğin rakamla kesilir.",
+    "weight": 0.7,
+    "conditions": { "minWeek": 18, "minSuspicion": 20 },
+    "options": [
+      { "label": "Al, bedeli şişik göster", "effects": { "cash": -30000, "skimDelta": 0.02, "suspicion": 7 } },
+      { "label": "Sadece ofise as", "effects": { "cash": -12000, "channelMult": 1.1, "channelMultWeeks": 4 } },
+      { "label": "Sanattan anlamam", "effects": {} }
     ]
   }
 ]

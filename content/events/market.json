@@ -55,5 +55,263 @@
       { "label": "Fırsatı vaat yükselterek kullan", "effects": { "promisedRateDelta": 0.006, "channelMult": 1.5, "channelMultWeeks": 8 } },
       { "label": "Sessizce rezerv topla", "effects": { "skimDelta": -0.04 } }
     ]
+  },
+  {
+    "id": "market_rate_decision",
+    "title": "Faiz kararı",
+    "text": "Merkez bankası faizi beklenmedik biçimde artırdı. Mevduat birden cazip göründü.",
+    "weight": 0.9,
+    "conditions": {
+      "minWeek": 6,
+      "regimes": [
+        "normal",
+        "bear"
+      ]
+    },
+    "options": [
+      {
+        "label": "Vaadi yükselt, rekabet et",
+        "effects": {
+          "promisedRateDelta": 0.004,
+          "panic": -0.1
+        }
+      },
+      {
+        "label": "'Faiz geçici, biz kalıcıyız' kampanyası",
+        "effects": {
+          "cash": -15000,
+          "channelMult": 0.9,
+          "channelMultWeeks": 4,
+          "panic": -0.05
+        }
+      },
+      {
+        "label": "Tepki verme",
+        "effects": {
+          "channelMult": 0.7,
+          "channelMultWeeks": 6,
+          "panic": 0.1
+        }
+      }
+    ]
+  },
+  {
+    "id": "market_currency_jump",
+    "title": "Kur sıçradı",
+    "text": "Döviz bir gecede yüzde on beş sıçradı. Yatırımcılar birikimlerini dövize çevirmek istiyor.",
+    "weight": 0.8,
+    "conditions": {
+      "minWeek": 8,
+      "regimes": [
+        "bear",
+        "crash"
+      ]
+    },
+    "options": [
+      {
+        "label": "Döviz bazlı getiri vaat et",
+        "effects": {
+          "promisedRateDelta": 0.005,
+          "panic": -0.25,
+          "suspicion": 4
+        }
+      },
+      {
+        "label": "Çekimleri erteletmek için bonus ver",
+        "effects": {
+          "cash": -20000,
+          "withdrawMult": 0.7,
+          "withdrawMultWeeks": 4
+        }
+      },
+      {
+        "label": "Bekle",
+        "effects": {
+          "panic": 0.35
+        }
+      }
+    ]
+  },
+  {
+    "id": "market_gold_rush",
+    "title": "Altın çılgınlığı",
+    "text": "Altın rekor üstüne rekor kırıyor. Herkes kuyumcu vitrinine bakıyor, sana değil.",
+    "weight": 0.8,
+    "conditions": {
+      "minWeek": 6,
+      "regimes": [
+        "bull",
+        "normal"
+      ]
+    },
+    "options": [
+      {
+        "label": "'Altına dayalı' yeni ürün aç",
+        "effects": {
+          "cash": -10000,
+          "channelMult": 1.4,
+          "channelMultWeeks": 6,
+          "suspicion": 6
+        }
+      },
+      {
+        "label": "Altından da çok vaat et",
+        "effects": {
+          "promisedRateDelta": 0.003,
+          "channelMult": 1.2,
+          "channelMultWeeks": 4
+        }
+      },
+      {
+        "label": "Moda geçsin",
+        "effects": {
+          "channelMult": 0.8,
+          "channelMultWeeks": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "market_election_jitters",
+    "title": "Seçim belirsizliği",
+    "text": "Seçime altı hafta var. Herkes bekle gör modunda, kimse büyük para bağlamak istemiyor.",
+    "weight": 0.8,
+    "conditions": {
+      "minWeek": 10
+    },
+    "options": [
+      {
+        "label": "'Seçim sonrası özel faiz' sözü ver",
+        "effects": {
+          "promisedRateDelta": 0.003,
+          "channelMult": 1.2,
+          "channelMultWeeks": 6,
+          "suspicion": 3
+        }
+      },
+      {
+        "label": "Adaylardan birine yakın görün",
+        "effects": {
+          "cash": -25000,
+          "suspicion": -5,
+          "channelMult": 1.1,
+          "channelMultWeeks": 6
+        }
+      },
+      {
+        "label": "Sessizce bekle",
+        "effects": {
+          "channelMult": 0.75,
+          "channelMultWeeks": 6
+        }
+      }
+    ]
+  },
+  {
+    "id": "market_holiday_bonus",
+    "title": "Bayram ikramiyesi",
+    "text": "Bayram yaklaşıyor, emekliler ikramiyesini almak üzere. Herkesin cebinde biraz fazladan para var.",
+    "weight": 1.0,
+    "conditions": {
+      "minWeek": 4,
+      "regimes": [
+        "normal",
+        "bull"
+      ]
+    },
+    "options": [
+      {
+        "label": "Bayram kampanyası yap",
+        "effects": {
+          "cash": -15000,
+          "channelMult": 1.5,
+          "channelMultWeeks": 3,
+          "suspicion": 3
+        }
+      },
+      {
+        "label": "Bayramlık getiri ekle",
+        "effects": {
+          "promisedRateDelta": 0.002,
+          "channelMult": 1.2,
+          "channelMultWeeks": 3
+        }
+      },
+      {
+        "label": "Kampanya yok",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "market_bank_run_elsewhere",
+    "title": "Başka yerde kuyruk",
+    "text": "Televizyonda başka bir şehirde bir kooperatifin önündeki kuyruk gösteriliyor. Senin yatırımcıların da izliyor.",
+    "weight": 0.5,
+    "conditions": {
+      "minWeek": 10,
+      "regimes": [
+        "crash"
+      ]
+    },
+    "options": [
+      {
+        "label": "Yatırımcılara güven mesajı at",
+        "effects": {
+          "cash": -10000,
+          "panic": -0.2,
+          "suspicion": 3
+        }
+      },
+      {
+        "label": "Çekimleri geçici olarak yavaşlat",
+        "effects": {
+          "withdrawMult": 0.6,
+          "withdrawMultWeeks": 4,
+          "panic": 0.3,
+          "suspicion": 8
+        }
+      },
+      {
+        "label": "Hiçbir şey yapma",
+        "effects": {
+          "panic": 0.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "market_recovery_signs",
+    "title": "Toparlanma sinyali",
+    "text": "Piyasada ilk yeşil günler görüldü. Kenarda bekleyenler yeniden fırsat kolluyor.",
+    "weight": 0.7,
+    "conditions": {
+      "minWeek": 12,
+      "regimes": [
+        "bear"
+      ]
+    },
+    "options": [
+      {
+        "label": "'Dipten alım' kampanyası",
+        "effects": {
+          "cash": -15000,
+          "channelMult": 1.4,
+          "channelMultWeeks": 5,
+          "panic": -0.1
+        }
+      },
+      {
+        "label": "Vaadi biraz düşür, kasa topla",
+        "effects": {
+          "promisedRateDelta": -0.002,
+          "panic": 0.05
+        }
+      },
+      {
+        "label": "Akışına bırak",
+        "effects": {}
+      }
+    ]
   }
 ]

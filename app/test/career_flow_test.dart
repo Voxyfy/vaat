@@ -118,6 +118,31 @@ void main() {
       expect(after.career.cleanMoney, cleanBefore);
     });
 
+    test('masadan kalkmak kariyeri seçilen sonla bitirir', () async {
+      final c = makeGame();
+      final ctrl = c.read(gameControllerProvider.notifier);
+      ctrl.flee();
+      expect(c.read(gameControllerProvider).phase, GamePhase.between);
+
+      // Kilitli son işlemez: pasaport yokken Balkan yok.
+      ctrl.retire(CareerEnding.balkan);
+      expect(c.read(gameControllerProvider).phase, GamePhase.between);
+
+      // Sefalet hemen açık: ilk bölümden çıkan para 100 binin altında kalır
+      // ya da kalmaz; garantiye almak için parayı sıfırlıyoruz.
+      final poor = c.read(gameControllerProvider).career
+          .copyWith(cleanMoney: 0, dirtyMoney: 0);
+      expect(poor.canEnd(CareerEnding.poverty), isTrue);
+      final ending = c.read(gameControllerProvider).career.availableEndings();
+      expect(ending, isNotEmpty);
+      ctrl.retire(ending.first);
+
+      final game = c.read(gameControllerProvider);
+      expect(game.phase, GamePhase.careerOver);
+      expect(game.career.over, isTrue);
+      expect(game.career.ending, ending.first);
+    });
+
     test('tavan vaat kariyeri bitirir', () async {
       final c = makeGame();
       final ctrl = c.read(gameControllerProvider.notifier);
@@ -258,6 +283,8 @@ void main() {
       await scrollTo(tester, Tr.partner);
       await scrollTo(tester, Tr.chooseScheme);
       expect(find.text(Tr.schemeStart), findsWidgets);
+      await scrollTo(tester, Tr.retireTitle);
+      expect(find.text(Tr.retireLocked), findsWidgets);
       expect(tester.takeException(), isNull);
     });
 
@@ -275,6 +302,7 @@ void main() {
       await pumpScreen(tester, c, const CareerOverScreen());
 
       expect(find.text(Tr.careerOverTitle), findsOneWidget);
+      expect(find.text(Tr.endingPrison), findsOneWidget);
       await scrollTo(tester, Tr.newCareer);
       expect(find.text(Tr.newCareer), findsOneWidget);
       expect(tester.takeException(), isNull);

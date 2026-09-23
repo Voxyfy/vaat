@@ -79,5 +79,137 @@
       { "label": "Parayı böl, riski dağıt", "effects": { "cash": -50000, "suspicion": -8 } },
       { "label": "Kimseye söyleme", "effects": { "suspicion": 6 } }
     ]
+  },
+  {
+    "id": "people_driver_sees",
+    "title": "Şoför çok şey görüyor",
+    "text": "Şoförün kimi nereye bıraktığını, arka koltukta hangi çantaların durduğunu biliyor. Dün bir soru sordu.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 12 },
+    "options": [
+      { "label": "Maaşına zam yap", "effects": { "fixedCostDelta": 1200, "suspicion": -4 } },
+      { "label": "Yerine yeni şoför al", "effects": { "cash": -3000, "suspicion": 6 } },
+      { "label": "Soruyu duymamış gibi yap", "effects": { "suspicion": 10 } }
+    ]
+  },
+  {
+    "id": "people_secretary_copies",
+    "title": "Sekreter fotokopi çekiyor",
+    "text": "Sekreterin mesai sonrası fotokopi makinesinde uzun süre kaldığı fark edilmiş.",
+    "weight": 0.8,
+    "conditions": { "minWeek": 16, "minSuspicion": 25 },
+    "options": [
+      { "label": "Terfi ettir, odasını değiştir", "effects": { "fixedCostDelta": 2000, "suspicion": -6 } },
+      { "label": "Makineyi kaldır, her şey dijitalde", "effects": { "cash": -8000, "suspicion": -3, "fixedCostDelta": 500 } },
+      { "label": "Güven, bir şey olmaz", "effects": { "suspicion": 15 } }
+    ]
+  },
+  {
+    "id": "people_brother_in_law",
+    "title": "Kayınço şirket arabası istiyor",
+    "text": "Kayınbiraderin şirket arabası ve 'danışman' unvanı istiyor. Karşılığında aile toplantılarında seni savunacak.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 6 },
+    "options": [
+      { "label": "Ver, aile huzuru önemli", "effects": { "fixedCostDelta": 2500, "suspicion": -2 } },
+      { "label": "Araba ver, unvan verme", "effects": { "fixedCostDelta": 1500, "suspicion": 2 } },
+      { "label": "Kibarca geçiştir", "effects": { "suspicion": 4 } }
+    ]
+  },
+  {
+    "id": "people_old_partner",
+    "title": "Eski ortak döndü",
+    "text": "İlk işindeki ortağın hapisten yeni çıktı. Nasıl başladığını çok iyi hatırlıyor.",
+    "weight": 0.7,
+    "conditions": { "minWeek": 18 },
+    "options": [
+      { "label": "Ona sessizce bir zarf ver", "effects": { "cash": -35000, "suspicion": -6 } },
+      { "label": "Şirkete al, göz önünde dursun", "effects": { "fixedCostDelta": 3000, "skimDelta": -0.01, "suspicion": -3 } },
+      { "label": "Tanımıyormuş gibi davran", "effects": { "suspicion": 20 } }
+    ]
+  },
+  {
+    "id": "people_fortune_teller",
+    "title": "Kahve falcısı danışman",
+    "text": "Bir falcı fincanında 'büyük bir yol' gördüğünü söyledi. Haftalık danışmanlık ücreti istiyor.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 4 },
+    "options": [
+      { "label": "Danışman olarak kadroya al", "effects": { "fixedCostDelta": 800, "panic": -0.05, "suspicion": 2 } },
+      { "label": "Yatırımcılara da fal baktır", "effects": { "fixedCostDelta": 1200, "channelMult": 1.15, "channelMultWeeks": 6, "suspicion": 4 } },
+      { "label": "Fincanı ters çevir, geç", "effects": {} }
+    ]
+  },
+  {
+    "id": "people_security_guard",
+    "title": "Gece bekçisi",
+    "text": "Gece bekçisi, gece yarısı binaya gelen minibüsleri deftere yazıyor. Defter hep yanında.",
+    "weight": 0.8,
+    "conditions": { "minWeek": 14 },
+    "options": [
+      { "label": "Defteri satın al", "effects": { "cash": -6000, "suspicion": -5 } },
+      { "label": "Güvenlik şirketini değiştir", "effects": { "cash": -4000, "fixedCostDelta": 800, "suspicion": 3 } },
+      { "label": "Minibüsler gelmeye devam etsin", "effects": { "suspicion": 13 } }
+    ]
+  },
+  {
+    "id": "people_realtor_offer",
+    "title": "Emlakçı villa gösteriyor",
+    "text": "Emlakçı deniz kenarında 'nakit ödenirse' indirimli bir villa buldu. Tapu işleri ondan.",
+    "weight": 0.8,
+    "conditions": { "minWeek": 20 },
+    "options": [
+      { "label": "Pazarlık yap, faturasız al", "effects": { "cash": -70000, "suspicion": 12 } },
+      { "label": "Al, annenin adına", "effects": { "cash": -90000, "suspicion": 6 } },
+      { "label": "Emlakçıya komisyon verip geç", "effects": { "cash": -2000 } }
+    ]
+  },
+  {
+    "id": "people_personal_trainer",
+    "title": "Kişisel antrenör",
+    "text": "Spor hocan her gün ofise geliyor, telefon konuşmalarını duyuyor ve yatırım yapmak istiyor.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 8 },
+    "options": [
+      { "label": "Yatırımcı yap, spor salonunda tanıt", "effects": { "cash": 4000, "channelMult": 1.1, "channelMultWeeks": 5, "suspicion": 3 } },
+      { "label": "Antrenmanları evde yap", "effects": { "fixedCostDelta": 400, "suspicion": -2 } },
+      { "label": "Bir şey yapma", "effects": { "suspicion": 3 } }
+    ]
+  },
+  {
+    "id": "people_consultant_mba",
+    "title": "Yurt dışı diplomalı danışman",
+    "text": "Pahalı bir danışman şirketin 'süreçlerini' iyileştirmek istiyor. Sunumunda 'nakit akışı' kelimesi altı kez geçiyor.",
+    "weight": 0.7,
+    "conditions": { "minWeek": 12, "minInvestors": 60 },
+    "options": [
+      { "label": "İşe al, kurumsal görün", "effects": { "fixedCostDelta": 3000, "suspicion": -6, "channelMult": 1.1, "channelMultWeeks": 6 } },
+      { "label": "Sunumunu çal, kendin uygula", "effects": { "channelMult": 1.05, "channelMultWeeks": 4, "suspicion": 2 } },
+      { "label": "Nakit akışı kelimesinden kork, geç", "effects": {} }
+    ]
+  },
+  {
+    "id": "people_mother_worried",
+    "title": "Annen gazete okumuş",
+    "text": "Annen seninle ilgili bir haber okumuş, akşam yemeğinde gözlerinin içine bakıyor.",
+    "weight": 0.7,
+    "conditions": { "minWeek": 22, "minSuspicion": 40 },
+    "options": [
+      { "label": "Ona ev al", "effects": { "cash": -60000, "suspicion": 3, "panic": -0.05 } },
+      { "label": "Her şeyi anlat", "effects": { "suspicion": 5, "skimDelta": -0.01 } },
+      { "label": "Konuyu futbola getir", "effects": { "suspicion": 7 } }
+    ]
+  },
+  {
+    "id": "people_it_guy",
+    "title": "Bilgi işlemci yedek almış",
+    "text": "Sistemi kuran yazılımcı bütün kayıtların yedeğini kendi diskine aldığını söyledi. 'Güvenlik için' diyor.",
+    "weight": 0.8,
+    "conditions": { "minWeek": 15, "minSuspicion": 20 },
+    "options": [
+      { "label": "Diski satın al", "effects": { "cash": -20000, "suspicion": -7 } },
+      { "label": "Maaşını artır, sadakat ödülü de ver", "effects": { "fixedCostDelta": 2200, "suspicion": -4 } },
+      { "label": "Güvenlik için olsun", "effects": { "suspicion": 14 } }
+    ]
   }
 ]

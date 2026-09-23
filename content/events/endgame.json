@@ -65,5 +65,101 @@
       { "label": "Her şeyi anlat", "effects": { "suspicion": 4, "panic": -0.1 } },
       { "label": "Yalan söyle", "effects": { "suspicion": 2 } }
     ]
+  },
+  {
+    "id": "end_travel_ban_rumor",
+    "title": "Çıkış yasağı söylentisi",
+    "text": "Adliyedeki tanıdık, hakkında yurt dışı çıkış yasağı istenebileceğini fısıldadı.",
+    "weight": 1.2,
+    "conditions": { "minWeek": 20, "minSuspicion": 60 },
+    "options": [
+      { "label": "Bir avukatı hâkime yaklaştır", "effects": { "cash": -120000, "suspicion": -8 } },
+      { "label": "Aileyi 'tatile' gönder", "effects": { "cash": -40000, "suspicion": 6, "panic": 0.1 } },
+      { "label": "Söylentiye inanma", "effects": { "suspicion": 13 } }
+    ]
+  },
+  {
+    "id": "end_detention_wave",
+    "title": "Gözaltı dalgası",
+    "text": "Rakip bir şemanın yöneticileri sabaha karşı alındı. Sıradakinin kim olduğu konuşuluyor.",
+    "weight": 1.1,
+    "conditions": { "minWeek": 22, "minSuspicion": 55 },
+    "options": [
+      { "label": "Ofisi birkaç haftalığına kapat", "effects": { "channelMult": 0.4, "channelMultWeeks": 4, "withdrawMult": 0.6, "withdrawMultWeeks": 4, "suspicion": -6 } },
+      { "label": "Açıklama yap: 'Biz onlar gibi değiliz'", "effects": { "cash": -20000, "suspicion": 6, "panic": -0.15 } },
+      { "label": "Normal devam et", "effects": { "suspicion": 15, "panic": 0.35 } }
+    ]
+  },
+  {
+    "id": "end_early_escape_news",
+    "title": "Erken 'kaçtı' haberi",
+    "text": "Bir haber sitesi 'yurt dışına kaçtığı' iddiasını yayımladı. Hâlâ ofistesin.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 20, "minSuspicion": 50 },
+    "options": [
+      { "label": "Ofisten canlı yayın aç", "effects": { "cash": -5000, "panic": -0.35, "suspicion": 4 } },
+      { "label": "Siteye tekzip gönder", "effects": { "cash": -15000, "suspicion": -3, "panic": 0.15 } },
+      { "label": "Bırak konuşsunlar", "effects": { "panic": 0.6, "withdrawMult": 1.5, "withdrawMultWeeks": 3 } }
+    ]
+  },
+  {
+    "id": "end_investors_at_home",
+    "title": "Evin önünde kalabalık",
+    "text": "Bir grup yatırımcı ofisi bırakıp evinin adresini bulmuş. Kapıcı ne diyeceğini soruyor.",
+    "weight": 1.3,
+    "conditions": { "minPanic": 1.7, "minWeek": 18 },
+    "options": [
+      { "label": "Aşağı in, yüz yüze konuş", "effects": { "cash": -60000, "panic": -0.4, "suspicion": 3 } },
+      { "label": "Özel güvenlik tut", "effects": { "fixedCostDelta": 3000, "suspicion": 8, "panic": 0.1 } },
+      { "label": "Arka kapıdan çık", "effects": { "panic": 0.5, "suspicion": 15 } }
+    ]
+  },
+  {
+    "id": "end_partner_confessor",
+    "title": "Eski ortak itirafçı oldu",
+    "text": "Eski ortağın savcılığa gitmiş. Anlattıkları senin hatırladıklarından daha ayrıntılı.",
+    "weight": 1.1,
+    "conditions": { "minWeek": 26, "minSuspicion": 65 },
+    "options": [
+      { "label": "Onun anlattıklarını çürütecek belge üret", "effects": { "cash": -100000, "suspicion": -6 } },
+      { "label": "Sen de ifade ver, onu suçla", "effects": { "suspicion": 5, "panic": 0.3, "skimDelta": -0.02 } },
+      { "label": "Avukatının telefonunu bekle", "effects": { "suspicion": 20 } }
+    ]
+  },
+  {
+    "id": "end_passport_check",
+    "title": "Pasaport sorgusu",
+    "text": "Havaalanında bir tanıdığın pasaportun 'sistemde uyarılı' göründüğünü söyledi.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 24, "minSuspicion": 70 },
+    "options": [
+      { "label": "Başka ülkenin vatandaşlığını satın al", "effects": { "cash": -150000, "suspicion": 4 } },
+      { "label": "Uyarıyı kaldırtmaya çalış", "effects": { "cash": -80000, "suspicion": -5 } },
+      { "label": "Seyahati ertele", "effects": { "suspicion": 11, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "end_last_payment_day",
+    "title": "Son ödeme günü",
+    "text": "Kasada gelecek haftanın ödemesi yok. Herkes çarşambayı bekliyor.",
+    "weight": 1.2,
+    "conditions": { "minWeek": 16, "maxCoverage": 0.2 },
+    "options": [
+      { "label": "Yarısını öde, gerisini söz ver", "effects": { "panic": 0.3, "suspicion": 6, "promisedRateDelta": -0.003 } },
+      { "label": "Yeni yatırımcılara süper kampanya", "effects": { "channelMult": 1.6, "channelMultWeeks": 4, "suspicion": 12 } },
+      { "label": "Çarşambayı bekle", "effects": { "panic": 0.7, "suspicion": 13 } }
+    ]
+  },
+  {
+    "id": "end_tv_debate",
+    "title": "Canlı yayında hedefsin",
+    "text": "Akşam tartışma programında konu sensin. Konuklardan biri 'tipik Ponzi' dedi ve kimse itiraz etmedi.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 20, "minSuspicion": 55 },
+    "options": [
+      { "label": "Programa telefonla bağlan", "effects": { "suspicion": 4, "panic": -0.2, "channelMult": 1.2, "channelMultWeeks": 3 } },
+      { "label": "Kanala reklam ver, konu değişsin", "effects": { "cash": -90000, "suspicion": -6 } },
+      { "label": "Televizyonu kapat", "effects": { "suspicion": 12, "panic": 0.3 } }
+    ]
   }
 ]

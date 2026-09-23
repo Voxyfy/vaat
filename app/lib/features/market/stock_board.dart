@@ -6,6 +6,7 @@ import '../../core/format.dart';
 import '../../core/strings.dart';
 import '../../core/theme.dart';
 import '../../game/game_controller.dart';
+import '../../ui/pixel.dart';
 import '../pool/history_chart.dart';
 
 /// Hisse tahtası. Yalnız borsa oynatılan şemalarda görünür.
@@ -22,26 +23,51 @@ class StockBoardView extends ConsumerWidget {
     final theme = Theme.of(context);
 
     if (!board.isActive) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Text(Tr.stockNoBoard, style: theme.textTheme.bodySmall),
-      );
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
+      return PixelPanel(
+        margin: const EdgeInsets.only(top: 8),
+        fill: Px.inset,
+        raised: false,
+        child: Row(
           children: [
+            const Icon(Icons.lock_outline, color: Px.muted, size: 18),
+            const SizedBox(width: 10),
             Expanded(
-                child: Text(Tr.stockBoard, style: theme.textTheme.titleMedium)),
-            Text(
-              '${Tr.stockPortfolio} ${money(board.portfolioValue)}',
-              style: monoStyle(context, scale: 0.9),
+              child: Text(Tr.stockNoBoard, style: theme.textTheme.bodySmall),
             ),
           ],
         ),
-        const SizedBox(height: 4),
+      );
+    }
+
+    final pnl = board.unrealized;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SectionHeader(Tr.stockBoard, trailing: '${board.stocks.length}'),
+        Row(
+          children: [
+            Expanded(
+              child: StatTile(
+                label: Tr.stockPortfolio,
+                value: money(board.portfolioValue),
+                icon: Icons.account_balance_outlined,
+                color: Px.gold,
+              ),
+            ),
+            const SizedBox(width: 6),
+            Expanded(
+              child: StatTile(
+                label: pnl >= 0 ? Tr.stockProfit : Tr.stockLoss,
+                value: money(pnl.abs()),
+                icon: pnl >= 0
+                    ? Icons.arrow_drop_up_rounded
+                    : Icons.arrow_drop_down_rounded,
+                color: pnl >= 0 ? Px.green : Px.red,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
         Text(Tr.stockHeatNote, style: theme.textTheme.bodySmall),
         const SizedBox(height: 8),
         for (final stock in board.stocks) _StockCard(stock: stock),
@@ -58,109 +84,125 @@ class _StockCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ctrl = ref.read(gameControllerProvider.notifier);
-    final theme = Theme.of(context);
     final pnl = stock.unrealized;
     final heatColor = stock.heat < 30
-        ? Colors.blueGrey
+        ? Px.blue
         : stock.heat < 65
-            ? Colors.orange
-            : Colors.red;
+            ? Px.amber
+            : Px.red;
+    final hasPosition = stock.shares > 0;
+    // Son iki kapanışa göre yön: grafiğin rengi bunu söyler.
+    final h = stock.history;
+    final up = h.length < 2 || h.last >= h[h.length - 2];
+    final trend = up ? Px.green : Px.red;
 
-    return Card(
+    return PixelPanel(
+      title: '${stock.id} · ${stock.name}',
+      badge: hasPosition ? '${stock.shares} ${Tr.stockLot}' : null,
+      badgeColor: Px.gold,
       margin: const EdgeInsets.only(bottom: 10),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(stock.id, style: theme.textTheme.titleSmall),
-                      Text(stock.name,
-                          style: theme.textTheme.bodySmall,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis),
-                    ],
-                  ),
+      fill: Px.panelRaised,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.fromLTRB(10, 6, 10, 4),
+                decoration: pixelBevel(fill: Px.inset, raised: false, width: 2),
+                child: Text(
+                  stock.price.toStringAsFixed(2),
+                  style: monoStyle(context, scale: 1.5, color: trend),
                 ),
-                const SizedBox(width: 8),
-                Text(stock.price.toStringAsFixed(2),
-                    style: monoStyle(context, scale: 1.2)),
-              ],
-            ),
-            const SizedBox(height: 6),
-            SizedBox(
-              height: 44,
-              child: HistoryChart(
-                series: [(stock.history, theme.colorScheme.primary)],
-                fromZero: false,
               ),
-            ),
-            const SizedBox(height: 6),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    stock.shares == 0
-                        ? '${Tr.stockPosition}: -'
-                        : '${stock.shares} ${Tr.stockLot} · ${money(stock.positionValue)}',
-                    style: theme.textTheme.bodySmall,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+              const SizedBox(width: 8),
+              Expanded(
+                child: Container(
+                  height: 44,
+                  padding: const EdgeInsets.all(4),
+                  decoration:
+                      pixelBevel(fill: Px.inset, raised: false, width: 2),
+                  child: HistoryChart(
+                    series: [(stock.history, trend)],
+                    fromZero: false,
+                    gridLines: 0,
                   ),
                 ),
-                if (stock.shares > 0)
-                  Text(
-                    '${pnl >= 0 ? Tr.stockProfit : Tr.stockLoss} ${money(pnl.abs())}',
-                    style: monoStyle(context,
-                        scale: 0.85,
-                        color: pnl >= 0 ? Colors.green : Colors.redAccent),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            Row(
-              children: [
-                SizedBox(
-                    width: 34,
-                    child: Text(Tr.stockHeat,
-                        style: theme.textTheme.labelSmall)),
-                Expanded(
-                  child: LinearProgressIndicator(
-                    value: (stock.heat / 100).clamp(0, 1),
-                    minHeight: 5,
-                    color: heatColor,
-                  ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Expanded(
+                child: StatTile(
+                  label: Tr.stockPosition,
+                  value: hasPosition ? money(stock.positionValue) : '-',
+                  color: hasPosition ? Px.text : Px.muted,
                 ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                OutlinedButton(
-                  onPressed: () => ctrl.queue(BuyStock(stock.id, 1000)),
-                  child: const Text('${Tr.stockBuy} 1000'),
+              ),
+              const SizedBox(width: 6),
+              Expanded(
+                child: StatTile(
+                  label: Tr.stockAvgCost,
+                  value: hasPosition ? stock.avgCost.toStringAsFixed(2) : '-',
+                  color: hasPosition ? Px.text : Px.muted,
                 ),
-                OutlinedButton(
-                  onPressed: stock.shares == 0
-                      ? null
-                      : () => ctrl.queue(SellStock(stock.id, stock.shares)),
-                  child: const Text('${Tr.stockSell} ${Tr.stockBoard}'),
+              ),
+              const SizedBox(width: 6),
+              Expanded(
+                child: StatTile(
+                  label: pnl >= 0 ? Tr.stockProfit : Tr.stockLoss,
+                  value: hasPosition ? money(pnl.abs()) : '-',
+                  color: !hasPosition
+                      ? Px.muted
+                      : pnl >= 0
+                          ? Px.green
+                          : Px.red,
                 ),
-                FilledButton.tonal(
-                  onPressed: () => _showOperations(context, ctrl, stock),
-                  child: const Text(Tr.stockManipulate),
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          PixelBar(
+            label: Tr.stockHeat,
+            value: (stock.heat / 100).clamp(0, 1),
+            text: stock.heat.toStringAsFixed(0),
+            color: heatColor,
+            height: 12,
+          ),
+          const SizedBox(height: 10),
+          // Al ve sat alt alta: yan yana dururken maliyet rozeti dar
+          // telefonda taşıyordu.
+          PixelButton(
+            label: '${Tr.stockBuy} 1000 ${Tr.stockLot}',
+            dense: true,
+            icon: Icons.add_rounded,
+            cost: money(-stock.price * 1000),
+            costColor: Px.amber,
+            onPressed: () => ctrl.queue(BuyStock(stock.id, 1000)),
+          ),
+          const SizedBox(height: 6),
+          PixelButton(
+            label: '${Tr.stockSell} ${hasPosition ? stock.shares : 0} ${Tr.stockLot}',
+            dense: true,
+            icon: Icons.remove_rounded,
+            cost: hasPosition ? money(stock.positionValue) : null,
+            costColor: Px.green,
+            onPressed: hasPosition
+                ? () => ctrl.queue(SellStock(stock.id, stock.shares))
+                : null,
+          ),
+          const SizedBox(height: 6),
+          PixelButton(
+            label: Tr.stockManipulate,
+            kind: PixelButtonKind.danger,
+            dense: true,
+            icon: Icons.bolt_rounded,
+            onPressed: () => _showOperations(context, ctrl, stock),
+          ),
+        ],
       ),
     );
   }
@@ -177,29 +219,44 @@ class _StockCard extends ConsumerWidget {
       (Manipulation.spoof, Tr.manipSpoof, Tr.manipSpoofNote),
       (Manipulation.paintTheTape, Tr.manipTape, Tr.manipTapeNote),
     ];
+    final theme = Theme.of(context);
     await showModalBottomSheet<void>(
       context: context,
+      backgroundColor: Px.bg,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       builder: (context) => SafeArea(
         child: ListView(
           shrinkWrap: true,
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(12),
           children: [
-            Text('${stock.id} · ${stock.name}',
-                style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 12),
-            for (final (kind, label, note) in kinds)
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(label),
-                subtitle: Text(
-                  '$note\n${Tr.manipCost} ${money(stock.manipulationCost * kind.cashFactor)}',
-                ),
-                isThreeLine: true,
-                onTap: () {
-                  ctrl.queue(ManipulateStock(stock.id, kind));
-                  Navigator.of(context).pop();
-                },
+            PixelPanel(
+              title: Tr.stockOperations,
+              badge: stock.id,
+              badgeColor: Px.gold,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(stock.name, style: theme.textTheme.bodySmall),
+                  const SizedBox(height: 10),
+                  for (final (kind, label, note) in kinds) ...[
+                    PixelButton(
+                      label: label,
+                      kind: PixelButtonKind.danger,
+                      cost: money(-stock.manipulationCost * kind.cashFactor),
+                      costColor: Colors.white,
+                      onPressed: () {
+                        ctrl.queue(ManipulateStock(stock.id, kind));
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(4, 4, 0, 10),
+                      child: Text(note, style: theme.textTheme.bodySmall),
+                    ),
+                  ],
+                ],
               ),
+            ),
           ],
         ),
       ),

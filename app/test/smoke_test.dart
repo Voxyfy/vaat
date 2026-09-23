@@ -78,6 +78,9 @@ void main() {
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull, reason: '$label sekmesi taştı');
     }
+    // Kaç düğmesi listenin altında olabilir; kaydırarak bul.
+    await tester.scrollUntilVisible(find.text(Tr.flee), 200,
+        scrollable: find.byType(Scrollable).last);
     expect(find.text(Tr.flee), findsOneWidget);
     expect(tester.takeException(), isNull);
   });

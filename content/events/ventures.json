@@ -1,0 +1,737 @@
+[
+  {
+    "id": "crypto_volume_bot",
+    "title": "Hacim botu",
+    "text": "Yazılımcı, borsanın günlük hacmini on kat gösteren bir bot yazmış. Sıralama sitelerinde üst sıraya çıkarsın.",
+    "weight": 1.0,
+    "conditions": {
+      "schemes": [
+        "cryptoExchange"
+      ],
+      "minWeek": 2
+    },
+    "options": [
+      {
+        "label": "Çalıştır",
+        "effects": {
+          "cash": -40000,
+          "channelMult": 1.5,
+          "channelMultWeeks": 8,
+          "suspicion": 6
+        }
+      },
+      {
+        "label": "Yarım gazla çalıştır",
+        "effects": {
+          "cash": -20000,
+          "channelMult": 1.2,
+          "channelMultWeeks": 6,
+          "suspicion": 2
+        }
+      },
+      {
+        "label": "Gerek yok",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "crypto_listing_fee",
+    "title": "Listeleme ücreti",
+    "text": "Bir girişimci kendi tokenını listelemen için yüklü bir ücret teklif ediyor. Projenin beyaz kâğıdı tek sayfa.",
+    "weight": 0.9,
+    "conditions": {
+      "schemes": [
+        "cryptoExchange"
+      ],
+      "minWeek": 5
+    },
+    "options": [
+      {
+        "label": "Listele, ücreti al",
+        "effects": {
+          "cash": 120000,
+          "suspicion": 8,
+          "panic": 0.05
+        }
+      },
+      {
+        "label": "Listele, 'topluluk oylaması' süsü ver",
+        "effects": {
+          "cash": 80000,
+          "suspicion": 3,
+          "channelMult": 1.1,
+          "channelMultWeeks": 4
+        }
+      },
+      {
+        "label": "Reddet",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "crypto_cold_wallet_question",
+    "title": "Soğuk cüzdan sorusu",
+    "text": "Bir kullanıcı forumda soruyor: soğuk cüzdanın şifresi kimde? Cevap herkesin bildiği gibi, yalnız sende.",
+    "weight": 1.0,
+    "conditions": {
+      "schemes": [
+        "cryptoExchange"
+      ],
+      "minWeek": 10,
+      "minSuspicion": 15
+    },
+    "options": [
+      {
+        "label": "'Çoklu imza' açıklaması yayınla",
+        "effects": {
+          "cash": -25000,
+          "suspicion": -6,
+          "panic": -0.1
+        }
+      },
+      {
+        "label": "Rezerv kanıtı diye ekran görüntüsü paylaş",
+        "effects": {
+          "suspicion": -10,
+          "panic": -0.15,
+          "skimDelta": -0.01
+        }
+      },
+      {
+        "label": "Soruyu sildir",
+        "effects": {
+          "suspicion": 8,
+          "panic": 0.2
+        }
+      }
+    ]
+  },
+  {
+    "id": "crypto_withdraw_quota",
+    "title": "Çekim kotası",
+    "text": "Muhasebe haftalık çekimlerin kasayı eriteceğini söylüyor. Kullanıcı başına günlük sınır koyabilirsin.",
+    "weight": 1.0,
+    "conditions": {
+      "schemes": [
+        "cryptoExchange"
+      ],
+      "minWeek": 8,
+      "maxCoverage": 0.7
+    },
+    "options": [
+      {
+        "label": "Sıkı kota koy",
+        "effects": {
+          "withdrawMult": 0.5,
+          "withdrawMultWeeks": 6,
+          "panic": 0.35,
+          "suspicion": 8
+        }
+      },
+      {
+        "label": "Kotayı 'VIP seviyesi' diye sat",
+        "effects": {
+          "withdrawMult": 0.75,
+          "withdrawMultWeeks": 6,
+          "cash": 30000,
+          "suspicion": 4
+        }
+      },
+      {
+        "label": "Olduğu gibi bırak",
+        "effects": {
+          "panic": 0.1
+        }
+      }
+    ]
+  },
+  {
+    "id": "crypto_token_burn",
+    "title": "Token yakma töreni",
+    "text": "Pazarlama ekibi, borsa tokenının yüzde onunu canlı yayında 'yakmayı' öneriyor. Yakılan cüzdanın anahtarı yine sende kalacak.",
+    "weight": 0.8,
+    "conditions": {
+      "schemes": [
+        "cryptoExchange"
+      ],
+      "minWeek": 6,
+      "maxSuspicion": 65
+    },
+    "options": [
+      {
+        "label": "Canlı yayında yak",
+        "effects": {
+          "cash": -30000,
+          "channelMult": 1.4,
+          "channelMultWeeks": 6,
+          "panic": -0.1
+        }
+      },
+      {
+        "label": "Sessizce duyur",
+        "effects": {
+          "channelMult": 1.1,
+          "channelMultWeeks": 4,
+          "suspicion": 2
+        }
+      },
+      {
+        "label": "Tören yok",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "crypto_influencer_shill",
+    "title": "Fenomen tanıtımı",
+    "text": "Kripto fenomeni, takipçilerine borsanı 'bir sonraki büyük fırsat' diye anlatmak istiyor. Ücreti token olarak istiyor, hemen satacağı belli.",
+    "weight": 0.9,
+    "conditions": {
+      "schemes": [
+        "cryptoExchange"
+      ],
+      "minWeek": 3,
+      "maxSuspicion": 60
+    },
+    "options": [
+      {
+        "label": "Nakit öde",
+        "effects": {
+          "cash": -60000,
+          "channelMult": 1.6,
+          "channelMultWeeks": 6,
+          "suspicion": 4
+        }
+      },
+      {
+        "label": "Token öde",
+        "effects": {
+          "channelMult": 1.6,
+          "channelMultWeeks": 6,
+          "panic": 0.2,
+          "suspicion": 6
+        }
+      },
+      {
+        "label": "Geç",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "crypto_hack_rumor",
+    "title": "Hack söylentisi",
+    "text": "Bir sohbet grubunda borsanın hacklendiği konuşuluyor. Hacklenmedin, ama bu fikir bir gün işine yarayabilir.",
+    "weight": 0.8,
+    "conditions": {
+      "schemes": [
+        "cryptoExchange"
+      ],
+      "minWeek": 14
+    },
+    "options": [
+      {
+        "label": "Hemen yalanla, çekimleri hızlandır",
+        "effects": {
+          "cash": -50000,
+          "panic": -0.2,
+          "suspicion": -3
+        }
+      },
+      {
+        "label": "Yalanlama, 'inceleniyor' de",
+        "effects": {
+          "panic": 0.3,
+          "withdrawMult": 0.7,
+          "withdrawMultWeeks": 3,
+          "suspicion": 6
+        }
+      },
+      {
+        "label": "Sus",
+        "effects": {
+          "panic": 0.4
+        }
+      }
+    ]
+  },
+  {
+    "id": "crypto_bank_partner",
+    "title": "Banka hesabı kapandı",
+    "text": "Anlaşmalı banka, havale hesabını 'risk politikası' gerekçesiyle kapattı. Para yatırmak isteyenler bekliyor.",
+    "weight": 0.8,
+    "conditions": {
+      "schemes": [
+        "cryptoExchange"
+      ],
+      "minWeek": 12,
+      "minSuspicion": 25
+    },
+    "options": [
+      {
+        "label": "Aracı ödeme firmasıyla anlaş",
+        "effects": {
+          "fixedCostDelta": 3000,
+          "suspicion": 6,
+          "channelMult": 0.9,
+          "channelMultWeeks": 4
+        }
+      },
+      {
+        "label": "Kişisel hesaplardan topla",
+        "effects": {
+          "suspicion": 14,
+          "cash": 20000
+        }
+      },
+      {
+        "label": "Bekle, yenisini ara",
+        "effects": {
+          "channelMult": 0.5,
+          "channelMultWeeks": 6
+        }
+      }
+    ]
+  },
+  {
+    "id": "crypto_airdrop_campaign",
+    "title": "Hediye yağmuru",
+    "text": "Yeni üye getirene hediye token kampanyası öneriliyor. Tokenın değeri tamamen senin bir tuşuna bağlı.",
+    "weight": 1.0,
+    "conditions": {
+      "schemes": [
+        "cryptoExchange"
+      ],
+      "minWeek": 4,
+      "maxWeek": 40
+    },
+    "options": [
+      {
+        "label": "Cömert kampanya",
+        "effects": {
+          "channelMult": 1.7,
+          "channelMultWeeks": 5,
+          "promisedRateDelta": 0.004,
+          "suspicion": 5
+        }
+      },
+      {
+        "label": "Küçük kampanya",
+        "effects": {
+          "channelMult": 1.2,
+          "channelMultWeeks": 5,
+          "promisedRateDelta": 0.001
+        }
+      },
+      {
+        "label": "Kampanya yok",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "crypto_founder_abroad",
+    "title": "Kurucu yurt dışında",
+    "text": "Basın, kurucunun sık sık yurt dışına çıktığını fark etti. Kullanıcılar 'borsa hâlâ sizin mi' diye soruyor.",
+    "weight": 0.7,
+    "conditions": {
+      "schemes": [
+        "cryptoExchange"
+      ],
+      "minWeek": 20,
+      "minSuspicion": 40
+    },
+    "options": [
+      {
+        "label": "Ofisten canlı yayın yap",
+        "effects": {
+          "cash": -15000,
+          "panic": -0.25,
+          "suspicion": -4
+        }
+      },
+      {
+        "label": "'İş seyahati' açıklaması",
+        "effects": {
+          "suspicion": 4,
+          "panic": 0.1
+        }
+      },
+      {
+        "label": "Hiçbir şey söyleme",
+        "effects": {
+          "panic": 0.35,
+          "suspicion": 13
+        }
+      }
+    ]
+  },
+  {
+    "id": "production_farm_tour",
+    "title": "Tesis gezisi",
+    "text": "Yatırımcılardan bir otobüs dolusu, tesisi görmek istiyor. Ahırda şu an yarısı kadar hayvan var.",
+    "weight": 1.0,
+    "conditions": {
+      "schemes": [
+        "productionCover"
+      ],
+      "minWeek": 6
+    },
+    "options": [
+      {
+        "label": "Komşu çiftlikten hayvan kirala",
+        "effects": {
+          "cash": -40000,
+          "channelMult": 1.4,
+          "channelMultWeeks": 6,
+          "suspicion": -4
+        }
+      },
+      {
+        "label": "Geziyi 'bakım dönemi' diye ertele",
+        "effects": {
+          "suspicion": 6,
+          "panic": 0.1
+        }
+      },
+      {
+        "label": "Olduğu gibi göster",
+        "effects": {
+          "suspicion": 10,
+          "panic": 0.2
+        }
+      }
+    ]
+  },
+  {
+    "id": "production_animal_count",
+    "title": "Sayım günü",
+    "text": "Tarım müdürlüğü rutin sayım yapacak. Kayıtta bin baş, ahırda üç yüz.",
+    "weight": 0.9,
+    "conditions": {
+      "schemes": [
+        "productionCover"
+      ],
+      "minWeek": 14,
+      "minSuspicion": 20
+    },
+    "options": [
+      {
+        "label": "Kayıtları 'satıldı' diye düzelt",
+        "effects": {
+          "cash": -30000,
+          "suspicion": 4,
+          "panic": 0.1
+        }
+      },
+      {
+        "label": "Sayım görevlisini ağırla",
+        "effects": {
+          "cash": -80000,
+          "suspicion": -8
+        }
+      },
+      {
+        "label": "Sayıma bırak",
+        "effects": {
+          "suspicion": 22
+        }
+      }
+    ]
+  },
+  {
+    "id": "production_local_tv",
+    "title": "Yerel TV programı",
+    "text": "Yerel kanal, 'memleketin girişimcisi' programına çıkmanı istiyor. Kamera tesisin en güzel köşesini çekecek.",
+    "weight": 1.0,
+    "conditions": {
+      "schemes": [
+        "productionCover"
+      ],
+      "minWeek": 4,
+      "maxSuspicion": 50
+    },
+    "options": [
+      {
+        "label": "Çık, vaadi büyüt",
+        "effects": {
+          "channelMult": 1.6,
+          "channelMultWeeks": 8,
+          "promisedRateDelta": 0.003,
+          "suspicion": 5
+        }
+      },
+      {
+        "label": "Çık, mütevazı ol",
+        "effects": {
+          "channelMult": 1.2,
+          "channelMultWeeks": 6,
+          "suspicion": 1
+        }
+      },
+      {
+        "label": "Teşekkür et, çıkma",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "production_municipality",
+    "title": "Belediye ziyareti",
+    "text": "Belediye başkanı tesisin açılışına gelmek istiyor, karşılığında ilçeye bir çeşme bekliyor.",
+    "weight": 0.8,
+    "conditions": {
+      "schemes": [
+        "productionCover"
+      ],
+      "minWeek": 8
+    },
+    "options": [
+      {
+        "label": "Çeşmeyi yaptır",
+        "effects": {
+          "cash": -120000,
+          "suspicion": -10,
+          "channelMult": 1.3,
+          "channelMultWeeks": 8
+        }
+      },
+      {
+        "label": "Söz ver, sonra bakarsın",
+        "effects": {
+          "channelMult": 1.2,
+          "channelMultWeeks": 4,
+          "suspicion": 6
+        }
+      },
+      {
+        "label": "Davet etme",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "production_export_invoice",
+    "title": "İhracat faturası",
+    "text": "Muhasebeci, yurt dışına satış yapmış gibi görünmen için bir fatura ayarlayabileceğini söylüyor. Kâr tablosu parlar.",
+    "weight": 0.8,
+    "conditions": {
+      "schemes": [
+        "productionCover"
+      ],
+      "minWeek": 12
+    },
+    "options": [
+      {
+        "label": "Kes",
+        "effects": {
+          "cash": -20000,
+          "channelMult": 1.3,
+          "channelMultWeeks": 8,
+          "suspicion": 10
+        }
+      },
+      {
+        "label": "Küçük tutarla kes",
+        "effects": {
+          "cash": -8000,
+          "channelMult": 1.1,
+          "channelMultWeeks": 6,
+          "suspicion": 4
+        }
+      },
+      {
+        "label": "İstemem",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "production_harvest_fail",
+    "title": "Hasat kötü geçti",
+    "text": "Mevsim kurak geçti, tesisin gerçek üretimi vaadin onda biri. Yatırımcı toplantısı yaklaşıyor.",
+    "weight": 0.9,
+    "conditions": {
+      "schemes": [
+        "productionCover"
+      ],
+      "minWeek": 16
+    },
+    "options": [
+      {
+        "label": "Kuraklığı suçla, getiriyi düşür",
+        "effects": {
+          "promisedRateDelta": -0.003,
+          "panic": 0.3,
+          "suspicion": -2
+        }
+      },
+      {
+        "label": "Rakamları olduğu gibi göster, dışarıdan ürün al",
+        "effects": {
+          "cash": -100000,
+          "panic": -0.1,
+          "suspicion": 3
+        }
+      },
+      {
+        "label": "Hiç bahsetme",
+        "effects": {
+          "suspicion": 13,
+          "panic": 0.15
+        }
+      }
+    ]
+  },
+  {
+    "id": "production_vet_report",
+    "title": "Veteriner raporu",
+    "text": "Veteriner, hayvanların yarısının kayıtla eşleşmediğini rapora yazmak üzere.",
+    "weight": 0.7,
+    "conditions": {
+      "schemes": [
+        "productionCover"
+      ],
+      "minWeek": 18,
+      "minSuspicion": 25
+    },
+    "options": [
+      {
+        "label": "Raporu 'yeniden düzenlet'",
+        "effects": {
+          "cash": -50000,
+          "suspicion": -5
+        }
+      },
+      {
+        "label": "Veterineri değiştir",
+        "effects": {
+          "fixedCostDelta": 2000,
+          "suspicion": 6
+        }
+      },
+      {
+        "label": "Rapor yazılsın",
+        "effects": {
+          "suspicion": 19,
+          "panic": 0.15
+        }
+      }
+    ]
+  },
+  {
+    "id": "production_machinery_photo",
+    "title": "Makine fotoğrafı",
+    "text": "Broşürdeki yeni hat fotoğrafının başka bir fabrikaya ait olduğu fark edildi.",
+    "weight": 0.8,
+    "conditions": {
+      "schemes": [
+        "productionCover"
+      ],
+      "minWeek": 10
+    },
+    "options": [
+      {
+        "label": "'Temsili görsel' yaz",
+        "effects": {
+          "suspicion": 4,
+          "channelMult": 0.9,
+          "channelMultWeeks": 4
+        }
+      },
+      {
+        "label": "Gerçek makine kirala, yeniden çek",
+        "effects": {
+          "cash": -60000,
+          "suspicion": -3
+        }
+      },
+      {
+        "label": "Görmezden gel",
+        "effects": {
+          "suspicion": 9,
+          "panic": 0.1
+        }
+      }
+    ]
+  },
+  {
+    "id": "production_second_facility",
+    "title": "İkinci tesis",
+    "text": "Yatırımcılar ikinci tesisi soruyor. Arsa yok, maket var.",
+    "weight": 0.8,
+    "conditions": {
+      "schemes": [
+        "productionCover"
+      ],
+      "minWeek": 22,
+      "minInvestors": 80
+    },
+    "options": [
+      {
+        "label": "Temel atma töreni yap",
+        "effects": {
+          "cash": -150000,
+          "channelMult": 1.5,
+          "channelMultWeeks": 10,
+          "panic": -0.2
+        }
+      },
+      {
+        "label": "Maketi ofise koy",
+        "effects": {
+          "cash": -10000,
+          "channelMult": 1.1,
+          "channelMultWeeks": 5,
+          "suspicion": 3
+        }
+      },
+      {
+        "label": "'Yakında' de",
+        "effects": {
+          "panic": 0.15,
+          "suspicion": 9
+        }
+      }
+    ]
+  },
+  {
+    "id": "production_workers_unpaid",
+    "title": "İşçi maaşları",
+    "text": "Tesis işçileri iki aydır maaş alamadıklarını köy kahvesinde anlatıyor. Kahvede yatırımcıların akrabaları da var.",
+    "weight": 0.8,
+    "conditions": {
+      "schemes": [
+        "productionCover"
+      ],
+      "minWeek": 20,
+      "maxCoverage": 0.5
+    },
+    "options": [
+      {
+        "label": "Maaşları öde",
+        "effects": {
+          "cash": -90000,
+          "panic": -0.15,
+          "suspicion": -4
+        }
+      },
+      {
+        "label": "Yarısını öde, söz ver",
+        "effects": {
+          "cash": -45000,
+          "suspicion": 3
+        }
+      },
+      {
+        "label": "Bekletmeye devam",
+        "effects": {
+          "panic": 0.3,
+          "suspicion": 15
+        }
+      }
+    ]
+  }
+]

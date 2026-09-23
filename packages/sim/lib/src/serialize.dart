@@ -49,6 +49,10 @@ Map<String, dynamic> schemeToJson(SchemeState s) => {
       ],
       'pendingEventIds': s.pendingEventIds,
       'firedEventIds': s.firedEventIds.toList(),
+      'eventChoices': {
+        for (final e in s.eventChoices.entries)
+          e.key: {'option': e.value.option, 'week': e.value.week},
+      },
       'end': s.end?.name,
       'endReason': s.endReason,
     };
@@ -92,6 +96,17 @@ SchemeState schemeFromJson(Map<String, dynamic> j) => SchemeState(
       ],
       pendingEventIds: [for (final v in j['pendingEventIds'] as List) v as String],
       firedEventIds: {for (final v in j['firedEventIds'] as List) v as String},
+      // Bu alan sonradan geldi: eski kayıtlarda yok, boş başlar. Zincirli
+      // kartlar o bölümde gelmez, başka bir şey bozulmaz.
+      eventChoices: {
+        for (final e
+            in ((j['eventChoices'] as Map<String, dynamic>?) ?? const {})
+                .entries)
+          e.key: EventChoice(
+            option: ((e.value as Map<String, dynamic>)['option'] as num).toInt(),
+            week: ((e.value as Map<String, dynamic>)['week'] as num).toInt(),
+          ),
+      },
       end: j['end'] == null ? null : SchemeEnd.values.byName(j['end'] as String),
       endReason: j['endReason'] as String?,
     );
@@ -193,6 +208,7 @@ Map<String, dynamic> careerToJson(CareerState c) => {
       'partner': c.partner?.name,
       'over': c.over,
       'overReason': c.overReason,
+      'ending': c.ending?.name,
     };
 
 CareerState careerFromJson(Map<String, dynamic> j) => CareerState(
@@ -225,4 +241,9 @@ CareerState careerFromJson(Map<String, dynamic> j) => CareerState(
           : PartnerKind.values.byName(j['partner'] as String),
       over: j['over'] as bool,
       overReason: j['overReason'] as String?,
+      // Sonradan eklendi. Eski bir kayıtta kariyer bitmişse tek olası son
+      // yakalanmaydı, o yüzden boşluk hapse düşer.
+      ending: j['ending'] != null
+          ? CareerEnding.values.byName(j['ending'] as String)
+          : (j['over'] as bool ? CareerEnding.prison : null),
     );

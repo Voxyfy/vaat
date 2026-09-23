@@ -33,6 +33,70 @@ abstract final class Tr {
     ),
   ];
 
+  // Öğretici sözlüğü. Son iki sayfa; "Nasıl oynanır?" ile yeniden açıldığı
+  // için oyun içi sözlük görevi de görür. İlk öğe ikon anahtarı, öğretici
+  // ekranı bunu HUD'daki ikonla eşler.
+  static const glossaryTitle = 'Sözlük';
+  static const glossaryPageA = <(String, String, String)>[
+    (
+      'cash',
+      'Kasa',
+      'Elinde gerçekten duran para. Ödemeler buradan çıkar; sıfırlanırsa ödeme gecikir.',
+    ),
+    (
+      'promised',
+      'Ekstrelerde yazan',
+      'Yatırımcıların sahip olduğunu sandığı toplam. Kâğıt üstünde var, kasada yok.',
+    ),
+    (
+      'hole',
+      'Delik',
+      'Ekstrelerde yazan ile kasa arasındaki fark. Büyüdükçe çöküş yaklaşır.',
+    ),
+    (
+      'coverage',
+      'Karşılama',
+      'Kasanın ekstreleri karşılama oranı. %100 üstü meşru fon gibi görünür, %30 altı bir kötü haberle çöker.',
+    ),
+    (
+      'suspicion',
+      'Şüphe (0-100)',
+      'Savcılığın ve basının sana ne kadar yakın olduğu. 100\'de baskın.',
+    ),
+    (
+      'panic',
+      'Panik (×1.0 sakin)',
+      'Yatırımcıların çekim iştahı. Gecikmiş ödeme kalıcı yükseltir, yavaş söner.',
+    ),
+  ];
+  static const glossaryPageB = <(String, String, String)>[
+    (
+      'investors',
+      'Yatırımcı',
+      'Para koyan kişi sayısı. Aynı zamanda mağdur sayısı.',
+    ),
+    (
+      'rate',
+      'Vaat (haftalık getiri)',
+      'Yatırımcılara söz verdiğin haftalık kazanç. Yükseltirsen para hızlı gelir, ödeme yükü de hızlı büyür.',
+    ),
+    (
+      'skim',
+      'Cep payı',
+      'Gelen paradan kendine ayırdığın oran. Kaçışta yanına aldığın şey bu.',
+    ),
+    (
+      'inflow',
+      'Yeni para / kanal',
+      'O hafta yeni yatırımcılardan gelen para ve hangi kalabalıklara ulaştığın.',
+    ),
+    (
+      'record',
+      'Geçmiş dosyası',
+      'Aradaki hayatta görünür. Yakalanmamış işlerin toplamı; yeni şema bu kadar yüksek şüpheden başlar.',
+    ),
+  ];
+
   // HUD
   static const week = 'Hafta';
   static const chapterShort = 'B';
@@ -53,11 +117,16 @@ abstract final class Tr {
   static const pendingEvents = 'Masandaki dosyalar';
   static const noEvents = 'Sessiz bir hafta. Kimse kapıyı çalmadı.';
   static const answered = 'Cevaplandı';
+  static const eventTag = 'Olay';
+  static const unansweredShort = 'cevapsız';
+  static const inflowShort = 'Yeni para';
 
   // Havuz
   static const realCash = 'Gerçek kasa';
+  static const cashShort = 'Kasa';
   static const promisedTotal = 'Ekstrelerde yazan';
   static const hole = 'Delik';
+  static const surplus = 'Fazla';
   static const investors = 'Yatırımcı';
   static const promisedRate = 'Vaat edilen haftalık getiri';
   static const promisedRateMonthly = 'aylık yaklaşık';
@@ -69,6 +138,13 @@ abstract final class Tr {
   static const channelClosed = 'Kapalı';
   static const ticket = 'bilet';
   static const chartTitle = 'Kasa ve ekstre';
+  static const promiseShort = 'Vaat';
+  static const skimShort = 'Cep payı';
+  static const weeklyShort = 'haftalık';
+  static const queuedShort = 'Sırada';
+  static const capacityShort = 'kapasite';
+  static const legendCash = 'Kasa';
+  static const legendPromised = 'Ekstre';
 
   // Piyasa
   static const marketIndex = 'Piyasa endeksi';
@@ -92,6 +168,8 @@ abstract final class Tr {
   static const marketInflowEffect = 'Yeni para';
   static const marketWithdrawEffect = 'Çekim';
   static const marketWeekChange = 'Bu hafta';
+  static const marketEffects = 'Bu haftaki etki';
+  static const marketSensShort = 'Duyarlılık';
   static const marketHistory = 'Endeks geçmişi';
 
   // Borsa
@@ -123,6 +201,8 @@ abstract final class Tr {
   static const manipTapeNote =
       'Kapanışa yakın küçük işlemler. Yavaş, sessiz, uzun ömürlü.';
   static const manipCost = 'Maliyet';
+  static const stockAvgCost = 'Ort. maliyet';
+  static const stockOperations = 'Operasyonlar';
 
   // Medya
   static const headlines = 'Manşetler';
@@ -131,11 +211,26 @@ abstract final class Tr {
   static const marketingSmall = '50 bin';
   static const marketingLarge = '250 bin';
   static const noHeadlines = 'Henüz kimse senden bahsetmiyor.';
+  static const marketingQueued = 'Sırada';
+  static const marketingSmallLabel = 'Küçük kampanya';
+  static const marketingLargeLabel = 'Büyük kampanya';
+  static const marketingTotalQueued = 'Bu hafta gidecek';
+  // Simülasyon günlüğündeki satırların ön eki ve son eki. Manşet akışı bunları
+  // tanıyıp görsel olarak ayırıyor; metinler sim tarafındaki ile aynı olmalı.
+  static const headlineEventPrefix = 'Olay:';
+  static const headlineAutoSuffix = '(cevapsız kaldı)';
 
   // Koruma
   static const suspicionDetail = 'Şüphe barı';
   static const panic = 'Panik';
   static const bankRun = 'Toplu çekim sürüyor';
+  static const suspicionLow = 'Sakin';
+  static const suspicionMid = 'İzleniyor';
+  static const suspicionHigh = 'Dosya var';
+  static const panicCalm = 'Sakin';
+  static const panicHigh = 'Gergin';
+  static const escapePlanShort = 'Kaçış planı';
+  static const noEscapePlan = 'Plan yok: kaçarsan paranın çoğu yolda kalır.';
   static const flee = 'KAÇ';
   static const fleeHint = 'Basılı tut. Kasa ve cep yanına gelir, yüzün tanınır.';
   static const fleeConfirmTitle = 'Kaçıyor musun?';
@@ -182,6 +277,10 @@ abstract final class Tr {
   static const schemeCeiling = 'Vaat tavanı';
   static const schemeStart = 'Kur';
   static const careerLog = 'Kariyer defteri';
+  static const chapterSummary = 'Bölüm özeti';
+  static const vault = 'Kasa';
+  static const schemeOffer = 'Teklif';
+  static const perWeekSuffix = '/hafta';
 
   // Aradaki hayat: varlıklar
   static const laundering = 'Aklama';
@@ -224,8 +323,51 @@ abstract final class Tr {
   static const launderLabel = 'Aklama';
   static const shieldLabel = 'Kalkan';
 
+  // Masadan kalkma
+  static const retireTitle = 'Masadan kalk';
+  static const retireNote =
+      'Kazanmak yok, daha iyi çekilmek var. Kariyeri şimdi bitirirsen skor şöyle yazılır.';
+  static const retireScoreNow = 'Şu anki skor';
+  static const retireMultiplier = 'Çarpan';
+  static const retireLocked = 'Kilitli';
+  static const retireConfirmTitle = 'Bitiriyor musun?';
+  static const retireConfirmBody =
+      'Kariyer burada kapanır, skor tabloya yazılır. Geri dönüş yok.';
+  static const confirmRetire = 'Bitir';
+
+  static const endingFarm = 'Güney Amerika çiftliği';
+  static const endingFarmNote =
+      'Plan işledi. Sessiz bir çiftlik, yeni bir isim. Yıllar sonra bir teslim videosu.';
+  static const endingFarmReq = 'Kaçış planında ülke ve yurt dışı hesap gerekir.';
+  static const endingBalkan = 'Balkan sakinliği';
+  static const endingBalkanNote =
+      'Sahte kimlikle komşu ülkede. Her yıl iade zarı atılıyor, sen kahve içiyorsun.';
+  static const endingBalkanReq = 'Kaçış planında ikinci pasaport gerekir.';
+  static const endingCorporate = 'Kurumsal ölümsüzlük';
+  static const endingCorporateNote =
+      'Şirket yaşıyor, mağdur yasası çıktı, sen "iş insanı" oldun. En yüksek skor, en acı son.';
+  static const endingCorporateReq = 'Faizsiz Holding en az iki kez satılmalı.';
+  static const endingInformant = 'İtirafçı anlaşması';
+  static const endingInformantNote =
+      'Herkesi verdin. Ceza yarıya, para gitti, tanık koruma maaşı bağlandı.';
+  static const endingInformantReq = 'Geçmiş dosyası 60 ve üstü olmalı.';
+  static const endingConfession = 'Oğullara itiraf';
+  static const endingConfessionNote =
+      'Kaçmadın. Ailene anlattın, parayı geri verdin. Tek ahlaki son. Skor sıfır, madalya "Onur".';
+  static const endingConfessionReq = 'Geçmiş dosyası 50 ve üstü olmalı.';
+  static const endingPoverty = 'Sefalet';
+  static const endingPovertyNote =
+      'Para bitti. Yabancı bir şehirde, kimsenin tanımadığı biri olarak.';
+  static const endingPovertyReq = 'Elde 100K TL\'den az sermaye kalmış olmalı.';
+  static const endingPrison = 'Hapis';
+  static const endingPrisonNote =
+      'Toplanan para çarpı mağdur, Türkiye usulü binlerce yıl. Skor sıfır.';
+  static const prisonYears = 'Ceza';
+  static const yearsSuffix = 'yıl';
+
   // Kariyer sonu
   static const careerOverTitle = 'KARİYER BİTTİ';
+  static const careerEnding = 'Son';
   static const careerScore = 'Skor';
   static const careerChapters = 'Bölüm';
   static const careerCollected = 'Toplam toplanan';

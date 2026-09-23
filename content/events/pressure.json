@@ -68,5 +68,125 @@
       { "label": "Hazırlığı yap", "effects": { "cash": -300000, "suspicion": 3 } },
       { "label": "Daha erken", "effects": {} }
     ]
+  },
+  {
+    "id": "pressure_tax_inspector",
+    "title": "Vergi müfettişi",
+    "text": "Bir vergi müfettişi üç yılın defterini istedi. Defterin üç yıllık olması ayrı bir sorun.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 14, "minSuspicion": 25 },
+    "options": [
+      { "label": "Mali müşavire gece mesaisi yaptır", "effects": { "cash": -25000, "fixedCostDelta": 800, "suspicion": -6 } },
+      { "label": "Uzlaşma yolunu ara", "effects": { "cash": -40000, "suspicion": -10 } },
+      { "label": "Defterler selde kayboldu de", "effects": { "suspicion": 19, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "pressure_rent_hike",
+    "title": "Kira artışı",
+    "text": "Ev sahibi plazadaki ofisin kirasını ikiye katlamak istiyor. Dürüst bir kira artışından daha dürüst bir şey yok.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 10 },
+    "options": [
+      { "label": "Öde, prestij önemli", "effects": { "fixedCostDelta": 2000, "channelMult": 1.1, "channelMultWeeks": 6 } },
+      { "label": "Daha küçük ofise geç", "effects": { "fixedCostDelta": -500, "channelMult": 0.8, "channelMultWeeks": 6, "panic": 0.1 } },
+      { "label": "Pazarlık etmeden sus", "effects": { "fixedCostDelta": 2500 } }
+    ]
+  },
+  {
+    "id": "pressure_bank_closes_account",
+    "title": "Banka hesabı kapatıyor",
+    "text": "Bankan 'risk politikası gereği' ilişkiyi sonlandırıyor. Otuz gün süren var.",
+    "weight": 0.8,
+    "conditions": { "minWeek": 16, "minSuspicion": 30 },
+    "options": [
+      { "label": "Küçük bir bankaya geç", "effects": { "cash": -15000, "suspicion": 4, "withdrawMult": 1.3, "withdrawMultWeeks": 4 } },
+      { "label": "Paraları akrabaların hesabına dağıt", "effects": { "suspicion": 10, "skimDelta": -0.01, "panic": -0.05 } },
+      { "label": "Mektubu çekmeceye koy", "effects": { "suspicion": 13, "panic": 0.2, "withdrawMult": 1.4, "withdrawMultWeeks": 4 } }
+    ]
+  },
+  {
+    "id": "pressure_insurance_debt",
+    "title": "Prim borcu",
+    "text": "Çalışanların sigorta primleri üç aydır yatmamış. Birisi e-devletten bakmış.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 12 },
+    "options": [
+      { "label": "Tamamını öde", "effects": { "cash": -20000, "suspicion": -4 } },
+      { "label": "Taksitlendir", "effects": { "fixedCostDelta": 1200, "suspicion": -1 } },
+      { "label": "Muhasebeye bir sonraki aya bırak de", "effects": { "suspicion": 12, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "pressure_petition",
+    "title": "Şikâyet dilekçesi",
+    "text": "Bir grup yatırımcı ortak dilekçe hazırlıyor. İmza sayısı her gün artıyor.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 14, "minInvestors": 40, "maxCoverage": 0.8 },
+    "options": [
+      { "label": "Organizatöre özel ödeme yap", "effects": { "cash": -30000, "suspicion": -6, "panic": -0.1 } },
+      { "label": "Herkese küçük bir bonus dağıt", "effects": { "cash": -20000, "panic": -0.2, "channelMult": 0.9, "channelMultWeeks": 4 } },
+      { "label": "İmzacıları gruptan çıkar", "effects": { "suspicion": 17, "panic": 0.3 } }
+    ]
+  },
+  {
+    "id": "pressure_notary_letter",
+    "title": "Noterden ihtarname",
+    "text": "Eski bir yatırımcı noter aracılığıyla parasını istiyor. Kâğıt resmî, mühür kırmızı.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 8 },
+    "options": [
+      { "label": "Sessizce öde, gizlilik sözü al", "effects": { "cash": -12000, "suspicion": -3 } },
+      { "label": "Karşı ihtarname çek", "effects": { "cash": -4000, "suspicion": 5, "panic": 0.05 } },
+      { "label": "Cevap verme", "effects": { "suspicion": 7, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "pressure_consumer_forum",
+    "title": "Şikâyet sitesi",
+    "text": "Bir tüketici şikâyet sitesinde adına başlık açıldı. Yorumlar ekran görüntüsüyle geliyor.",
+    "weight": 1.1,
+    "conditions": { "minWeek": 6 },
+    "options": [
+      { "label": "Beş yıldızlı yorum satın al", "effects": { "cash": -8000, "suspicion": 4, "channelMult": 1.1, "channelMultWeeks": 4 } },
+      { "label": "Şikâyetçilere öncelikli ödeme", "effects": { "cash": -15000, "panic": -0.1, "suspicion": -3 } },
+      { "label": "Okuma, uyku kaçıyor", "effects": { "channelMult": 0.8, "channelMultWeeks": 5, "suspicion": 4 } }
+    ]
+  },
+  {
+    "id": "pressure_auditor_resigns",
+    "title": "Denetçi istifa etti",
+    "text": "Bağımsız denetçin 'görüş bildirmekten kaçınma' notuyla bıraktı. Kaçınmak da bir görüş.",
+    "weight": 0.7,
+    "conditions": { "minWeek": 20, "minSuspicion": 35 },
+    "options": [
+      { "label": "Daha anlayışlı bir denetçi bul", "effects": { "cash": -35000, "fixedCostDelta": 1500, "suspicion": -5 } },
+      { "label": "Denetimi yıl sonuna ertele", "effects": { "suspicion": 8, "withdrawMult": 1.2, "withdrawMultWeeks": 4 } },
+      { "label": "Kimse fark etmez diye umut et", "effects": { "suspicion": 18, "panic": 0.15 } }
+    ]
+  },
+  {
+    "id": "pressure_payment_delay_rumor",
+    "title": "Gecikme söylentisi",
+    "text": "Bir mesaj grubunda 'ödemeler bu hafta gecikecekmiş' mesajı dolaşıyor. Doğru olması işi kolaylaştırmıyor.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 10, "maxCoverage": 0.6 },
+    "options": [
+      { "label": "Bu hafta herkese erken öde", "effects": { "cash": -25000, "panic": -0.3 } },
+      { "label": "Sesli mesajla yalanla", "effects": { "suspicion": 3, "panic": -0.1, "channelMult": 0.9, "channelMultWeeks": 3 } },
+      { "label": "Sessiz kal", "effects": { "panic": 0.35, "withdrawMult": 1.3, "withdrawMultWeeks": 3 } }
+    ]
+  },
+  {
+    "id": "pressure_utility_cut",
+    "title": "Elektrik kesildi",
+    "text": "Faturalar ödenmediği için ofisin elektriği kesildi. Yatırımcı günü tam bugündü.",
+    "weight": 0.6,
+    "conditions": { "minWeek": 12, "maxCoverage": 0.5 },
+    "options": [
+      { "label": "Jeneratör kirala, 'yeşil enerji' de", "effects": { "cash": -6000, "suspicion": 2, "panic": -0.05 } },
+      { "label": "Toplantıyı bir kafeye taşı", "effects": { "panic": 0.1, "channelMult": 0.9, "channelMultWeeks": 3 } },
+      { "label": "Mum yak, samimiyet olsun", "effects": { "panic": 0.25, "suspicion": 10 } }
+    ]
   }
 ]

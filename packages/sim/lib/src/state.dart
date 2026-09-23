@@ -102,6 +102,7 @@ class SchemeState {
     required this.modifiers,
     required this.pendingEventIds,
     required this.firedEventIds,
+    this.eventChoices = const {},
     required this.end,
     required this.endReason,
   });
@@ -203,6 +204,10 @@ class SchemeState {
   /// Bu şemada bir kez tetiklenen olaylar. Aynı olay iki kez gelmez.
   final Set<String> firedEventIds;
 
+  /// Hangi olayda hangi seçeneğin hangi hafta seçildiği. Zincirli kartlar
+  /// buna bakar: reklam yüzüyle anlaştıysan skandalı da o getirir.
+  final Map<String, EventChoice> eventChoices;
+
   final SchemeEnd? end;
   final String? endReason;
 
@@ -249,6 +254,7 @@ class SchemeState {
     List<TimedModifier>? modifiers,
     List<String>? pendingEventIds,
     Set<String>? firedEventIds,
+    Map<String, EventChoice>? eventChoices,
     SchemeEnd? end,
     String? endReason,
   }) =>
@@ -272,7 +278,17 @@ class SchemeState {
         modifiers: modifiers ?? this.modifiers,
         pendingEventIds: pendingEventIds ?? this.pendingEventIds,
         firedEventIds: firedEventIds ?? this.firedEventIds,
+        eventChoices: eventChoices ?? this.eventChoices,
         end: end ?? this.end,
         endReason: endReason ?? this.endReason,
       );
+}
+
+/// Bir olay kartına verilen cevap. Cevapsız kalan kart da buraya son
+/// seçenekle düşer, çünkü görmezden gelmek de bir karardır.
+class EventChoice {
+  const EventChoice({required this.option, required this.week});
+
+  final int option;
+  final int week;
 }

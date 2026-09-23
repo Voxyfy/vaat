@@ -98,7 +98,7 @@ void main() {
       ]);
       addTearDown(container.dispose);
       // Birkaç hafta oynansın ki rakamlar büyüsün; dar ekranı asıl zorlayan
-      // "1.25 mn TL" gibi uzun değerler.
+      // "1.25M TL" gibi uzun değerler.
       await container.read(gameControllerProvider.notifier).endWeek();
 
       await tester.pumpWidget(

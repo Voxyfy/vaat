@@ -43,6 +43,10 @@ class GameController extends Notifier<GameState> {
       weeklyIncome: c.weeklyBusinessIncome(biz),
       launderPerWeek: c.launderCapacity(biz),
       partnerCut: partner?.profitCut ?? 0,
+      events: EventContext(
+        owned: {...c.businesses, ...c.contacts},
+        hasPartner: partner != null,
+      ),
     );
   }
 
@@ -141,18 +145,7 @@ class GameController extends Notifier<GameState> {
       offers: career.over ? const [] : _rollOffers(career),
       busy: false,
     );
-    if (career.over) {
-      unawaited(_store.addScore({
-        'score': career.score,
-        'chapters': career.chapters.length,
-        'weeks': career.chapters.fold(0, (sum, c) => sum + c.weeks),
-        'collected':
-            career.chapters.fold(0.0, (sum, c) => sum + c.collected),
-        'victims': career.chapters.fold(0, (sum, c) => sum + c.victims),
-        'endedAt': DateTime.now().toIso8601String(),
-        'lastScheme': career.chapters.last.schemeName,
-      }).catchError((Object _) {}));
-    }
+    if (career.over) _recordScore(career);
     _save();
   }
 
@@ -226,6 +219,34 @@ class GameController extends Notifier<GameState> {
     );
     _save();
     return true;
+  }
+
+  /// Oyuncunun kendi seçtiği kariyer sonu. Yalnız aradaki hayatta ve yalnız
+  /// koşulu tutan sonlar; ekran kilitlileri kapalı gösterir ama son söz burada.
+  void retire(CareerEnding ending) {
+    if (state.phase != GamePhase.between) return;
+    if (!state.career.canEnd(ending)) return;
+    final career = state.career.retire(ending);
+    state = state.copyWith(
+      career: career,
+      phase: GamePhase.careerOver,
+      offers: const [],
+    );
+    _recordScore(career);
+    _save();
+  }
+
+  void _recordScore(CareerState career) {
+    unawaited(_store.addScore({
+      'score': career.score,
+      'ending': career.ending?.name,
+      'chapters': career.chapters.length,
+      'weeks': career.totalWeeks,
+      'collected': career.totalCollected,
+      'victims': career.totalVictims,
+      'endedAt': DateTime.now().toIso8601String(),
+      'lastScheme': career.chapters.last.schemeName,
+    }).catchError((Object _) {}));
   }
 
   /// Sonraki bölüme ortak al veya vazgeç.

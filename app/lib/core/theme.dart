@@ -31,7 +31,7 @@ ThemeData buildTheme() {
   final scheme = ColorScheme.fromSeed(
     seedColor: const Color(0xFF2ECC71),
     brightness: Brightness.dark,
-    surface: const Color(0xFF0E1412),
+    surface: const Color(0xFF0B100E),
   );
 
   const display = TextStyle(fontFamily: AppFonts.display, height: 1.0);

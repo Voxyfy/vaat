@@ -1,0 +1,146 @@
+[
+  {
+    "id": "media_paid_praise",
+    "title": "Övgü haberi ısmarla",
+    "text": "Bir yerel haber sitesi 'başarı hikâyesi' dizisi için seni seçmiş. Haberin fiyatı sayfada listelenmiş.",
+    "weight": 1.1,
+    "conditions": { "minWeek": 3, "maxSuspicion": 55 },
+    "options": [
+      { "label": "Tam sayfa al", "effects": { "cash": -12000, "channelMult": 1.4, "channelMultWeeks": 6, "suspicion": 3 } },
+      { "label": "Küçük kutu al", "effects": { "cash": -4000, "channelMult": 1.15, "channelMultWeeks": 4 } },
+      { "label": "Bedava olanı bekle", "effects": {} }
+    ]
+  },
+  {
+    "id": "media_live_tv_invite",
+    "title": "Canlı yayın daveti",
+    "text": "Bir ekonomi programı canlı yayına davet ediyor. Sunucu 'rahat olun, zor soru yok' dedi. Karşı konuk belli değil.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 10 },
+    "options": [
+      { "label": "Çık, takım elbiseyle", "effects": { "channelMult": 1.6, "channelMultWeeks": 8, "suspicion": 8 } },
+      { "label": "Çık ama soruları önceden iste", "effects": { "cash": -8000, "channelMult": 1.3, "channelMultWeeks": 6, "suspicion": 4 } },
+      { "label": "Programa yazılı açıklama gönder", "effects": { "suspicion": 2 } }
+    ]
+  },
+  {
+    "id": "media_humor_cover",
+    "title": "Mizah dergisi kapağı",
+    "text": "Bir mizah dergisi seni kapağa koymuş: elinde sihirbaz şapkası, şapkadan emeklilerin cüzdanları çıkıyor.",
+    "weight": 0.8,
+    "conditions": { "minWeek": 14, "minSuspicion": 25 },
+    "options": [
+      { "label": "Dergiye dava aç", "effects": { "cash": -10000, "suspicion": 8, "panic": 0.1 } },
+      { "label": "Kapağı çerçeveletip ofise as", "effects": { "suspicion": 4, "panic": -0.05, "channelMult": 1.1, "channelMultWeeks": 4 } },
+      { "label": "Hiç görmemiş gibi yap", "effects": { "suspicion": 11, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "media_documentary_crew",
+    "title": "Belgesel ekibi",
+    "text": "Yabancı bir belgesel ekibi 'girişimcilik ruhu' üzerine çekim yapmak istiyor. Yönetmenin gözleri çok dikkatli.",
+    "weight": 0.6,
+    "conditions": { "minWeek": 18 },
+    "options": [
+      { "label": "Ofisi aç, röportaj ver", "effects": { "channelMult": 1.3, "channelMultWeeks": 8, "suspicion": 12 } },
+      { "label": "Yalnız ofis kedisini çeksinler", "effects": { "suspicion": 3, "channelMult": 1.05, "channelMultWeeks": 4 } },
+      { "label": "E-postaya cevap verme", "effects": { "suspicion": 7 } }
+    ]
+  },
+  {
+    "id": "media_review_army",
+    "title": "Sahte yorum ordusu",
+    "text": "Bir ajans yüzlerce 'memnun yatırımcı' yorumu yazabileceğini söylüyor. Hepsi aynı yazım hatasıyla.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 4 },
+    "options": [
+      { "label": "Paketin büyüğünü al", "effects": { "cash": -9000, "channelMult": 1.35, "channelMultWeeks": 6, "suspicion": 6 } },
+      { "label": "Küçük paket, yazım hatası olmasın", "effects": { "cash": -5000, "channelMult": 1.15, "channelMultWeeks": 5, "suspicion": 2 } },
+      { "label": "Ağızdan ağıza yeter", "effects": {} }
+    ]
+  },
+  {
+    "id": "media_forum_thread",
+    "title": "Forum başlığı açıldı",
+    "text": "Anonim bir forumda şirketin için başlık açılmış. İlk yazı 'kimse soru sormuyor mu?' diye bitiyor.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 8 },
+    "options": [
+      { "label": "Sahte hesaplarla savun", "effects": { "cash": -3000, "suspicion": 6, "panic": -0.1 } },
+      { "label": "Başlığı kapattırmak için avukat", "effects": { "cash": -8000, "suspicion": 10 } },
+      { "label": "Başlık kendi kendine ölsün", "effects": { "suspicion": 5, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "media_rich_kid_video",
+    "title": "Lüks araç videosu",
+    "text": "Yeğenin senin arabanla çektiği videoyu paylaşmış. Altında 'yatırımcıların parası mı?' yorumları var.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 10 },
+    "options": [
+      { "label": "Videoyu sildir, yeğene harçlık ver", "effects": { "cash": -3000, "suspicion": 2 } },
+      { "label": "'Başarının kanıtı' diye paylaş", "effects": { "channelMult": 1.25, "channelMultWeeks": 5, "suspicion": 8 } },
+      { "label": "Yorumlar bitsin", "effects": { "suspicion": 5, "panic": 0.05 } }
+    ]
+  },
+  {
+    "id": "media_award_ceremony",
+    "title": "Yılın girişimcisi ödülü",
+    "text": "Bir dernek seni 'yılın girişimcisi' seçmiş. Törene katılım ve masa ücreti ayrı.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 12, "maxSuspicion": 55 },
+    "options": [
+      { "label": "Ön masayı al, konuşma yap", "effects": { "cash": -15000, "channelMult": 1.4, "channelMultWeeks": 8, "suspicion": 4 } },
+      { "label": "Arka masadan katıl", "effects": { "cash": -5000, "channelMult": 1.15, "channelMultWeeks": 5 } },
+      { "label": "Ödülü postayla iste", "effects": {} }
+    ]
+  },
+  {
+    "id": "media_charity_photo",
+    "title": "Hayır fotoğrafı",
+    "text": "Bir yardım kampanyası için çek uzatırken fotoğraf çektirmen öneriliyor. Çekin büyüklüğü fotoğrafın büyüklüğüne göre.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 6 },
+    "options": [
+      { "label": "Kocaman bir karton çek hazırlat", "effects": { "cash": -20000, "suspicion": -8, "channelMult": 1.3, "channelMultWeeks": 6 } },
+      { "label": "Gerçek bir bağış yap, fotoğraf yok", "effects": { "cash": -10000, "suspicion": -4 } },
+      { "label": "Kampanyayı başkası yapsın", "effects": {} }
+    ]
+  },
+  {
+    "id": "media_podcast_guest",
+    "title": "Podcast daveti",
+    "text": "Genç bir podcastçi 'finansal özgürlük' bölümü için seni çağırıyor. Bölüm üç saat sürüyor, sen hep konuşuyorsun.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 5, "maxWeek": 40 },
+    "options": [
+      { "label": "Kabul et, her şeyi anlat", "effects": { "channelMult": 1.5, "channelMultWeeks": 6, "suspicion": 10 } },
+      { "label": "Kabul et, çok az konuş", "effects": { "channelMult": 1.15, "channelMultWeeks": 5, "suspicion": 3 } },
+      { "label": "Takvim dolu", "effects": {} }
+    ]
+  },
+  {
+    "id": "media_rival_expose",
+    "title": "Rakip televizyon kanalı",
+    "text": "Bir kanal, dosya haber hazırladığını duyurdu. Fragmanda senin ofisinin binası bulanık çekilmiş.",
+    "weight": 0.7,
+    "conditions": { "minWeek": 20, "minSuspicion": 40 },
+    "options": [
+      { "label": "Kanalın patronuyla yemek ye", "effects": { "cash": -60000, "suspicion": -10 } },
+      { "label": "Karşı yayın için kendi kanalını bul", "effects": { "cash": -30000, "suspicion": -3, "panic": -0.15 } },
+      { "label": "Yayın gecesi telefonu kapat", "effects": { "suspicion": 20, "panic": 0.35 } }
+    ]
+  },
+  {
+    "id": "media_trending_hashtag",
+    "title": "Etiket gündemde",
+    "text": "Senin şirketin adı sosyal medyada gündeme oturdu. Kimse neden olduğunu tam bilmiyor, ama herkes bir şey yazıyor.",
+    "weight": 0.8,
+    "conditions": { "minWeek": 12, "minSuspicion": 30 },
+    "options": [
+      { "label": "Robot hesaplarla karşı etiket aç", "effects": { "cash": -7000, "suspicion": 8, "panic": -0.15 } },
+      { "label": "Duygusal bir video yayımla", "effects": { "panic": -0.2, "suspicion": 4 } },
+      { "label": "Gündem değişir", "effects": { "panic": 0.25, "suspicion": 13 } }
+    ]
+  }
+]

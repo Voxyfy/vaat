@@ -27,9 +27,10 @@ class GameContent {
   EscapePart escapePart(String id) =>
       escapeParts.firstWhere((p) => p.id == id);
 
-  /// Şimdilik olay dosyaları elle listeleniyor. Neden: Flutter asset
-  /// manifestinde klasör listelemek için ek paket gerekir, 2 dosya için değmez.
-  static const _eventFiles = [
+  /// Olay dosyaları elle listeleniyor. Neden: Flutter asset manifestinde
+  /// klasör listelemek için ek paket gerekir. Listeye eklenmeyen dosya oyunda
+  /// sessizce görünmez; `test/content_files_test.dart` klasörle karşılaştırır.
+  static const eventFiles = [
     'core.json',
     'market.json',
     'schemes.json',
@@ -39,13 +40,17 @@ class GameContent {
     'assets.json',
     'investors.json',
     'endgame.json',
+    'ventures.json',
+    'media.json',
+    'chains.json',
+    'career.json',
   ];
 
   static Future<GameContent> load() async {
     final balanceJson =
         await rootBundle.loadString('assets/content/balance.json');
     final defs = <EventDef>[];
-    for (final name in _eventFiles) {
+    for (final name in eventFiles) {
       final source =
           await rootBundle.loadString('assets/content/events/$name');
       defs.addAll(EventDef.listFromJsonString(source));

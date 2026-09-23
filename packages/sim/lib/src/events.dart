@@ -58,6 +58,9 @@ class EventConditions {
     this.regimes = const [],
     this.minInvestors,
     this.maxCoverage,
+    this.owns = const [],
+    this.partner,
+    this.after,
   });
 
   factory EventConditions.fromJson(Map<String, dynamic> json) =>
@@ -71,6 +74,11 @@ class EventConditions {
         regimes: [for (final v in (json['regimes'] as List?) ?? []) v as String],
         minInvestors: (json['minInvestors'] as num?)?.toInt(),
         maxCoverage: (json['maxCoverage'] as num?)?.toDouble(),
+        owns: [for (final v in (json['owns'] as List?) ?? []) v as String],
+        partner: json['partner'] as bool?,
+        after: json['after'] == null
+            ? null
+            : EventLink.fromJson(json['after'] as Map<String, dynamic>),
       );
 
   final int? minWeek;
@@ -91,7 +99,20 @@ class EventConditions {
   /// Kasa şu orandan az karşılıyorsa. Sıkışmışken gelen kartlar için.
   final double? maxCoverage;
 
-  bool matches(SchemeState s) {
+  /// Boşsa herkese çıkar. Doluysa sayılan işletme veya tanıdıklardan en az
+  /// biri olmalı: kulübü olmayanın tribünü de olmaz.
+  final List<String> owns;
+
+  /// true ise yalnız ortağı olana, false ise yalnız ortaksız oynayana çıkar.
+  final bool? partner;
+
+  /// Zincirli kart: yalnız öncül kart belli bir cevapla oynandıysa gelir.
+  final EventLink? after;
+
+  bool matches(SchemeState s, [EventContext ctx = EventContext.none]) {
+    if (owns.isNotEmpty && !owns.any(ctx.owned.contains)) return false;
+    if (partner != null && partner != ctx.hasPartner) return false;
+    if (after != null && !after!.satisfiedBy(s)) return false;
     if (minWeek != null && s.week < minWeek!) return false;
     if (maxWeek != null && s.week > maxWeek!) return false;
     if (minSuspicion != null && s.suspicion < minSuspicion!) return false;
@@ -105,6 +126,51 @@ class EventConditions {
     if (maxCoverage != null && s.coverage > maxCoverage!) return false;
     return true;
   }
+}
+
+/// Zincirli kartın öncülü. Seçenekler boşsa öncülün oynanmış olması yeter.
+class EventLink {
+  const EventLink({
+    required this.event,
+    this.options = const [],
+    this.minWeeks = 0,
+  });
+
+  factory EventLink.fromJson(Map<String, dynamic> json) => EventLink(
+        event: json['event'] as String,
+        options: [for (final v in (json['options'] as List?) ?? []) (v as num).toInt()],
+        minWeeks: (json['minWeeks'] as num?)?.toInt() ?? 0,
+      );
+
+  final String event;
+
+  /// Öncülde seçilmiş olması gereken seçenek sıraları, 0'dan başlar.
+  final List<int> options;
+
+  /// Öncülden sonra en az kaç hafta geçmeli. Sonuç hemen ertesi hafta
+  /// gelirse sebep-sonuç gibi değil ceza gibi okunuyor.
+  final int minWeeks;
+
+  bool satisfiedBy(SchemeState s) {
+    final choice = s.eventChoices[event];
+    if (choice == null) return false;
+    if (options.isNotEmpty && !options.contains(choice.option)) return false;
+    return s.week - choice.week >= minWeeks;
+  }
+}
+
+/// Olay koşullarının şema dışından bildiği şeyler. Sim kariyerin kendisini
+/// bilmez; uygulama her hafta bunu doldurup verir.
+class EventContext {
+  const EventContext({this.owned = const {}, this.hasPartner = false});
+
+  static const none = EventContext();
+
+  /// Sahip olunan işletme ve tanıdık id'leri. İkisi aynı ad alanında,
+  /// içerik testi id'lerin çakışmadığını denetliyor.
+  final Set<String> owned;
+
+  final bool hasPartner;
 }
 
 class EventOption {
@@ -213,12 +279,16 @@ class EventEngine {
 
   /// Koşulu tutan, daha önce gelmemiş kartlar arasından ağırlıklı çekiliş.
   /// Şüphe 60'ın üstünde kriz kartları sıklaşsın diye şans ölçeklenir.
-  List<EventDef> draw(SchemeState s, SimRng rng) {
+  List<EventDef> draw(
+    SchemeState s,
+    SimRng rng, [
+    EventContext ctx = EventContext.none,
+  ]) {
     final eligible = [
       for (final def in defs)
         if (!s.firedEventIds.contains(def.id) &&
             !s.pendingEventIds.contains(def.id) &&
-            def.conditions.matches(s))
+            def.conditions.matches(s, ctx))
           def,
     ];
     if (eligible.isEmpty) return const [];

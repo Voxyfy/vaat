@@ -22,6 +22,7 @@ class CareerModifiers {
     this.weeklyIncome = 0,
     this.launderPerWeek = 0,
     this.partnerCut = 0,
+    this.events = EventContext.none,
   });
 
   /// Şüphe birikimine çarpan. 1'in altı koruma demek.
@@ -38,6 +39,9 @@ class CareerModifiers {
 
   /// Ortağın cepten aldığı pay.
   final double partnerCut;
+
+  /// Olay kartlarının baktığı kariyer bilgisi: hangi işler ve kimler var.
+  final EventContext events;
 }
 
 /// Bir haftanın sonucu: yeni state ve UI'nın animasyona çevireceği kayıt.
@@ -361,7 +365,7 @@ TickResult tick(
   // 10. Yeni olaylar. Bitmiş şemaya kart düşmez.
   var newEvents = const <EventDef>[];
   if (!next.isOver) {
-    newEvents = events.draw(next, rng);
+    newEvents = events.draw(next, rng, career.events);
     if (newEvents.isNotEmpty) {
       next = next.copyWith(
         pendingEventIds: [for (final e in newEvents) e.id],
@@ -506,7 +510,13 @@ SchemeState _resolveEvent(
   final option = def.options[index];
   log.add('${def.title}: ${option.label}${auto ? ' (cevapsız kaldı)' : ''}');
   final pending = [...s.pendingEventIds]..remove(eventId);
-  return option.effects.applyTo(s).copyWith(pendingEventIds: pending);
+  return option.effects.applyTo(s).copyWith(
+    pendingEventIds: pending,
+    eventChoices: {
+      ...s.eventChoices,
+      eventId: EventChoice(option: index, week: s.week),
+    },
+  );
 }
 
 String _fmt(double v) => v.toStringAsFixed(0);

@@ -6,6 +6,7 @@ import '../../core/content.dart';
 import '../../core/strings.dart';
 import '../../core/theme.dart';
 import '../../game/game_controller.dart';
+import '../../ui/pixel.dart';
 import '../pool/history_chart.dart';
 import 'stock_board.dart';
 
@@ -15,11 +16,10 @@ class MarketTab extends ConsumerWidget {
   const MarketTab({super.key});
 
   static (String, String, Color) describe(MarketRegime r) => switch (r) {
-        MarketRegime.bull => (Tr.marketBull, Tr.marketBullNote, Colors.green),
-        MarketRegime.normal =>
-          (Tr.marketNormal, Tr.marketNormalNote, Colors.blueGrey),
-        MarketRegime.bear => (Tr.marketBear, Tr.marketBearNote, Colors.orange),
-        MarketRegime.crash => (Tr.marketCrash, Tr.marketCrashNote, Colors.red),
+        MarketRegime.bull => (Tr.marketBull, Tr.marketBullNote, Px.green),
+        MarketRegime.normal => (Tr.marketNormal, Tr.marketNormalNote, Px.muted),
+        MarketRegime.bear => (Tr.marketBear, Tr.marketBearNote, Px.amber),
+        MarketRegime.crash => (Tr.marketCrash, Tr.marketCrashNote, Px.red),
       };
 
   @override
@@ -29,6 +29,7 @@ class MarketTab extends ConsumerWidget {
     final m = game.scheme.market;
     final theme = Theme.of(context);
     final (label, note, color) = describe(m.regime);
+    final up = m.lastChange >= 0;
 
     // Duyarlılık çarpanı 1'den ne kadar uzaksa etki o kadar sert.
     final sens = type.marketSensitivity;
@@ -40,93 +41,96 @@ class MarketTab extends ConsumerWidget {
     double effect(double raw) => 1 + (raw - 1) * sens;
 
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       children: [
-        Text(Tr.marketIndex, style: theme.textTheme.labelLarge),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(m.index.toStringAsFixed(0),
-                style: monoStyle(context, scale: 2.2, color: color)),
-            const SizedBox(width: 12),
             Expanded(
-              child: Text(
-                '${Tr.marketWeekChange} ${m.lastChange >= 0 ? '+' : ''}'
-                '${(m.lastChange * 100).toStringAsFixed(1)}%',
-                style: monoStyle(
-                  context,
-                  color: m.lastChange >= 0 ? Colors.green : Colors.redAccent,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+              flex: 5,
+              child: StatTile(
+                label: Tr.marketIndex,
+                value: m.index.toStringAsFixed(0),
+                icon: Icons.show_chart,
+                color: color,
+              ),
+            ),
+            const SizedBox(width: 6),
+            Expanded(
+              flex: 4,
+              child: StatTile(
+                label: Tr.marketWeekChange,
+                value:
+                    '${up ? '+' : ''}${(m.lastChange * 100).toStringAsFixed(1)}%',
+                icon: up
+                    ? Icons.arrow_drop_up_rounded
+                    : Icons.arrow_drop_down_rounded,
+                color: up ? Px.green : Px.red,
               ),
             ),
           ],
         ),
         const SizedBox(height: 12),
-        Container(
-          padding: const EdgeInsets.all(12),
-          color: color.withValues(alpha: 0.12),
+        PixelPanel(
+          title: Tr.marketRegime,
+          badge: label,
+          badgeColor: color,
+          child: Text(note, style: theme.textTheme.bodyMedium),
+        ),
+        const SizedBox(height: 12),
+        PixelPanel(
+          title: Tr.marketHistory,
+          padding: const EdgeInsets.all(8),
+          child: Container(
+            height: 120,
+            padding: const EdgeInsets.all(6),
+            decoration: pixelBevel(fill: Px.inset, raised: false, width: 2),
+            child: HistoryChart(
+              series: [(game.marketHistory, color)],
+              fromZero: false,
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
+        PixelPanel(
+          title: Tr.marketEffects,
+          badge: '${Tr.marketSensShort}: $sensLabel',
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Text(Tr.marketRegime, style: theme.textTheme.labelMedium),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(label,
-                        style: theme.textTheme.titleMedium?.copyWith(color: color),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis),
-                  ),
-                ],
+              _EffectRow(
+                label: Tr.marketInflowEffect,
+                icon: Icons.login_rounded,
+                multiplier: effect(m.inflowMultiplier),
+                goodWhenHigh: true,
               ),
               const SizedBox(height: 6),
-              Text(note, style: theme.textTheme.bodyMedium),
+              _EffectRow(
+                label: Tr.marketWithdrawEffect,
+                icon: Icons.logout_rounded,
+                multiplier: effect(m.withdrawMultiplier),
+                goodWhenHigh: false,
+              ),
             ],
           ),
         ),
-        const SizedBox(height: 16),
-        Text(Tr.marketHistory, style: theme.textTheme.labelLarge),
         const SizedBox(height: 4),
-        SizedBox(
-          height: 120,
-          child: HistoryChart(
-            series: [(game.marketHistory, color)],
-            fromZero: false,
-          ),
-        ),
-        const SizedBox(height: 20),
-        Text('${Tr.marketSensitivity}: $sensLabel',
-            style: theme.textTheme.titleSmall),
-        const SizedBox(height: 8),
-        _EffectRow(
-          label: Tr.marketInflowEffect,
-          multiplier: effect(m.inflowMultiplier),
-          goodWhenHigh: true,
-        ),
-        _EffectRow(
-          label: Tr.marketWithdrawEffect,
-          multiplier: effect(m.withdrawMultiplier),
-          goodWhenHigh: false,
-        ),
-        const SizedBox(height: 24),
         const StockBoardView(),
       ],
     );
   }
 }
 
-/// Piyasanın bu hafta akışa ve çekime uyguladığı çarpan.
+/// Piyasanın bu hafta akışa ve çekime uyguladığı çarpan. Çubuk 1,0'ı ortada
+/// tutar: sola sapma azalış, sağa sapma artış.
 class _EffectRow extends StatelessWidget {
   const _EffectRow({
     required this.label,
+    required this.icon,
     required this.multiplier,
     required this.goodWhenHigh,
   });
 
   final String label;
+  final IconData icon;
   final double multiplier;
   final bool goodWhenHigh;
 
@@ -136,20 +140,31 @@ class _EffectRow extends StatelessWidget {
     final low = multiplier < 0.98;
     final good = (high && goodWhenHigh) || (low && !goodWhenHigh);
     final color = !high && !low
-        ? Theme.of(context).colorScheme.onSurfaceVariant
+        ? Px.muted
         : good
-            ? Colors.green
-            : Colors.redAccent;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        children: [
-          Expanded(child: Text(label)),
-          const SizedBox(width: 12),
-          Text('×${multiplier.toStringAsFixed(2)}',
-              style: monoStyle(context, color: color)),
-        ],
-      ),
+            ? Px.green
+            : Px.red;
+    // 0,5x ile 2x arasını çubuğa yay; 1x tam orta.
+    final fill = ((multiplier - 0.5) / 1.5).clamp(0.0, 1.0);
+    return Row(
+      children: [
+        Icon(icon, size: 16, color: color),
+        const SizedBox(width: 8),
+        Expanded(
+          flex: 30,
+          child: Text(label,
+              style: Theme.of(context).textTheme.bodyMedium,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis),
+        ),
+        Expanded(
+          flex: 40,
+          child: PixelBar(value: fill, color: color, height: 12, segments: 9),
+        ),
+        const SizedBox(width: 8),
+        Text('×${multiplier.toStringAsFixed(2)}',
+            style: monoStyle(context, color: color)),
+      ],
     );
   }
 }

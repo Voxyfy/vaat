@@ -66,5 +66,77 @@
       { "label": "Anlaş", "effects": { "cash": -200000, "channelMult": 1.8, "channelMultWeeks": 12, "suspicion": 4 } },
       { "label": "Teşekkür et, geç", "effects": {} }
     ]
+  },
+  {
+    "id": "core_award_ceremony",
+    "title": "Ödül töreni",
+    "text": "Bir dernek seni 'Yılın Girişimcisi' seçmek istiyor. Ödülün bedeli masa başına ödeniyor.",
+    "weight": 1.0,
+    "conditions": { "minWeek": 8, "maxSuspicion": 50 },
+    "options": [
+      { "label": "Üç masa al, sahneye çık", "effects": { "cash": -30000, "channelMult": 1.4, "channelMultWeeks": 8, "suspicion": 4 } },
+      { "label": "Tek masa al", "effects": { "cash": -10000, "channelMult": 1.15, "channelMultWeeks": 5 } },
+      { "label": "Teşekkür et, geç", "effects": {} }
+    ]
+  },
+  {
+    "id": "core_conference_talk",
+    "title": "Konferans daveti",
+    "text": "Bir girişimcilik zirvesi konuşmacı arıyor. Konu: 'Sürdürülebilir büyüme'.",
+    "weight": 0.9,
+    "conditions": { "minWeek": 6 },
+    "options": [
+      { "label": "Konuş, slaytlarda grafik hep yukarı", "effects": { "cash": -5000, "channelMult": 1.3, "channelMultWeeks": 6, "suspicion": 5 } },
+      { "label": "Genç bir çalışanı gönder", "effects": { "channelMult": 1.1, "channelMultWeeks": 4, "suspicion": 1 } },
+      { "label": "Katılma", "effects": {} }
+    ]
+  },
+  {
+    "id": "core_book_deal",
+    "title": "Kitap teklifi",
+    "text": "Bir yayınevi 'Sıfırdan Servete' başlıklı kitabını basmak istiyor. Hayalet yazar hazır.",
+    "weight": 0.7,
+    "conditions": { "minWeek": 16, "maxSuspicion": 55 },
+    "options": [
+      { "label": "Yaz, imza günü düzenle", "effects": { "cash": -20000, "channelMult": 1.35, "channelMultWeeks": 10, "suspicion": 6 } },
+      { "label": "Yalnız e-kitap çıkar", "effects": { "cash": -5000, "channelMult": 1.1, "channelMultWeeks": 6 } },
+      { "label": "Reddet", "effects": {} }
+    ]
+  },
+  {
+    "id": "core_charity_gala",
+    "title": "Hayır gecesi",
+    "text": "Bir hayır kurumunun yıllık gecesinde en büyük bağışçı sen olabilirsin. Kameralar bağış anını çekiyor.",
+    "weight": 0.8,
+    "conditions": { "minWeek": 12 },
+    "options": [
+      { "label": "Büyük çek, büyük fotoğraf", "effects": { "cash": -35000, "suspicion": -8, "channelMult": 1.2, "channelMultWeeks": 6 } },
+      { "label": "Makul bir bağış", "effects": { "cash": -10000, "suspicion": -3 } },
+      { "label": "Davetiyeyi unut", "effects": {} }
+    ]
+  },
+  {
+    "id": "core_business_school",
+    "title": "Vaka çalışması",
+    "text": "Bir işletme fakültesi şirketini 'hızlı büyüme' vakası olarak derste işlemek istiyor.",
+    "weight": 0.6,
+    "conditions": { "minWeek": 14, "maxSuspicion": 45 },
+    "options": [
+      { "label": "Kabul et, rakamları sen ver", "effects": { "channelMult": 1.25, "channelMultWeeks": 8, "suspicion": 7 } },
+      { "label": "Kabul et, rakam verme", "effects": { "channelMult": 1.1, "channelMultWeeks": 5, "suspicion": 3 } },
+      { "label": "Nazikçe reddet", "effects": { "suspicion": 6 } }
+    ]
+  },
+  {
+    "id": "core_growth_interview",
+    "title": "Başarı röportajı",
+    "text": "Bir iş dergisi kapak röportajı istiyor. Tek soru var: 'Bu getiriyi nasıl sağlıyorsunuz?'",
+    "weight": 1.0,
+    "conditions": { "minWeek": 10 },
+    "options": [
+      { "label": "'Özel algoritma' de, detay verme", "effects": { "channelMult": 1.3, "channelMultWeeks": 6, "suspicion": 6 } },
+      { "label": "Soruyu başka yöne çek, kapak fotoğrafına odaklan", "effects": { "cash": -8000, "channelMult": 1.15, "channelMultWeeks": 5, "suspicion": 2 } },
+      { "label": "Röportajı iptal et", "effects": { "suspicion": 2 } }
+    ]
   }
 ]

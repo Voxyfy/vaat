@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/strings.dart';
+import '../../core/theme.dart';
 import '../../game/game_controller.dart';
 import '../../game/game_state.dart';
+import '../../ui/pixel.dart';
 import '../hud/hud_bar.dart';
 import '../market/market_tab.dart';
 import '../media/media_tab.dart';
@@ -58,21 +60,107 @@ class _GameShellState extends ConsumerState<GameShell> {
           ],
         ),
       ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _index,
-        onDestinationSelected: (i) => setState(() => _index = i),
-        destinations: const [
-          NavigationDestination(
-              icon: Icon(Icons.business_outlined), label: Tr.tabOffice),
-          NavigationDestination(
-              icon: Icon(Icons.account_balance_wallet_outlined),
-              label: Tr.tabPool),
-          NavigationDestination(
-              icon: Icon(Icons.show_chart), label: Tr.tabMarket),
-          NavigationDestination(
-              icon: Icon(Icons.campaign_outlined), label: Tr.tabMedia),
-          NavigationDestination(
-              icon: Icon(Icons.shield_outlined), label: Tr.tabProtection),
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Px.panel,
+            border: Border(top: BorderSide(color: Px.light, width: Px.unit)),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const EndWeekButton(),
+              PixelTabBar(
+                index: _index,
+                onChanged: (i) => setState(() => _index = i),
+                // Pixel ikonlar tools/make_tab_icons.py ile üretiliyor;
+                // beyaz çizilir, burada renklendirilir.
+                items: const [
+                  ('tab_office', Tr.tabOffice),
+                  ('tab_pool', Tr.tabPool),
+                  ('tab_market', Tr.tabMarket),
+                  ('tab_media', Tr.tabMedia),
+                  ('tab_protection', Tr.tabProtection),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Kutulu sekme çubuğu. Seçili sekme altın üst çizgiyle öne çıkar, diğerleri
+/// içe göçük durur.
+class PixelTabBar extends StatelessWidget {
+  const PixelTabBar({
+    super.key,
+    required this.index,
+    required this.onChanged,
+    required this.items,
+  });
+
+  final int index;
+  final ValueChanged<int> onChanged;
+  /// (ikon dosya adı, etiket). Dosya `assets/icons/<ad>.png`.
+  final List<(String, String)> items;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8, 0, 8, 4),
+      child: Row(
+        children: [
+          for (var i = 0; i < items.length; i++) ...[
+            Expanded(
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => onChanged(i),
+                child: Container(
+                  height: 52,
+                  decoration: i == index
+                      ? const BoxDecoration(
+                          color: Px.panelRaised,
+                          border: Border(
+                            top: BorderSide(color: Px.gold, width: Px.unit),
+                            left: BorderSide(color: Px.light, width: 2),
+                            right: BorderSide(color: Px.shadow, width: 2),
+                            bottom: BorderSide(color: Px.shadow, width: 2),
+                          ),
+                        )
+                      : pixelBevel(fill: Px.inset, raised: false, width: 2),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/icons/${items[i].$1}.png',
+                        width: 22,
+                        height: 22,
+                        color: i == index ? Px.gold : Px.muted,
+                        // Pixel art bulanmasın: en yakın komşu.
+                        filterQuality: FilterQuality.none,
+                      ),
+                      const SizedBox(height: 3),
+                      Text(
+                        items[i].$2,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: AppFonts.body,
+                          fontSize: 12,
+                          height: 1,
+                          color: i == index ? Px.text : Px.muted,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            if (i < items.length - 1) const SizedBox(width: 4),
+          ],
         ],
       ),
     );

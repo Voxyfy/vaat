@@ -165,5 +165,437 @@
       { "label": "Botlarla yazıyı boğ", "effects": { "cash": -70000, "suspicion": 4 } },
       { "label": "Blogger'ı işe al", "effects": { "cash": -200000, "suspicion": -8 } }
     ]
+  },
+  {
+    "id": "classic_glossy_brochure",
+    "title": "Parlak broşür",
+    "text": "Matbaa yeni broşürün provasını getirdi. Kapakta büyük harflerle 'GARANTİ' yazıyor.",
+    "weight": 1.1,
+    "conditions": { "schemes": ["classicPonzi"], "minWeek": 2, "maxWeek": 30 },
+    "options": [
+      { "label": "Olduğu gibi bas", "effects": { "cash": -8000, "channelMult": 1.4, "channelMultWeeks": 8, "suspicion": 6 } },
+      { "label": "'Hedeflenen' diye düzelt", "effects": { "cash": -10000, "channelMult": 1.15, "channelMultWeeks": 8, "suspicion": -2 } },
+      { "label": "Eski broşürle devam", "effects": { "channelMult": 0.9, "channelMultWeeks": 4 } }
+    ]
+  },
+  {
+    "id": "classic_monthly_statement",
+    "title": "Aylık ekstre günü",
+    "text": "Yatırımcılar ekstreleri bekliyor. Muhasebe gerçek rakamları sordu, sen de ona baktın.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["classicPonzi"], "minWeek": 4 },
+    "options": [
+      { "label": "Rakamı elle yuvarla", "effects": { "suspicion": 5, "panic": -0.1, "channelMult": 1.1, "channelMultWeeks": 4 } },
+      { "label": "Ekstreyi bir hafta geciktir", "effects": { "panic": 0.15, "suspicion": 3 } },
+      { "label": "Sistem ne basarsa o", "effects": { "panic": 0.25 } }
+    ]
+  },
+  {
+    "id": "classic_new_branch",
+    "title": "İkinci şube",
+    "text": "Çarşıda boşalan bir dükkân var. Cam cepheli, tabela yeri de geniş.",
+    "weight": 0.9,
+    "conditions": { "schemes": ["classicPonzi"], "minWeek": 8, "maxSuspicion": 55 },
+    "options": [
+      { "label": "Kirala, açılış yap", "effects": { "cash": -60000, "fixedCostDelta": 1200, "channelMult": 1.5, "channelMultWeeks": 12, "suspicion": 4 } },
+      { "label": "Sadece tabela as, içi boş kalsın", "effects": { "cash": -15000, "channelMult": 1.2, "channelMultWeeks": 6, "suspicion": 8 } },
+      { "label": "Tek ofis yeter", "effects": {} }
+    ]
+  },
+  {
+    "id": "classic_teacher_circle",
+    "title": "Öğretmenler odası",
+    "text": "Emekli bir öğretmen seni eski okulundaki meslektaşlarına anlatmış. Hepsi toplu gelmek istiyor.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["classicPonzi"], "minWeek": 5 },
+    "options": [
+      { "label": "Toplu kayıt, özel oran", "effects": { "promisedRateDelta": 0.002, "channelMult": 1.5, "channelMultWeeks": 8, "suspicion": 3 } },
+      { "label": "Normal oranla kabul et", "effects": { "channelMult": 1.2, "channelMultWeeks": 6 } },
+      { "label": "Cevap verme", "effects": { "channelMult": 0.95, "channelMultWeeks": 3 } }
+    ]
+  },
+  {
+    "id": "classic_guarantee_letter",
+    "title": "Garanti mektubu",
+    "text": "Temkinli bir yatırımcı anaparası için imzalı garanti mektubu istiyor. Kâğıt ucuz, imza pahalı.",
+    "weight": 0.9,
+    "conditions": { "schemes": ["classicPonzi"], "minWeek": 7 },
+    "options": [
+      { "label": "İmzala, kaşele", "effects": { "suspicion": 8, "panic": -0.15, "withdrawMult": 0.85, "withdrawMultWeeks": 6 } },
+      { "label": "Sözlü garanti ver", "effects": { "suspicion": 2, "panic": 0.05 } },
+      { "label": "Mektup yok de", "effects": { "panic": 0.15, "channelMult": 0.9, "channelMultWeeks": 4 } }
+    ]
+  },
+  {
+    "id": "classic_bank_refuses",
+    "title": "Banka hesabı kapatıyor",
+    "text": "Bankan, hesabındaki hareketlerin 'profil dışı' olduğunu yazdı. Otuz gün süre verdi.",
+    "weight": 0.9,
+    "conditions": { "schemes": ["classicPonzi"], "minWeek": 14, "minSuspicion": 25 },
+    "options": [
+      { "label": "Başka bankaya taşı", "effects": { "cash": -20000, "suspicion": 6, "panic": 0.1 } },
+      { "label": "Nakit kasaya dön", "effects": { "fixedCostDelta": 800, "suspicion": 10, "withdrawMult": 0.9, "withdrawMultWeeks": 6 } },
+      { "label": "Süreyi bekle", "effects": { "suspicion": 17, "panic": 0.2 } }
+    ]
+  },
+  {
+    "id": "classic_rate_cut_letter",
+    "title": "Oran indirimi mektubu",
+    "text": "Kasa zorluyor. Yatırımcılara 'piyasa koşulları' diye başlayan bir mektup taslağı hazır.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["classicPonzi"], "minWeek": 12, "maxCoverage": 0.5 },
+    "options": [
+      { "label": "Mektubu gönder, oranı düşür", "effects": { "promisedRateDelta": -0.004, "panic": 0.3, "suspicion": 4 } },
+      { "label": "Oranı koru, skim'i kıs", "effects": { "skimDelta": -0.03, "panic": -0.05 } },
+      { "label": "Hiçbir şey söyleme", "effects": { "panic": 0.2, "suspicion": 10 } }
+    ]
+  },
+  {
+    "id": "classic_early_investor_bonus",
+    "title": "İlk yatırımcıya sadakat primi",
+    "text": "İlk günden beri seninle olan yatırımcılar küçük bir jest bekliyor. Onlar en iyi reklamın.",
+    "weight": 0.9,
+    "conditions": { "schemes": ["classicPonzi"], "minWeek": 20 },
+    "options": [
+      { "label": "Prim öde, törenle", "effects": { "cash": -40000, "channelMult": 1.4, "channelMultWeeks": 8, "panic": -0.15 } },
+      { "label": "Plaket ver", "effects": { "cash": -3000, "channelMult": 1.1, "channelMultWeeks": 4 } },
+      { "label": "Jest yok", "effects": { "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "classic_quiet_withdrawal_rumor",
+    "title": "Sessiz çekim söylentisi",
+    "text": "Büyük hesaplardan birkaçının son hafta sessizce çıktığı konuşuluyor. Doğru, ama kimse bilmemeli.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["classicPonzi"], "minWeek": 18, "minPanic": 1.25 },
+    "options": [
+      { "label": "Onlara yeni yatırımcı gibi görünen hesap aç", "effects": { "cash": -30000, "panic": -0.2, "suspicion": 9 } },
+      { "label": "Açıklama yap: 'planlı çıkış'", "effects": { "panic": 0.1, "suspicion": 3 } },
+      { "label": "Söylentiye karışma", "effects": { "panic": 0.3 } }
+    ]
+  },
+  {
+    "id": "advisor_vip_room",
+    "title": "VIP oda",
+    "text": "Grupta 'VIP oda' isteyenler çoğaldı. Giriş ücreti koyarsan içeride aynı tavsiyeleri daha erken verirsin.",
+    "weight": 1.1,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 3 },
+    "options": [
+      { "label": "Aylık abonelik aç", "effects": { "cash": 12000, "suspicion": 5, "channelMult": 1.2, "channelMultWeeks": 6 } },
+      { "label": "Ücretsiz VIP, 'seçilmişlere'", "effects": { "channelMult": 1.4, "channelMultWeeks": 6, "suspicion": 2 } },
+      { "label": "Tek oda kalsın", "effects": { "channelMult": 0.95, "channelMultWeeks": 3 } }
+    ]
+  },
+  {
+    "id": "advisor_hoca_live",
+    "title": "Hoca canlı yayında",
+    "text": "Grubun 'yatırım hocası' canlı yayına çıkmak istiyor. Konuşmayı iyi yapar, grafik okumayı hiç bilmez.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 4 },
+    "options": [
+      { "label": "Yayın yapsın, soruları sen seç", "effects": { "cash": -3000, "channelMult": 1.6, "channelMultWeeks": 6, "suspicion": 6 } },
+      { "label": "Önceden kaydet, kurgula", "effects": { "cash": -6000, "channelMult": 1.3, "channelMultWeeks": 6 } },
+      { "label": "Yayın yok", "effects": { "channelMult": 0.9, "channelMultWeeks": 3 } }
+    ]
+  },
+  {
+    "id": "advisor_admin_leaves",
+    "title": "Yönetici kaçtı",
+    "text": "Grubun üç yöneticisinden biri telefonları bırakıp gitmiş. Kendi grubunu kuracakmış, aynı metinlerle.",
+    "weight": 0.9,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 8 },
+    "options": [
+      { "label": "Onu dolandırıcı ilan et", "effects": { "suspicion": 6, "panic": 0.1, "channelMult": 1.1, "channelMultWeeks": 4 } },
+      { "label": "Geri gelmesi için pay teklif et", "effects": { "skimDelta": -0.02, "fixedCostDelta": 250, "panic": -0.05 } },
+      { "label": "Sessiz kal", "effects": { "panic": 0.15, "channelMult": 0.8, "channelMultWeeks": 5 } }
+    ]
+  },
+  {
+    "id": "advisor_one_way_group",
+    "title": "Yorumlar kapansın mı",
+    "text": "Birkaç üye grupta 'param nerede' diye yazmaya başladı. Grup ayarlarında 'yalnız yöneticiler yazabilir' seçeneği duruyor.",
+    "weight": 1.1,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 6, "minPanic": 1.15 },
+    "options": [
+      { "label": "Grubu tek yönlü yap", "effects": { "panic": -0.2, "suspicion": 8, "channelMult": 0.9, "channelMultWeeks": 4 } },
+      { "label": "Soranları özelden ara", "effects": { "cash": -2000, "panic": -0.1, "fixedCostDelta": 150 } },
+      { "label": "Yazsınlar", "effects": { "panic": 0.25 } }
+    ]
+  },
+  {
+    "id": "advisor_screenshot_contest",
+    "title": "Kazanç ekranı yarışması",
+    "text": "Ekip bir yarışma öneriyor: en büyük kazanç ekranını paylaşan hediye kazanır. Ekranları da ekip hazırlayacak.",
+    "weight": 0.9,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 5, "maxSuspicion": 55 },
+    "options": [
+      { "label": "Yarışmayı başlat", "effects": { "cash": -5000, "channelMult": 1.5, "channelMultWeeks": 6, "suspicion": 7 } },
+      { "label": "Sadece gerçek ekranlar", "effects": { "cash": -5000, "channelMult": 1.1, "channelMultWeeks": 4 } },
+      { "label": "Yarışma yok", "effects": {} }
+    ]
+  },
+  {
+    "id": "advisor_bot_members",
+    "title": "Sessiz üyeler",
+    "text": "Grup 4.000 kişi ama 3.200'ü hiç yazmıyor. Birisi 'bunlar bot mu' diye sordu.",
+    "weight": 0.8,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 10, "minInvestors": 40 },
+    "options": [
+      { "label": "Botlara konuşma yazdır", "effects": { "cash": -4000, "suspicion": 5, "panic": -0.1 } },
+      { "label": "Botları sil, küçül", "effects": { "channelMult": 0.8, "channelMultWeeks": 5, "suspicion": -6 } },
+      { "label": "Soruyu geçiştir", "effects": { "suspicion": 6 } }
+    ]
+  },
+  {
+    "id": "advisor_signal_miss",
+    "title": "Sinyal ters çıktı",
+    "text": "Grubun 'kesin' dediği kâğıt bir günde yüzde on beş düştü. Herkes aynı anda aynı şeyi yazıyor.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 7 },
+    "options": [
+      { "label": "'Uzun vadeli' de, telafi bonusu ver", "effects": { "cash": -6000, "panic": -0.15, "suspicion": 3 } },
+      { "label": "Mesajları sil", "effects": { "suspicion": 8, "panic": 0.1 } },
+      { "label": "Sus, geçer", "effects": { "panic": 0.3 } }
+    ]
+  },
+  {
+    "id": "advisor_new_platform",
+    "title": "Yeni platform",
+    "text": "Uygulamadaki grup kapanabilir diye yedek bir kanal açmak lazım. Taşınmak herkesi bir kez daha düşündürür.",
+    "weight": 0.8,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 12, "minSuspicion": 30 },
+    "options": [
+      { "label": "Herkesi yeni kanala taşı", "effects": { "cash": -3000, "channelMult": 0.8, "channelMultWeeks": 4, "suspicion": -8 } },
+      { "label": "Yalnız büyük hesapları taşı", "effects": { "cash": -1500, "suspicion": -4, "withdrawMult": 0.9, "withdrawMultWeeks": 4 } },
+      { "label": "Mevcut grupta kal", "effects": { "suspicion": 10 } }
+    ]
+  },
+  {
+    "id": "advisor_last_call",
+    "title": "Son çağrı",
+    "text": "Kasa zayıf. Ekip 'büyük fırsat, son 48 saat' mesajını hazırladı, altına geri sayım da koymuşlar.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "minWeek": 10, "maxCoverage": 0.45 },
+    "options": [
+      { "label": "Mesajı at", "effects": { "channelMult": 1.8, "channelMultWeeks": 3, "suspicion": 12, "panic": 0.05 } },
+      { "label": "Daha yumuşak bir çağrı", "effects": { "channelMult": 1.25, "channelMultWeeks": 4, "suspicion": 4 } },
+      { "label": "Mesajı atma", "effects": { "panic": 0.15 } }
+    ]
+  },
+  {
+    "id": "holding_profit_ceremony",
+    "title": "Kâr payı töreni",
+    "text": "Yıllık kâr payı dağıtımı için hemşehri derneğinin salonu hazır. Zarflar da.",
+    "weight": 1.1,
+    "conditions": { "schemes": ["profitShareHolding"], "minWeek": 6 },
+    "options": [
+      { "label": "Törenle, zarf zarf dağıt", "effects": { "cash": -70000, "channelMult": 1.5, "channelMultWeeks": 10, "panic": -0.2 } },
+      { "label": "Hesaplara sessizce yatır", "effects": { "cash": -50000, "panic": -0.1 } },
+      { "label": "'Bu yıl yatırıma döndü' de", "effects": { "panic": 0.2, "suspicion": 4 } }
+    ]
+  },
+  {
+    "id": "holding_elder_blessing",
+    "title": "Büyüğün duası",
+    "text": "Cemaatin saygın büyüklerinden biri ziyarete gelmek istiyor. Gelirse fotoğrafı çekilir, gelmezse konuşulur.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["profitShareHolding"], "minWeek": 3 },
+    "options": [
+      { "label": "Ağırla, fotoğraf çektir", "effects": { "cash": -15000, "channelMult": 1.4, "channelMultWeeks": 10, "suspicion": -4 } },
+      { "label": "Vakfına bağış yap", "effects": { "cash": -40000, "suspicion": -8, "channelMult": 1.2, "channelMultWeeks": 8 } },
+      { "label": "Ziyareti ertele", "effects": { "channelMult": 0.9, "channelMultWeeks": 4 } }
+    ]
+  },
+  {
+    "id": "holding_hand_cash",
+    "title": "Elden para",
+    "text": "Bir yatırımcı parasını bavulla getirdi. Makbuz istemiyor, sadece elini sıkmanı istiyor.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["profitShareHolding"], "minWeek": 4 },
+    "options": [
+      { "label": "Makbuzsuz al", "effects": { "cash": 35000, "suspicion": 6 } },
+      { "label": "Makbuz kes, hesaba yatır", "effects": { "cash": 30000, "suspicion": 2, "fixedCostDelta": 400 } },
+      { "label": "Parayı geri çevir", "effects": {} }
+    ]
+  },
+  {
+    "id": "holding_factory_photo",
+    "title": "Fabrika fotoğrafı",
+    "text": "Yatırımcılar 'kâr ettiğimiz fabrika nerede' diye soruyor. Başka şehirde bir fabrikanın önünde fotoğraf çektirebilirsin.",
+    "weight": 0.9,
+    "conditions": { "schemes": ["profitShareHolding"], "minWeek": 10 },
+    "options": [
+      { "label": "Başkasının fabrikası önünde çektir", "effects": { "cash": -8000, "panic": -0.15, "suspicion": 6 } },
+      { "label": "Küçük bir atölye kirala", "effects": { "cash": -60000, "fixedCostDelta": 2000, "suspicion": -6, "panic": -0.1 } },
+      { "label": "Cevabı ertele", "effects": { "suspicion": 5, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "holding_second_generation",
+    "title": "Yeni nesil soruyor",
+    "text": "Yatırımcıların çocukları büyümüş. Bilanço okumayı bilen bir kuşak şimdi babalarının hesabını soruyor.",
+    "weight": 0.9,
+    "conditions": { "schemes": ["profitShareHolding"], "minWeek": 20 },
+    "options": [
+      { "label": "Gençleri yönetime al", "effects": { "fixedCostDelta": 2500, "suspicion": -6, "channelMult": 1.2, "channelMultWeeks": 8 } },
+      { "label": "Babalarıyla ayrı görüş", "effects": { "panic": -0.05, "suspicion": 4 } },
+      { "label": "Duymazdan gel", "effects": { "suspicion": 13, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "holding_abroad_courier",
+    "title": "Yurt dışı kurye",
+    "text": "Döviz elden getiriliyor. Kuryelerden biri sınırda üç saat bekletilmiş, sorgulanmış ama bırakılmış.",
+    "weight": 0.8,
+    "conditions": { "schemes": ["profitShareHolding"], "minWeek": 12, "minSuspicion": 20 },
+    "options": [
+      { "label": "Kuryeleri değiştir, ücret artır", "effects": { "fixedCostDelta": 1800, "suspicion": -5 } },
+      { "label": "Parayı bölüp küçük taşıt", "effects": { "fixedCostDelta": 900, "channelMult": 0.85, "channelMultWeeks": 6, "suspicion": -2 } },
+      { "label": "Aynı düzenle devam", "effects": { "suspicion": 14 } }
+    ]
+  },
+  {
+    "id": "holding_share_certificate_resale",
+    "title": "Belge el değiştiriyor",
+    "text": "Yatırımcılar ortaklık belgelerini aralarında satıyor, hatta indirimle. Piyasa fiyatı senin vaadini ele veriyor.",
+    "weight": 0.9,
+    "conditions": { "schemes": ["profitShareHolding"], "minWeek": 16 },
+    "options": [
+      { "label": "Belgeleri nominalden geri al", "effects": { "cash": -80000, "panic": -0.25, "suspicion": -3 } },
+      { "label": "Satışı 'kurala aykırı' ilan et", "effects": { "withdrawMult": 0.8, "withdrawMultWeeks": 6, "suspicion": 6 } },
+      { "label": "Satsınlar", "effects": { "panic": 0.2 } }
+    ]
+  },
+  {
+    "id": "holding_pilgrimage_loan",
+    "title": "Yol parası",
+    "text": "Bir yatırımcı kutsal yolculuğu için kâr payının erken ödenmesini istiyor. Hikâyesi cemaatte yayılacak, iyi ya da kötü.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["profitShareHolding"], "minWeek": 8 },
+    "options": [
+      { "label": "Erken öde, duyulsun", "effects": { "cash": -25000, "channelMult": 1.3, "channelMultWeeks": 8, "panic": -0.1 } },
+      { "label": "Yarısını öde", "effects": { "cash": -12000, "panic": 0.05 } },
+      { "label": "Kurala uy, erken ödeme yok", "effects": { "panic": 0.1, "channelMult": 0.9, "channelMultWeeks": 4 } }
+    ]
+  },
+  {
+    "id": "holding_payout_delay",
+    "title": "Kâr payı gecikiyor",
+    "text": "Kasadaki para bu çeyreğin kâr payına yetmiyor. Cemaat takvimi senden iyi biliyor.",
+    "weight": 1.1,
+    "conditions": { "schemes": ["profitShareHolding"], "minWeek": 14, "maxCoverage": 0.55 },
+    "options": [
+      { "label": "'Yeni yatırım fırsatı' de, payı yeniden yatır", "effects": { "withdrawMult": 0.6, "withdrawMultWeeks": 8, "suspicion": 10 } },
+      { "label": "Büyükler aracılığıyla sabır iste", "effects": { "panic": -0.1, "suspicion": 5, "channelMult": 0.8, "channelMultWeeks": 6 } },
+      { "label": "Hiç açıklama yapma", "effects": { "panic": 0.35, "suspicion": 11 } }
+    ]
+  },
+  {
+    "id": "pyramid_rank_pins",
+    "title": "Rütbe rozetleri",
+    "text": "Üyeler 'Elmas', 'Zümrüt', 'Taç Elmas' rozetleri istiyor. Rozetin maliyeti düşük, hırsı yüksek.",
+    "weight": 1.1,
+    "conditions": { "schemes": ["pyramidChain"], "minWeek": 3 },
+    "options": [
+      { "label": "Yeni rütbeler bastır", "effects": { "cash": -12000, "channelMult": 1.5, "channelMultWeeks": 10, "suspicion": 3 } },
+      { "label": "Mevcut rütbelere altın kaplama", "effects": { "cash": -25000, "channelMult": 1.25, "channelMultWeeks": 8 } },
+      { "label": "Rozet yok", "effects": { "channelMult": 0.9, "channelMultWeeks": 4 } }
+    ]
+  },
+  {
+    "id": "pyramid_upline_sponsor",
+    "title": "Üst sponsor kıskanıyor",
+    "text": "En üstteki sponsorun sağ kolu, sol kolunun daha hızlı büyüdüğünü fark etti. Payını artırmazsan ekibini alıp gidecek.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["pyramidChain"], "minWeek": 10 },
+    "options": [
+      { "label": "Payını artır", "effects": { "skimDelta": -0.03, "panic": -0.1 } },
+      { "label": "Sağ kola özel prim", "effects": { "cash": -45000, "fixedCostDelta": 1200 } },
+      { "label": "Gitsin", "effects": { "channelMult": 0.7, "channelMultWeeks": 8, "panic": 0.15 } }
+    ]
+  },
+  {
+    "id": "pyramid_stage_car",
+    "title": "Sahnede araba",
+    "text": "Üçüncü dönemin 'araba sahibi' ilan edilecek. Araba kiralık, anahtarı gerçek.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["pyramidChain"], "minWeek": 12 },
+    "options": [
+      { "label": "Arabayı gerçekten ver", "effects": { "cash": -90000, "channelMult": 1.8, "channelMultWeeks": 8, "panic": -0.15 } },
+      { "label": "Kiralık arabayla fotoğraf", "effects": { "cash": -8000, "channelMult": 1.4, "channelMultWeeks": 6, "suspicion": 6 } },
+      { "label": "Töreni ertele", "effects": { "panic": 0.15, "channelMult": 0.85, "channelMultWeeks": 5 } }
+    ]
+  },
+  {
+    "id": "pyramid_starter_kit",
+    "title": "Başlangıç paketi",
+    "text": "Yeni üyelere zorunlu 'başlangıç paketi' satılabilir: bir kutu vitamin, bir kitap, bir kupa.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["pyramidChain"], "minWeek": 4 },
+    "options": [
+      { "label": "Paketi zorunlu yap", "effects": { "cash": 20000, "suspicion": 7, "channelMult": 0.9, "channelMultWeeks": 6 } },
+      { "label": "İsteğe bağlı sat", "effects": { "cash": 6000, "suspicion": 1 } },
+      { "label": "Paket yok", "effects": {} }
+    ]
+  },
+  {
+    "id": "pyramid_family_recruit",
+    "title": "Aile sofrası",
+    "text": "Üyeler aile yemeklerinde üye kaydediyor. Bayramda üç akraba kavga etmiş, biri şikâyet dilekçesi yazıyor.",
+    "weight": 0.9,
+    "conditions": { "schemes": ["pyramidChain"], "minWeek": 8 },
+    "options": [
+      { "label": "Dilekçeyi yazanın kaydını iade et", "effects": { "cash": -10000, "suspicion": -5, "panic": 0.05 } },
+      { "label": "Ailede satış eğitimi ver", "effects": { "cash": -6000, "channelMult": 1.3, "channelMultWeeks": 6, "suspicion": 6 } },
+      { "label": "Aile meselesi, karışma", "effects": { "suspicion": 7 } }
+    ]
+  },
+  {
+    "id": "pyramid_motivation_speaker",
+    "title": "Motivasyon konuşmacısı",
+    "text": "Tanınmış bir 'başarı koçu' salonunu doldurabilir. Ücreti yüksek, cümleleri kısa.",
+    "weight": 0.8,
+    "conditions": { "schemes": ["pyramidChain"], "minWeek": 7, "maxSuspicion": 60 },
+    "options": [
+      { "label": "Çağır, bilet sat", "effects": { "cash": -30000, "channelMult": 1.6, "channelMultWeeks": 8, "suspicion": 4 } },
+      { "label": "Kendin konuş", "effects": { "channelMult": 1.2, "channelMultWeeks": 6, "suspicion": 2 } },
+      { "label": "Etkinlik yok", "effects": {} }
+    ]
+  },
+  {
+    "id": "pyramid_legal_product",
+    "title": "'Gerçek ürün' denetimi",
+    "text": "Bir müfettiş, sattığınız ürünün mü yoksa üyeliğin mi kazandırdığını soruyor. Depoda iki palet vitamin var.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["pyramidChain"], "minWeek": 14, "minSuspicion": 30 },
+    "options": [
+      { "label": "Depoyu doldur, fatura kes", "effects": { "cash": -60000, "fixedCostDelta": 1500, "suspicion": -12 } },
+      { "label": "Ürün satış rakamlarını şişir", "effects": { "cash": -8000, "suspicion": 6 } },
+      { "label": "Müfettişi beklet", "effects": { "suspicion": 17 } }
+    ]
+  },
+  {
+    "id": "pyramid_leg_collapse",
+    "title": "Bir kol çöktü",
+    "text": "Bir şehirdeki kolun lideri kayıplara karıştı. Altındaki iki yüz kişi şimdi doğrudan seni arıyor.",
+    "weight": 1.1,
+    "conditions": { "schemes": ["pyramidChain"], "minWeek": 16, "minPanic": 1.3 },
+    "options": [
+      { "label": "Onları başka kola bağla, prim sözü ver", "effects": { "promisedRateDelta": 0.003, "panic": -0.2, "suspicion": 4 } },
+      { "label": "Kayıtlarını dondur", "effects": { "withdrawMult": 0.6, "withdrawMultWeeks": 6, "suspicion": 10 } },
+      { "label": "Telefonlara çıkma", "effects": { "panic": 0.4, "suspicion": 11 } }
+    ]
+  },
+  {
+    "id": "pyramid_recruit_quota",
+    "title": "Aylık kayıt kotası",
+    "text": "Üst kollar yeni kota istiyor: her üye ayda iki kişi getirmezse rütbesini kaybetsin.",
+    "weight": 0.9,
+    "conditions": { "schemes": ["pyramidChain"], "minWeek": 10 },
+    "options": [
+      { "label": "Kotayı koy", "effects": { "channelMult": 1.5, "channelMultWeeks": 6, "panic": 0.15, "suspicion": 5 } },
+      { "label": "Kota yerine yarışma", "effects": { "cash": -15000, "channelMult": 1.25, "channelMultWeeks": 6 } },
+      { "label": "Kota yok", "effects": { "channelMult": 0.9, "channelMultWeeks": 3 } }
+    ]
   }
 ]

@@ -67,5 +67,290 @@
       { "label": "Teminatı yatır", "effects": { "cash": -400000 } },
       { "label": "Pozisyonları kapattır", "effects": { "cash": -120000, "panic": 0.3, "suspicion": 5 } }
     ]
+  },
+  {
+    "id": "stock_analyst_video",
+    "title": "Analist videosu",
+    "text": "Kendine 'usta analist' diyen bir yorumcu, kâğıdın hedef fiyatını üç katı açıklamak için ücret istiyor.",
+    "weight": 1.0,
+    "conditions": {
+      "schemes": [
+        "stockManipulation"
+      ],
+      "minWeek": 3
+    },
+    "options": [
+      {
+        "label": "Öde, videoyu çeksin",
+        "effects": {
+          "cash": -60000,
+          "channelMult": 1.5,
+          "channelMultWeeks": 6,
+          "suspicion": 6
+        }
+      },
+      {
+        "label": "Hedefi iki katta tutsun",
+        "effects": {
+          "cash": -35000,
+          "channelMult": 1.2,
+          "channelMultWeeks": 5,
+          "suspicion": 3
+        }
+      },
+      {
+        "label": "Geç",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "stock_limit_down_streak",
+    "title": "Taban serisi",
+    "text": "Oynattığın kâğıt üç gündür tabanda. Alım emri veren yok, sadece satıcılar var.",
+    "weight": 0.8,
+    "conditions": {
+      "schemes": [
+        "stockManipulation"
+      ],
+      "minWeek": 10
+    },
+    "options": [
+      {
+        "label": "Kendi kasandan alım yap",
+        "effects": {
+          "cash": -250000,
+          "panic": -0.3,
+          "suspicion": 8
+        }
+      },
+      {
+        "label": "Olumlu haber sızdır",
+        "effects": {
+          "cash": -40000,
+          "panic": -0.15,
+          "suspicion": 10
+        }
+      },
+      {
+        "label": "Bırak düşsün",
+        "effects": {
+          "panic": 0.4,
+          "suspicion": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "stock_bonus_rumor",
+    "title": "Bedelsiz söylentisi",
+    "text": "Forumlarda şirketin bedelsiz sermaye artırımı yapacağı konuşuluyor. Söylenti senden çıkmadı ama işine yarar.",
+    "weight": 1.0,
+    "conditions": {
+      "schemes": [
+        "stockManipulation"
+      ],
+      "minWeek": 6
+    },
+    "options": [
+      {
+        "label": "Söylentiyi büyüt",
+        "effects": {
+          "cash": -20000,
+          "channelMult": 1.5,
+          "channelMultWeeks": 5,
+          "suspicion": 8
+        }
+      },
+      {
+        "label": "Tepede sat",
+        "effects": {
+          "cash": 150000,
+          "suspicion": 10,
+          "panic": 0.1
+        }
+      },
+      {
+        "label": "Karışma",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "stock_short_seller_report",
+    "title": "Açığa satış raporu",
+    "text": "Yurt dışından bir fon, oynattığın kâğıtlarla ilgili 60 sayfalık açığa satış raporu yayımladı.",
+    "weight": 0.7,
+    "conditions": {
+      "schemes": [
+        "stockManipulation"
+      ],
+      "minWeek": 16,
+      "minSuspicion": 25
+    },
+    "options": [
+      {
+        "label": "Hukuki tehdit mektubu yolla",
+        "effects": {
+          "cash": -80000,
+          "suspicion": 4,
+          "panic": -0.1
+        }
+      },
+      {
+        "label": "Karşı rapor yazdır",
+        "effects": {
+          "cash": -120000,
+          "suspicion": -6,
+          "panic": -0.15
+        }
+      },
+      {
+        "label": "Sessiz kal",
+        "effects": {
+          "suspicion": 17,
+          "panic": 0.35
+        }
+      }
+    ]
+  },
+  {
+    "id": "stock_board_painting",
+    "title": "Tahta boyama",
+    "text": "Borsacı ekip, kapanışa beş dakika kala küçük alımlarla fiyatı 'boyamayı' öneriyor. Günlük rapor harika görünür.",
+    "weight": 1.0,
+    "conditions": {
+      "schemes": [
+        "stockManipulation"
+      ],
+      "minWeek": 5
+    },
+    "options": [
+      {
+        "label": "Her gün boya",
+        "effects": {
+          "cash": -50000,
+          "channelMult": 1.4,
+          "channelMultWeeks": 6,
+          "suspicion": 9
+        }
+      },
+      {
+        "label": "Yalnız cuma günleri",
+        "effects": {
+          "cash": -20000,
+          "channelMult": 1.15,
+          "channelMultWeeks": 6,
+          "suspicion": 4
+        }
+      },
+      {
+        "label": "Yapma",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "stock_insider_board",
+    "title": "Yönetim kurulu dostu",
+    "text": "Küçük bir şirketin yönetim kurulu üyesi, açıklanmamış bir ihaleyi senden önce kimseye söylemeyeceğini söylüyor. Tabii bir bedeli var.",
+    "weight": 0.8,
+    "conditions": {
+      "schemes": [
+        "stockManipulation"
+      ],
+      "minWeek": 12
+    },
+    "options": [
+      {
+        "label": "Bilgiyi al, pozisyon aç",
+        "effects": {
+          "cash": 200000,
+          "suspicion": 14
+        }
+      },
+      {
+        "label": "Ortaklık teklif et",
+        "effects": {
+          "skimDelta": -0.02,
+          "cash": 100000,
+          "suspicion": 8
+        }
+      },
+      {
+        "label": "Duymamış ol",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "stock_client_pool_misuse",
+    "title": "Müşteri hesapları",
+    "text": "Portföy yöneticin, müşteri hesaplarındaki atıl parayla kendi kâğıtlarını almayı öneriyor. Kimse bakmıyor.",
+    "weight": 0.9,
+    "conditions": {
+      "schemes": [
+        "stockManipulation"
+      ],
+      "minWeek": 14
+    },
+    "options": [
+      {
+        "label": "Kullan",
+        "effects": {
+          "cash": 300000,
+          "suspicion": 12,
+          "panic": 0.1
+        }
+      },
+      {
+        "label": "Küçük bir kısmını kullan",
+        "effects": {
+          "cash": 120000,
+          "suspicion": 5
+        }
+      },
+      {
+        "label": "Dokunma",
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "stock_exchange_suspension",
+    "title": "İşlem durdurma",
+    "text": "Gözetim birimi, oynattığın kâğıtta işlemleri bir haftalığına durdurdu. Kâğıt kilitli, müşteriler telefonda.",
+    "weight": 0.6,
+    "conditions": {
+      "schemes": [
+        "stockManipulation"
+      ],
+      "minWeek": 18,
+      "minSuspicion": 45
+    },
+    "options": [
+      {
+        "label": "Müşterilere tazminat öde",
+        "effects": {
+          "cash": -200000,
+          "panic": -0.3,
+          "suspicion": -5
+        }
+      },
+      {
+        "label": "'Teknik sorun' açıklaması yap",
+        "effects": {
+          "suspicion": 6,
+          "panic": 0.1
+        }
+      },
+      {
+        "label": "Telefonlara çıkma",
+        "effects": {
+          "panic": 0.5,
+          "suspicion": 13
+        }
+      }
+    ]
   }
 ]

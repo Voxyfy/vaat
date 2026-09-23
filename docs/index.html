@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vaat: Dolandırıcı Kariyeri</title>
+<meta name="description" content="Hicivli bir Ponzi oyunu. Kazanmak yok, sadece daha iyi kaçmak var.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --zemin: #14110C; --yuzey: #1E1A13; --cizgi: #3A3223;
+    --metin: #F3EBDA; --ikincil: #A99D86; --vurgu: #FFD65C;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --zemin: #FBF6EA; --yuzey: #FFFFFF; --cizgi: #E6DAC0;
+      --metin: #1E1A13; --ikincil: #6B604B; --vurgu: #96600C;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; padding: 48px 16px 80px;
+    background: var(--zemin); color: var(--metin);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-wrap: anywhere;
+  }
+  main { max-width: 640px; margin: 0 auto; }
+  .amblem { width: 112px; height: 112px; border-radius: 25px; display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+  h1 { font-family: "Jersey 20", system-ui, sans-serif; font-weight: 400;
+    font-size: 64px; line-height: 1; margin: 24px 0 4px;
+    background: linear-gradient(180deg, #FFD65C, #96600C);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .altbaslik { font-family: "Jersey 20", system-ui, sans-serif; font-size: 28px;
+    line-height: 1.1; margin: 0 0 20px; color: var(--metin); }
+  .slogan { font-size: 19px; margin: 0 0 28px; }
+  .adimlar { padding-left: 22px; margin: 0 0 28px; }
+  .adimlar li { margin: 0 0 12px; }
+  .adimlar b { color: var(--vurgu); }
+  .rozet { display: inline-block; font-family: "Pixelify Sans", system-ui, sans-serif;
+    font-size: 13px; letter-spacing: .04em; text-transform: uppercase;
+    border: 1px solid var(--cizgi); background: var(--yuzey); color: var(--metin);
+    border-radius: 8px; padding: 4px 10px; margin: 0 6px 8px 0; }
+  .not { color: var(--ikincil); font-size: 15px; }
+  a { color: var(--vurgu); }
+  footer { margin-top: 44px; padding-top: 20px; border-top: 1px solid var(--cizgi);
+    color: var(--ikincil); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <img class="amblem" src="icon.png" alt="Vaat">
+  <h1>Vaat</h1>
+  <p class="altbaslik">Dolandırıcı Kariyeri</p>
+  <p class="slogan">Yüksek getiri vaat edin, eskinin parasını yeninin parasıyla
+  ödeyin ve her şey çökmeden önce kaçın. Kazanmak yok, sadece daha iyi kaçmak
+  var.</p>
+
+  <ol class="adimlar">
+    <li><b>Şemanızı kurun.</b> Klasik Ponzi'den sahte yatırım grubuna, kripto
+    borsasından saadet zincirine yedi farklı şema türü.</li>
+    <li><b>Her hafta karar verin.</b> Gazeteci soruyor, muhasebeci
+    kıpırdanıyor, kapıda kuyruk var. Her kartın bir bedeli var.</li>
+    <li><b>Vaktinde çıkın.</b> Firmayı satın, devredin ya da kaçın. Kazandığınız
+    para ve geçmiş dosyanız bir sonraki bölüme taşınır.</li>
+  </ol>
+
+  <p>
+    <span class="rozet">Hesap yok</span>
+    <span class="rozet">Reklam yok</span>
+    <span class="rozet">Çevrimdışı</span>
+    <span class="rozet">Kaynak kodu açık</span>
+  </p>
+
+  <p class="not">Vaat bir hicivdir. Oyundaki kişiler, şirketler ve para
+  tamamen hayalidir. Gerçek dolandırıcılık şemalarında kazanan olmaz.</p>
+
+  <footer>
+    <a href="destek.html">Destek</a> ·
+    <a href="gizlilik.html">Gizlilik</a> ·
+    <a href="https://github.com/Voxyfy/vaat">GitHub</a><br>
+    Batuhan Haymana
+  </footer>
+</main>
+</body>
+</html>

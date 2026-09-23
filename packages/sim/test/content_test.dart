@@ -95,6 +95,42 @@ void main() {
     expect(allIds.toSet().length, allIds.length);
   });
 
+  test('sahiplik ve zincir koşulları gerçek şeylere bakıyor', () {
+    final owned = {
+      ...BusinessType.listFromJsonString(
+              File('../../content/businesses.json').readAsStringSync())
+          .map((b) => b.id),
+      ...ContactType.listFromJsonString(
+              File('../../content/contacts.json').readAsStringSync())
+          .map((c) => c.id),
+    };
+    final byId = {for (final e in events) e.id: e};
+    for (final e in events) {
+      for (final id in e.conditions.owns) {
+        expect(owned, contains(id), reason: '${e.id} bilinmeyen varlık: $id');
+      }
+      final link = e.conditions.after;
+      if (link == null) continue;
+      final parent = byId[link.event];
+      expect(parent, isNotNull, reason: '${e.id} öncülü yok: ${link.event}');
+      expect(link.event, isNot(e.id), reason: '${e.id} kendine bağlı');
+      for (final i in link.options) {
+        expect(i, inInclusiveRange(0, parent!.options.length - 1),
+            reason: '${e.id} öncülde olmayan seçenek: $i');
+      }
+      // Öncül şemaya özelse zincir de o şemalarda kalmalı; yoksa kart
+      // hiçbir zaman gelmez ve kimse fark etmez.
+      if (parent!.conditions.schemes.isNotEmpty &&
+          e.conditions.schemes.isNotEmpty) {
+        expect(
+          e.conditions.schemes.any(parent.conditions.schemes.contains),
+          isTrue,
+          reason: '${e.id} öncülüyle ortak şeması yok',
+        );
+      }
+    }
+  });
+
   test('etki alanları beklenen anahtarları kullanıyor', () {
     const known = {
       'cash', 'suspicion', 'panic', 'promisedRateDelta', 'skimDelta',

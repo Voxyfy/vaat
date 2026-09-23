@@ -1,0 +1,182 @@
+[
+  {
+    "id": "chain_celebrity_scandal",
+    "title": "Reklam yüzü karakolda",
+    "text": "Reklam yüzün bir gece kulübünde kavgaya karışmış. Afişlerde hâlâ senin logonun yanında gülümsüyor.",
+    "weight": 1.2,
+    "conditions": { "after": { "event": "celebrity_endorsement_offer", "options": [0], "minWeeks": 4 } },
+    "options": [
+      { "label": "Sözleşmeyi feshet, afişleri indir", "effects": { "cash": -30000, "suspicion": -3, "channelMult": 0.8, "channelMultWeeks": 4 } },
+      { "label": "Özür videosu çektir, arkasında dur", "effects": { "cash": -15000, "suspicion": 4, "channelMult": 1.2, "channelMultWeeks": 4 } },
+      { "label": "Sessiz kal", "effects": { "suspicion": 7, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "chain_influencer_subpoena",
+    "title": "Fenomen ifade verdi",
+    "text": "Senden bahsettiği için para alan fenomen savcılığa çağrılmış. Paylaşımlarını sildi, anlaşma metnini silmedi.",
+    "weight": 1.1,
+    "conditions": { "minSuspicion": 25, "after": { "event": "inv_influencer_deal", "options": [0, 1], "minWeeks": 6 } },
+    "options": [
+      { "label": "Avukatını sen tut", "effects": { "cash": -40000, "suspicion": -6 } },
+      { "label": "'Tanımıyorum' açıklaması yap", "effects": { "suspicion": 8, "panic": 0.15 } },
+      { "label": "Bekle", "effects": { "suspicion": 10, "panic": 0.1 } }
+    ]
+  },
+  {
+    "id": "chain_journalist_wants_more",
+    "title": "Muhabir yine aradı",
+    "text": "Danışmanlık sözleşmesi imzaladığın muhabir yeni bir hesap yapmış. Bu sefer sözleşmenin tutarını hesaplamış.",
+    "weight": 1.1,
+    "conditions": { "after": { "event": "journalist_math", "options": [1], "minWeeks": 8 } },
+    "options": [
+      { "label": "Sözleşmeyi yenile, zamlı", "effects": { "cash": -60000, "fixedCostDelta": 1000, "suspicion": -4 } },
+      { "label": "Kayıtları sende olduğunu hatırlat", "effects": { "suspicion": 6, "panic": 0.05 } },
+      { "label": "Telefonu açma", "effects": { "suspicion": 12, "panic": 0.2 } }
+    ]
+  },
+  {
+    "id": "chain_accountant_partner_signs",
+    "title": "Muhasebeci imza istiyor",
+    "text": "Ortak yaptığın muhasebeci artık payının kâğıda dökülmesini istiyor. Kâğıt, sende en az istediğin şey.",
+    "weight": 1.0,
+    "conditions": { "after": { "event": "insider_whistleblower", "options": [1], "minWeeks": 6 } },
+    "options": [
+      { "label": "Noterde imzala", "effects": { "suspicion": 6, "skimDelta": -0.01 } },
+      { "label": "Payını nakit, elden ver", "effects": { "cash": -50000, "suspicion": -3 } },
+      { "label": "Oyala", "effects": { "suspicion": 8, "panic": 0.05 } }
+    ]
+  },
+  {
+    "id": "chain_fired_accountant_tv",
+    "title": "Eski muhasebeci ekranda",
+    "text": "İşten çıkardığın muhasebeci bir sabah programında 'rakamları ben yazdım' diyor. Sunucu çok ilgili.",
+    "weight": 1.2,
+    "conditions": { "after": { "event": "insider_whistleblower", "options": [2], "minWeeks": 3 } },
+    "options": [
+      { "label": "Karşı yayında 'kinci eski çalışan' de", "effects": { "cash": -20000, "suspicion": 6, "panic": 0.1 } },
+      { "label": "Programa reklam ver", "effects": { "cash": -45000, "suspicion": 2, "channelMult": 1.1, "channelMultWeeks": 3 } },
+      { "label": "İzleme", "effects": { "suspicion": 12, "panic": 0.25 } }
+    ]
+  },
+  {
+    "id": "chain_relative_in_the_till",
+    "title": "Akraba kasada",
+    "text": "İşe aldığın akraban kasadan 'borç' almış. Deftere de borç diye yazmış, dürüst olduğu için.",
+    "weight": 1.0,
+    "conditions": { "after": { "event": "people_relative_wants_in", "options": [0], "minWeeks": 8 } },
+    "options": [
+      { "label": "Sil, aile meselesi", "effects": { "cash": -25000, "suspicion": -2 } },
+      { "label": "Gönder, sessizce", "effects": { "fixedCostDelta": -3000, "suspicion": 7 } },
+      { "label": "Görmezden gel", "effects": { "cash": -40000, "suspicion": 3 } }
+    ]
+  },
+  {
+    "id": "chain_tender_scandal",
+    "title": "İhale skandalı",
+    "text": "Ayarlanan ihale bir muhalefet milletvekilinin önergesinde. Önergede firmanın adı doğru yazılmış.",
+    "weight": 1.2,
+    "conditions": { "owns": ["construction"], "after": { "event": "asset_construction_tender", "options": [0], "minWeeks": 8 } },
+    "options": [
+      { "label": "Taşeronu öne sür", "effects": { "cash": -60000, "suspicion": 4 } },
+      { "label": "Bağlantına 'ilgilen' de", "effects": { "cash": -120000, "suspicion": -6 } },
+      { "label": "Geçer diye bekle", "effects": { "suspicion": 14, "panic": 0.15 } }
+    ]
+  },
+  {
+    "id": "chain_politician_lost",
+    "title": "Siyasetçi kaybetti",
+    "text": "Kampanyasına cömert davrandığın siyasetçi seçimi kaybetti. Kazanan tarafın listesinde bağışçılar da var.",
+    "weight": 1.0,
+    "conditions": { "after": { "event": "people_politician_donation", "options": [0, 1], "minWeeks": 10 } },
+    "options": [
+      { "label": "Kazanana da bağış yap", "effects": { "cash": -150000, "suspicion": -8 } },
+      { "label": "'Her partiye eşit mesafedeyiz' de", "effects": { "suspicion": 6, "channelMult": 0.9, "channelMultWeeks": 4 } },
+      { "label": "Sus", "effects": { "suspicion": 10 } }
+    ]
+  },
+  {
+    "id": "chain_auditor_second_dinner",
+    "title": "Denetçi yine aç",
+    "text": "Geçen sefer anlaştığın denetçi yeni bir yemek istiyor. Menüdeki fiyatlar değişmiş, restoran aynı.",
+    "weight": 1.0,
+    "conditions": { "after": { "event": "people_auditor_dinner", "options": [0], "minWeeks": 10 } },
+    "options": [
+      { "label": "Hesabı öde", "effects": { "cash": -120000, "suspicion": -6 } },
+      { "label": "Artık sen de ortaksın, hatırlat", "effects": { "suspicion": 8, "panic": 0.05 } },
+      { "label": "Randevuyu ertele", "effects": { "suspicion": 11 } }
+    ]
+  },
+  {
+    "id": "chain_tv_clip_viral",
+    "title": "Yayın kesiti dolaşıyor",
+    "text": "Canlı yayında 'risk yok' dediğin an kısa video olmuş. Altına herkes kendi ekstresini yapıştırıyor.",
+    "weight": 1.0,
+    "conditions": { "minSuspicion": 20, "after": { "event": "media_live_tv_invite", "options": [0], "minWeeks": 3 } },
+    "options": [
+      { "label": "Kesiti telif şikâyetiyle kaldırt", "effects": { "cash": -10000, "suspicion": 6, "panic": 0.05 } },
+      { "label": "Kendi videonla cevap ver", "effects": { "channelMult": 1.2, "channelMultWeeks": 4, "suspicion": 5 } },
+      { "label": "Gündem değişsin", "effects": { "suspicion": 8, "panic": 0.15 } }
+    ]
+  },
+  {
+    "id": "chain_nephew_disappeared",
+    "title": "Yeğen ulaşılamıyor",
+    "text": "Parayı taşıma işini verdiğin yeğenin iki gündür telefonunu açmıyor. Son konumu havalimanı.",
+    "weight": 1.3,
+    "conditions": { "after": { "event": "people_nephew_wallet", "options": [0], "minWeeks": 2 } },
+    "options": [
+      { "label": "Peşine birini gönder", "effects": { "cash": -30000, "suspicion": 5 } },
+      { "label": "Ailesini ara", "effects": { "suspicion": 3, "panic": 0.05, "skimDelta": -0.01 } },
+      { "label": "Bekle, belki şarjı bitmiştir", "effects": { "cash": -60000 } }
+    ]
+  },
+  {
+    "id": "chain_screenshot_fact_check",
+    "title": "Ekran görüntüsü incelendi",
+    "text": "Gruba bastığın akıl almaz kazanç ekranındaki tarih henüz gelmemiş bir güne ait. Biri fark etti.",
+    "weight": 1.2,
+    "conditions": { "schemes": ["fakeAdvisorGroup"], "after": { "event": "advisor_fake_screenshot", "options": [0], "minWeeks": 2 } },
+    "options": [
+      { "label": "'Saat dilimi farkı' de", "effects": { "suspicion": 5, "panic": 0.1 } },
+      { "label": "Fark edeni gruptan at, VIP'e al diğerlerini", "effects": { "cash": -3000, "suspicion": 7, "panic": -0.05 } },
+      { "label": "Mesajı görmezden gel", "effects": { "suspicion": 9, "panic": 0.2 } }
+    ]
+  },
+  {
+    "id": "chain_hotel_car_winner",
+    "title": "Arabanın sahibi",
+    "text": "Sahnede verilen arabayı kazanan üye aracı teslim almak istiyor. Araba kiralıktı, sözleşmesi bitti.",
+    "weight": 1.2,
+    "conditions": { "schemes": ["pyramidChain"], "after": { "event": "pyramid_hotel_meeting", "options": [0], "minWeeks": 3 } },
+    "options": [
+      { "label": "Gerçekten bir araba al", "effects": { "cash": -90000, "channelMult": 1.3, "channelMultWeeks": 6, "panic": -0.1 } },
+      { "label": "'Vergisini sen öde, sonra teslim' de", "effects": { "cash": 15000, "suspicion": 6, "panic": 0.1 } },
+      { "label": "Teslimi ertele", "effects": { "suspicion": 7, "panic": 0.15 } }
+    ]
+  },
+  {
+    "id": "chain_small_auditor_signs",
+    "title": "Küçük büro raporu",
+    "text": "Tanıdık denetim bürosu raporunu bitirdi. Rapor kusursuz, büronun tek çalışanı da senin kuzenin.",
+    "weight": 1.0,
+    "conditions": { "schemes": ["classicPonzi"], "after": { "event": "classic_auditor_choice", "options": [0], "minWeeks": 6 } },
+    "options": [
+      { "label": "Raporu broşüre koy", "effects": { "channelMult": 1.3, "channelMultWeeks": 8, "suspicion": 8 } },
+      { "label": "Raporu yalnız kurumsala göster", "effects": { "channelMult": 1.1, "channelMultWeeks": 6, "suspicion": 3 } },
+      { "label": "Çekmecede kalsın", "effects": { "suspicion": 2 } }
+    ]
+  },
+  {
+    "id": "chain_early_payout_legend",
+    "title": "Mahallenin efsanesi",
+    "text": "Fazlasıyla ödediğin ilk yatırımcılar hikâyeyi o kadar çok anlattı ki rakam her anlatışta büyüyor. Yenileri o rakamı bekliyor.",
+    "weight": 1.0,
+    "conditions": { "after": { "event": "inv_early_payout_show", "options": [0], "minWeeks": 10 } },
+    "options": [
+      { "label": "Efsaneyi yaşat, vaadi yükselt", "effects": { "promisedRateDelta": 0.003, "channelMult": 1.3, "channelMultWeeks": 6 } },
+      { "label": "Düzelt: 'o bir kerelikti'", "effects": { "channelMult": 0.8, "channelMultWeeks": 4, "panic": 0.05 } },
+      { "label": "Anlatsınlar", "effects": { "panic": 0.1, "suspicion": 3 } }
+    ]
+  }
+]

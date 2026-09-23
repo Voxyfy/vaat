@@ -1,7 +1,7 @@
 name: vaat
 description: "Vaat: Dolandırıcı Kariyeri. Hicivli, tur bazlı dolandırıcı kariyeri simülasyonu."
 publish_to: 'none'
-version: 0.1.0+1
+version: 1.0.0+1
 
 environment:
   sdk: ^3.11.4
@@ -32,6 +32,7 @@ flutter:
     - assets/content/escape_plan.json
     - assets/content/events/
     - assets/sprites/
+    - assets/icons/
 
   # Pixel fontlar, hepsi SIL OFL. Seçim gerekçesi ve Türkçe glif kontrolü
   # tasarım dokümanının "Sanat yönü" bölümünde. ₺ yalnız VT323'te var,
